@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function n(){return e.get("ai_leads/getconfig")}function o(s){return e.post("ai_leads/setconfig",s)}function i(s){return e.post("ai_leads/sets3config",s,{showSuccessMessage:!0})}function g(){return e.get("ai_leads/gets3config")}export{g as a,i as b,n as g,o as s};

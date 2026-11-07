@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";const a=t=>e.get("tk_coze/category",{params:t}),c=()=>e.get("tk_coze/category/all"),g=t=>e.post("tk_coze/category",t),s=(t,o)=>e.put(`tk_coze/category/${t}`,o),y=t=>e.delete(`tk_coze/category/${t}`),n=t=>e.put("tk_coze/category/sort",t);export{a,g as b,y as d,s as e,c as g,n as m};

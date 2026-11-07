@@ -1,0 +1,1 @@
+import{an as r}from"./index-c7242584.js";function t(){return r.get("tk_partner/config")}function n(t){return r.get("tk_partner/partner/share/info",t)}function e(t){return r.get("tk_partner/partner/sharepartner/info",t)}function a(t){return r.get("tk_partner/getshortlink",t)}export{a,n as b,e as c,t as g};

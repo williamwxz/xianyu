@@ -1,0 +1,1 @@
+import{bb as o}from"./index-4c6d44e8.js";function e(){return o.get("copyright/platform/list")}function f(t){return o.get(`copyright/platform/config/${t}`)}function i(t){return o.put(`copyright/platform/config/${t.type}`,t,{showSuccessMessage:!0})}export{e as a,i as e,f as g};

@@ -1,0 +1,1 @@
+import{v as t,L as e,__tla as r}from"./el-loading.62a526bc.js";let l,i=Promise.all([(()=>{try{return r}catch{}})()]).then(async()=>{l={install(a){a.directive("loading",t),a.config.globalProperties.$loading=e},directive:t,service:e}});export{l as E,i as __tla};

@@ -1,0 +1,1 @@
+import{d as a,o as s,e,w as t,f as l,E as n,k as o,p as r,q as u}from"./index-c7242584.js";const d=a({__name:"create",setup:a=>(a,d)=>{const f=r,c=u("layout-default-uni");return s(),e(c,null,{default:t(()=>[l(f,{class:"bg-gray-50 min-h-screen",style:o(a.themeColor())},{default:t(()=>[n(" 合成声音 ")]),_:1},8,["style"])]),_:1})}});export{d as default};

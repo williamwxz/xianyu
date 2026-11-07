@@ -1,0 +1,1 @@
+import{bb as s}from"./index-4c6d44e8.js";function t(e){return s.post("business_agent/package/open",e,{showSuccessMessage:!0,showErrorMessage:!0})}function n(e){return s.get("business_agent/package/lists",{params:e})}function g(e){return s.get(`business_agent/package/info/${e}`)}export{n as a,g,t as o};

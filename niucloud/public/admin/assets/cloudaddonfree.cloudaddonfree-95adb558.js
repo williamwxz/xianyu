@@ -1,0 +1,1 @@
+const e="应用",d="全部",o="添加免费授权",t="编辑免费授权",n="确定要删除该数据吗？",a="请选择开始时间",l="请选择结束时间",c={key:e,keyPlaceholder:d,addCloudAddonFree:o,updateCloudAddonFree:t,cloudAddonFreeDeleteTips:n,startDate:a,endDate:l};export{o as addCloudAddonFree,n as cloudAddonFreeDeleteTips,c as default,l as endDate,e as key,d as keyPlaceholder,a as startDate,t as updateCloudAddonFree};

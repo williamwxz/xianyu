@@ -1,0 +1,1 @@
+const e="线路",o="酒店",t="景点",r="去抢购",a="没有更多内容啦~",s="已售",d="订单号",l="实付款",n="详情",c={way:"线路",hotel:"酒店",scenic:"景点",reserveBtn:"去抢购",noHomeAddress:a,soldOut:"已售",orderNo:"订单号",actualPayment:"实付款",orderDetail:"详情"};export{l as actualPayment,c as default,o as hotel,a as noHomeAddress,n as orderDetail,d as orderNo,r as reserveBtn,t as scenic,s as soldOut,e as way};

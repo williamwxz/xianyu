@@ -1,0 +1,1 @@
+import{an as n}from"./index-c7242584.js";function t(t){return n.post("ai_humans/sendmsg",t)}function a(t){return n.get("ai_humans/chatmodel",t)}function s(t){return n.get("ai_humans/chat/gethistorymsg",t)}function e(t){return n.get(`ai_humans/chatmodel/${t}`)}export{e as a,s as g,a as m,t as s};

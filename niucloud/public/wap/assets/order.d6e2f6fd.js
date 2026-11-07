@@ -1,0 +1,1 @@
+import{an as e}from"./index-c7242584.js";function r(r){return e.post("ai_humans/createpackageorder",r)}function a(r){return e.get("ai_humans/order",r)}function s(){return e.get("ai_humans/order/status")}function n(r){return e.delete(`ai_humans/order/${r}`,{showSuccessMessage:!0,showErrorMessage:!0})}export{a,r as c,n as d,s as g};

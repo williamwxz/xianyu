@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function i(){return t.get("tk_fenxiao/getcommissiondict")}function o(){return t.get("tk_fenxiao/getconditiondict")}function s(){return t.get("tk_fenxiao/getconfig")}function g(e){return t.post("tk_fenxiao/setconfig",e,{showSuccessMessage:!0})}export{o as a,i as b,s as g,g as s};

@@ -1,0 +1,1 @@
+import{an as n}from"./index-c7242584.js";function t(t){return n.get("tk_humans/learn/lists",t)}function a(t){return n.get("tk_humans/learncat/lists",t)}function r(t){return n.get(`tk_humans/learn/info/${t}`)}function e(t){return n.get(`tk_humans/learn/dotip/${t}`)}export{t as a,r as b,e as d,a as g};

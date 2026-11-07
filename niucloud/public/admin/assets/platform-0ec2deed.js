@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function r(){return e.get("ht_api/platform/list")}function a(t){return e.get(`ht_api/platform/config/${t}`)}function f(t){return e.put(`ht_api/platform/config/${t.type}`,t,{showSuccessMessage:!0})}export{r as a,f as e,a as g};

@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function a(){return t.get("kd_fenxiao/team_config")}function o(e){return t.put("kd_fenxiao/team_config",e,{showSuccessMessage:!0})}function r(e){return t.get("kd_fenxiao/team_order",{params:e})}export{r as a,a as g,o as s};

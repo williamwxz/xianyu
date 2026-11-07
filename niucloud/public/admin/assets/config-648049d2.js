@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function t(){return e.get("hf_pay/config/getconfig")}function r(s){return e.post("hf_pay/config/setconfig",s,{showErrorMessage:!0,showSuccessMessage:!0})}export{t as g,r as s};

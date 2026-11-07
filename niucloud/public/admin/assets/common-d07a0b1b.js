@@ -1,0 +1,1 @@
+function r(e){return new Date(e).getTime()}function u(e){const t=new Date(e*1e3),n=t.getFullYear(),o=t.getMonth()+1,s=t.getDate(),a=t.getHours(),c=t.getMinutes(),g=t.getSeconds();return`${n}-${o}-${s} ${a}:${c}:${g}`}export{r as d,u as t};

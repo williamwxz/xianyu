@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function a(a){return t.get("tk_cpa/act",a)}function c(a){return t.get(`tk_cpa/act/${a}`)}const n=a=>t.post("tk_cpa/sid/add",a);function r(a){return t.get("tk_cpa/cat",a)}export{a,c as b,n as c,r as g};

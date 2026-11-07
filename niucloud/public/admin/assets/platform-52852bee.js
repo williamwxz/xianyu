@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function r(){return e.get("tk_jhkd/platform/list")}function f(t){return e.get(`tk_jhkd/platform/config/${t}`)}function n(t){return e.put(`tk_jhkd/platform/config/${t.type}`,t,{showSuccessMessage:!0})}export{r as a,n as e,f as g};

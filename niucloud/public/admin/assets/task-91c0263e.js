@@ -1,0 +1,1 @@
+import{bb as r}from"./index-4c6d44e8.js";function e(t){return r.get("tk_work/task",{params:t})}function s(t){return r.get(`tk_work/task/${t}`)}function n(t){return r.get("tk_work/staff_all",{params:t})}function k(t){return r.get("tk_work/area_all",{params:t})}export{n as a,k as b,s as c,e as g};

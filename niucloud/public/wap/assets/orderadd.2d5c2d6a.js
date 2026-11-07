@@ -1,0 +1,1 @@
+import{an as e}from"./index-c7242584.js";function t(t){return e.get("tk_jhkd/getorderaddlist",t)}function r(){return e.get("tk_jhkd/getorderaddstatus")}function d(t){return e.delete(`tk_jhkd/deleteorderadd/${t}`,{showSuccessMessage:!0,showErrorMessage:!0})}function s(){return e.get("tk_jhkd/checkaddpay")}export{t as a,s as c,d,r as g};

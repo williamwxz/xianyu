@@ -1,0 +1,1 @@
+const e="渠道",s="请输入渠道",c="添加招聘渠道",t="编辑招聘渠道",o="确定要删除该数据吗？",a="请选择开始时间",n="请选择结束时间",p={name:e,namePlaceholder:s,addChpsSource:c,updateChpsSource:t,chpsSourceDeleteTips:o,startDate:a,endDate:n};export{c as addChpsSource,o as chpsSourceDeleteTips,p as default,n as endDate,e as name,s as namePlaceholder,a as startDate,t as updateChpsSource};

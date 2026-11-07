@@ -1,0 +1,1 @@
+import{an as r}from"./index-c7242584.js";function t(t){return r.post("tk_cpa/order/add",t)}function e(t){return r.get("tk_cpa/order/bysidkey",t)}function n(t){return r.get("tk_cpa/order",t)}function a(){return r.get("tk_cpa/order/getorderstatus")}function o(t){return r.get(`tk_cpa/order/${t}`)}export{n as a,o as b,e as c,t as d,a as g};

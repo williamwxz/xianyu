@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function i(){return e.get("ai_humans/voiceplatform/list")}function a(t){return e.get(`ai_humans/voiceplatform/config/${t}`)}function r(t){return e.put(`ai_humans/voiceplatform/config/${t.type}`,t,{showSuccessMessage:!0})}export{i as a,r as e,a as g};

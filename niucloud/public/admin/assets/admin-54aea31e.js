@@ -1,0 +1,1 @@
+import{_ as a,c,e as o,g as t,w as n,z as r,af as s}from"./index-4c6d44e8.js";/* empty css                */const _={},d={class:"main-container"};function i(l,f){const e=s;return c(),o("div",d,[t(e,{class:"box-card !border-none",shadow:"never"},{default:n(()=>[r(" 后台管理页面 ")]),_:1})])}const x=a(_,[["render",i]]);export{x as default};

@@ -1,0 +1,1 @@
+import{be as c}from"./index-c7242584.js";async function n(n,o,t){c({title:"操作提示",content:n,confirmColor:"#3569EA",cancelColor:"#646464",success:function(c){c.confirm?o(t):c.cancel&&uni.$u.toast("取消了本次操作")}})}export{n as c};

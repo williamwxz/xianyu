@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function r(){return t.get("tk_draw/award/style")}function a(){return t.get("tk_draw/award/type")}function n(r){return t.post("tk_draw/draw",r)}function e(r){return t.get("tk_draw/draw/list",{params:r})}function d(r){return t.get(`tk_draw/draw/${r}`)}export{r as a,a as b,n as c,d,e as g};

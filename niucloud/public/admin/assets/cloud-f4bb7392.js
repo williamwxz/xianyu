@@ -1,0 +1,1 @@
+import{bb as u}from"./index-4c6d44e8.js";function i(){return u.post("niucloud/build",{})}function o(){return u.get("niucloud/build")}function n(){return u.get("niucloud/build/log")}function t(){return u.post("niucloud/build/clear")}function d(){return u.get("niucloud/build/check")}export{n as a,t as b,i as c,o as g,d as p};

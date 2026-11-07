@@ -1,0 +1,1 @@
+import{an as r}from"./index-c7242584.js";function t(t){return r.post("tk_partner/partner/order/create",t)}function e(t){return r.get("tk_partner/partner/commission/order/lists",t)}export{t as a,e as g};

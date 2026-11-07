@@ -1,0 +1,1 @@
+import{r}from"./sora.60b90972.js";function t(t){return r.delete(`tk_sora/tksorawork/${t}`)}function o(t){return r.post("tk_sora/tksorawork",t)}function s(t){return r.get("tk_sora/tksorawork",t)}function a(t){return r.get(`tk_sora/tksorawork/${t}`)}export{o as c,t as d,s as g,a as q};

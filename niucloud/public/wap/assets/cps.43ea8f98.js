@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(n){return t.get("tk_cps/cpsinfo",n)}function r(n){return t.get("tk_cps/actlist",n)}function s(n){return t.get(`tk_cps/getplatformconfig/${n}`)}function c(n){return t.get("tk_cps/cps/order",n)}function e(n){return t.get("tk_cps/cps/share",n)}export{c as a,e as b,r as c,n as d,s as g};

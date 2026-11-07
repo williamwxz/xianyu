@@ -1,0 +1,1 @@
+import{an as e}from"./index-c7242584.js";function r(r){return e.post("tk_humans/createpackageorder",r)}function s(r){return e.get("tk_humans/order",r)}function t(){return e.get("tk_humans/order/status")}function n(r){return e.delete(`tk_humans/order/${r}`,{showSuccessMessage:!0,showErrorMessage:!0})}export{s as a,r as c,n as d,t as g};

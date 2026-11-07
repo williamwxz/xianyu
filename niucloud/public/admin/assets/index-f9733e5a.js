@@ -1,0 +1,1 @@
+import{bb as t,d as o,r as a,c as l,e as n,t as r}from"./index-4c6d44e8.js";function s(){return t.get("tk_worker/hello_world")}const c={class:"text-[20px]"},f=o({__name:"index",setup(_){const e=a("");return(async()=>{e.value=await(await s()).data})(),(i,p)=>(l(),n("span",c,r(e.value),1))}});export{f as default};

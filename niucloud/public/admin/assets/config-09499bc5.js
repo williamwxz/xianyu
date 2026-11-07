@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function o(){return e.get("qf_notice/config/getconfig")}function r(t){return e.post("qf_notice/config/setconfig",t,{showErrorMessage:!0,showSuccessMessage:!0})}function s(t){return e.post("qf_notice/user/import",t)}function i(){return e.get("qf_notice/asyncmember")}export{i as a,o as g,s as i,r as s};

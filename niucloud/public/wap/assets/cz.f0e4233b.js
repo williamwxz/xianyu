@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function r(){return t.get("ht_cz/getproduct")}function n(r){return t.post("ht_cz/checkphone",r)}function o(r){return t.post("ht_cz/addorder",r)}function e(r){return t.post("ht_cz/getorderlist",r)}export{o as a,e as b,n as c,r as g};

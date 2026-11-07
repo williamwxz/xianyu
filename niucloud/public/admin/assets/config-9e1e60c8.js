@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function n(){return e.get("mp_cms/config/getconfig")}function c(t){return e.post("mp_cms/config/setconfig",t,{showSuccessMessage:!0})}function o(t){return e.post("mp_cms/config/getmemberlist",t)}function r(){return e.get("mp_cms/asyncmember")}export{r as a,o as b,n as g,c as s};

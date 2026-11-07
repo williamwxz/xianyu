@@ -1,0 +1,1 @@
+import{_ as a,c as o,e as t,g as c,w as r,z as s,af as n}from"./index-4c6d44e8.js";/* empty css                */const d={},_={class:"main-container"};function i(l,f){const e=n;return o(),t("div",_,[c(e,{class:"box-card !border-none",shadow:"never"},{default:r(()=>[s(" 快递订单列表 ")]),_:1})])}const x=a(d,[["render",i]]);export{x as default};

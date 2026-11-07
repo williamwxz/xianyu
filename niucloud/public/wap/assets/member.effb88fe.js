@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(n){return t.get(`tk_humans/checkaccount/${n}`)}function e(n){return t.get("tk_humans/memberlog",n)}function a(){return t.get("tk_humans/getaccount")}function u(){return t.get("tk_humans/member/getcommissionstat")}export{a,e as b,n as c,u as g};

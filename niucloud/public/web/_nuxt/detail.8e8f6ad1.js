@@ -1,0 +1,1 @@
+import{_ as r}from"./_plugin-vue_export-helper.c27b6911.js";import{l as s,o,__tla as _}from"./entry.37501b36.js";let t,n=Promise.all([(()=>{try{return _}catch{}})()]).then(async()=>{const a={},e={class:"w-full"};function l(c,d){return o(),s("div",e," detail ")}t=r(a,[["render",l],["__scopeId","data-v-322a0e45"]])});export{n as __tla,t as default};

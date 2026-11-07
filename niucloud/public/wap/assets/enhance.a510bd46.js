@@ -1,0 +1,1 @@
+import{an as n}from"./index-c7242584.js";function t(t){return n.get("tk_sora/tksoraenhance",t)}function a(t){return n.get(`tk_sora/tksoraenhance/${t}`)}function e(t){return n.post("tk_sora/tksoraenhance",t)}function r(t){return n.delete(`tk_sora/tksoraenhance/${t}`)}export{e as a,a as b,r as d,t as g};

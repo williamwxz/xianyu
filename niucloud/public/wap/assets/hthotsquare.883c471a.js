@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function h(h){return t.get("ht_hot/hthotsquare",h)}function o(h){return t.get(`ht_hot/hthotsquare/${h}`)}function r(){return t.get("ht_hot/hthotsquare/app")}export{r as a,o as b,h as g};

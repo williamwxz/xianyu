@@ -1,0 +1,1 @@
+import{an as a}from"./index-c7242584.js";function r(r){return a.upload("ai_humans/upload/voice",r,{showErrorMessage:!0})}function o(r){return a.get("ai_humans/upload/getdirectturl",r)}export{o as g,r as u};

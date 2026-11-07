@@ -1,0 +1,1 @@
+import{an as e}from"./index-c7242584.js";function r(r){return e.get("tk_draw/sender",r)}function n(r){return e.post("tk_draw/sender",r)}function t(r){return e.delete(`tk_draw/sender/${r}`)}export{n as a,t as d,r as g};

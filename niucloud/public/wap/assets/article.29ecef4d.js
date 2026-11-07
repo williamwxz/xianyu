@@ -1,0 +1,1 @@
+import{an as m}from"./index-c7242584.js";function t(t){return m.get("mp_cms/mpcmsarticle",t)}function c(t){return m.get(`mp_cms/mpcmsarticle/${t}`)}function n(t){return m.get("mp_cms/mpcms_cat_all",t)}export{t as a,c as b,n as g};

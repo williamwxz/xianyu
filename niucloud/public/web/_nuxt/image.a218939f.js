@@ -1,0 +1,1 @@
+import{f as e,l,o as s,__tla as r}from"./entry.37501b36.js";let t,_=Promise.all([(()=>{try{return r}catch{}})()]).then(async()=>{let a;a={class:"p-6"},t=e({__name:"image",setup(n){return(o,c)=>(s(),l("div",a," \u56FE\u50CF\u521B\u4F5C\u5217\u8868 "))}})});export{_ as __tla,t as default};

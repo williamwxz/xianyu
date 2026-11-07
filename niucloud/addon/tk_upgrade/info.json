@@ -1,0 +1,11 @@
+{
+  "title": "升级助手",
+  "desc": "快速升级迭代应用/插件",
+  "key": "tk_upgrade",
+  "version": "1.2.3",
+  "author": "TK",
+  "type": "addon",
+  "support_app": "",
+  "support_version":"1.2.2",
+  "compile":[]
+}

@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function e(e){return t.get("travel_guide/guide/lists",e)}function i(e){return t.get("travel_guide/guide/list/lists",e)}function n(e){return t.get(`travel_guide/guide/list/info/${e}`)}export{i as a,n as b,e as g};

@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function e(){return t.get("tk_sora/config/getconfig")}function n(o){return t.post("tk_sora/config/setconfig",o,{showSuccessMessage:!0})}function g(){return t.get("tk_sora/config/gethtapiconfig")}function i(o){return t.post("tk_sora/config/sethtapiconfig",o,{showSuccessMessage:!0})}export{g as a,i as b,e as g,n as s};

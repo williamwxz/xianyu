@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(){return t.get("kd_api/getconfig")}function e(){return t.post("kd_api/restkey")}function r(n){return t.get("kd_api/getorder",n)}function i(){return t.get("kd_api/getlink")}export{n as a,r as b,i as g,e as r};

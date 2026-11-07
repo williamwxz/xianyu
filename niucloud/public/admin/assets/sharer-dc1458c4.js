@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function a(){return e.get("open_sharer/sharer/info")}function t(){return e.get("open_sharer/sharer/resetkey",{showSuccessMessage:!0})}function n(r){return e.post("open_sharer/sharer/savecallbackurl",r)}function o(){return e.get("open_sharer/sharer/resetsharecode",{showSuccessMessage:!0})}export{t as a,a as g,o as r,n as s};

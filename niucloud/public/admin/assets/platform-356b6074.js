@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function r(){return e.get("tk_ps/platform/list")}function s(t){return e.get(`tk_ps/platform/config/${t}`)}function f(t){return e.put(`tk_ps/platform/config/${t.type}`,t,{showSuccessMessage:!0})}export{r as a,f as e,s as g};

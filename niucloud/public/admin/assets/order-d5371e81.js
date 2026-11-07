@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function s(e){return t.get("tk_business/order",{params:e})}function n(e){return t.get(`tk_business/order/${e}`)}function i(e){return t.get("tk_business/member_all",{params:e})}export{s as a,n as b,i as g};

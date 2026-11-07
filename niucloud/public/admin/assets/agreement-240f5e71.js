@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function r(){return t.get("tk_jhkd/agreement")}function g(e){return t.get(`tk_jhkd/agreement/${e}`)}function s(e){return t.put(`tk_jhkd/agreement/${e.key}`,e,{showSuccessMessage:!0})}export{g as a,s as e,r as g};

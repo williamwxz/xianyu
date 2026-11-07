@@ -1,0 +1,1 @@
+import{bb as t}from"./index-4c6d44e8.js";function s(){return t.get("tk_ps/getconfig")}function o(e){return t.post("tk_ps/setconfig",e)}function c(){return t.get("tk_ps/checkpt")}export{c,s as g,o as s};

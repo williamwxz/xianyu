@@ -1,0 +1,1 @@
+import{an as r}from"./index-c7242584.js";function t(t){return r.upload("tk_humans/upload/voice",t,{showErrorMessage:!0})}function o(){return r.get("tk_humans/upload/getdirectturl")}export{o as g,t as u};

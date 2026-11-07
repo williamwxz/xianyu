@@ -1,0 +1,1 @@
+import{X as a,__tla as n}from"./entry.37501b36.js";let r,e,o=Promise.all([(()=>{try{return n}catch{}})()]).then(async()=>{e=function(t){return a.get("tk_sora/tksoraagent",t)},r=function(t){return a.get(`tk_sora/tksoraagent/${t}`)}});export{o as __tla,r as a,e as g};

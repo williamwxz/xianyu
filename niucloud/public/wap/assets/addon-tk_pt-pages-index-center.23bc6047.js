@@ -1,0 +1,1 @@
+import{d as a,o as s,e as t,w as e,f as u,E as l,M as n,q as o}from"./index-c7242584.js";const r=a({__name:"center",setup:a=>(a,r)=>{const d=n,f=o("layout-default-uni");return s(),t(f,null,{default:e(()=>[u(d,{class:"text-[20px]"},{default:e(()=>[l("start")]),_:1})]),_:1})}});export{r as default};

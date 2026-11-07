@@ -1,0 +1,1 @@
+const o="",e="请输入",t="渠道名称",r="请输入渠道名称",s="排序",d="请输入排序",a="添加渠道来源",c="编辑渠道来源",l="确定要删除该数据吗？",n={id:o,idPlaceholder:e,name:t,namePlaceholder:r,sort:s,sortPlaceholder:d,addFrom:a,updateFrom:c,fromDeleteTips:l};export{a as addFrom,n as default,l as fromDeleteTips,o as id,e as idPlaceholder,t as name,r as namePlaceholder,s as sort,d as sortPlaceholder,c as updateFrom};

@@ -1,0 +1,1 @@
+import{an as e}from"./index-c7242584.js";function t(t){return e.post("tk_vip/checkfenxiao",t)}function n(){return e.get("tk_vip/fenxiao/getfenxiaofnfo")}function i(t){return e.get("tk_vip/fenxiao/getfenxiaomember",t)}function o(t){return e.get("tk_vip/fenxiao/getfenxiaoorder",t)}function a(){return e.get("tk_vip/fenxiao/getorderdata")}export{i as a,a as b,t as c,o as d,n as g};

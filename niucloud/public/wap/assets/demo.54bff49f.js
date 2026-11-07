@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(n){return t.get("tk_humans/demo/lists",n)}function e(n){return t.get("tk_humans/democat/lists",n)}function s(n){return t.get(`tk_humans/demo/info/${n}`)}function o(n){return t.get(`tk_humans/demo/dotip/${n}`)}export{n as a,s as b,o as d,e as g};

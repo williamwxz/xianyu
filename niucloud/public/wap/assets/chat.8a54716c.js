@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(n){return t.post("tk_humans/sendmsg",n)}function s(n){return t.get("tk_humans/chatmodel",n)}function a(n){return t.get("tk_humans/chat/gethistorymsg",n)}function e(n){return t.get(`tk_humans/chatmodel/${n}`)}export{e as a,a as g,s as m,n as s};

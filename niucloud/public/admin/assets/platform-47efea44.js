@@ -1,0 +1,1 @@
+import{bb as e}from"./index-4c6d44e8.js";function r(){return e.get("tk_humans/platform/list")}function n(t){return e.get(`tk_humans/platform/config/${t}`)}function s(t){return e.put(`tk_humans/platform/config/${t.type}`,t,{showSuccessMessage:!0})}export{r as a,s as e,n as g};

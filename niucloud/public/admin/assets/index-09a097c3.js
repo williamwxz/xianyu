@@ -1,0 +1,1 @@
+import{bb as t,d as o,r as a,c as l,e as n,t as s}from"./index-4c6d44e8.js";function r(){return t.get("ai_geo/hello_world")}const c={class:"text-[20px]"},f=o({__name:"index",setup(_){const e=a("");return(async()=>{e.value=await(await r()).data})(),(i,p)=>(l(),n("span",c,s(e.value),1))}});export{f as default};

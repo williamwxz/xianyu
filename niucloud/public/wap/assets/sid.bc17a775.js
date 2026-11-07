@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function n(n){return t.get("tk_cpa/sid",n)}function s(n){return t.get(`tk_cpa/sid/${n}`)}function a(n){return t.get(`tk_cpa/sid/asyncstatus/${n}`)}function i(){return t.get("tk_cpa/sid/getstatuslist")}function e(n){return t.get(`tk_cpa/sid/getsidinfo/${n}`)}export{n as a,a as b,s as c,e as d,i as g};

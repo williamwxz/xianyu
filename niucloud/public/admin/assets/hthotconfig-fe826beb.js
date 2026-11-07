@@ -1,0 +1,1 @@
+import{bb as o}from"./index-4c6d44e8.js";function h(t){return o.get("ht_hot/hthotconfig",{params:t})}function n(t){return o.get(`ht_hot/hthotconfig/${t}`)}function r(t){return o.put("ht_hot/hthotconfig",t,{showErrorMessage:!0,showSuccessMessage:!0})}export{h as a,r as e,n as g};

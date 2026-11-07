@@ -1,0 +1,1 @@
+import{an as t}from"./index-c7242584.js";function r(r){return t.get("tk_work/project/projectcat",r)}function e(r){return t.get("tk_work/project/projectlist",r)}function o(r){return t.get(`tk_work/project/${r}`)}function n(r){return t.get(`tk_work/project/projectsku/${r}`)}function c(){return t.get("tk_work/project/getunit")}export{e as a,c as b,n as c,o as d,r as g};

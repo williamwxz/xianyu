@@ -1,0 +1,1 @@
+import{_ as o}from"./shop_record_detail.vue_vue_type_style_index_0_lang-82a10893.js";import"./index-4c6d44e8.js";/* empty css                   *//* empty css                  *//* empty css                   *//* empty css                */import"./el-form-item-4ed993c7.js";import"./delivery-90dc68a0.js";export{o as default};

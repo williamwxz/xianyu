@@ -1,0 +1,1 @@
+import{an as n}from"./index-c7242584.js";function a(a){return n.get(`ai_humans/checkaccount/${a}`)}function t(a){return n.get("ai_humans/memberlog",a)}function e(){return n.get("ai_humans/getaccount")}export{t as a,a as c,e as g};

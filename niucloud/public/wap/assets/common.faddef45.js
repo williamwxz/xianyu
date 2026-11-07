@@ -1,0 +1,1 @@
+function t(t=10,n=!0,o=null){const e="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(""),l=[];if(o=o||e.length,t)for(let r=0;r<t;r++)l[r]=e[0|Math.random()*o];else{let t;l[8]=l[13]=l[18]=l[23]="-",l[14]="4";for(let n=0;n<36;n++)l[n]||(t=0|16*Math.random(),l[n]=e[19==n?3&t|8:t])}return n?(l.shift(),`u${l.join("")}`):l.join("")}export{t as g};
