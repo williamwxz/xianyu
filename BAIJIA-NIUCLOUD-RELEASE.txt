@@ -1,0 +1,58 @@
+百迦好省 — niucloud 原生应用预览版 1.0.1
+
+部署位置
+站点：100000 / 百迦好省
+后台：https://mini.baijia.life/site/diy/index
+H5：https://mini.baijia.life/wap/100000/
+AppID：wx63febce51396b8b5
+
+实现
+niucloud/addon/baijia_tools 是本项目自定义原生应用；未购买商业插件。
+首页使用 niucloud 原生 DIY_INDEX 富文本、图文导航与底部导航，由站点后台管理。
+优惠计算、省钱指南和说明页面位于原始 uni-app 工程的 addon/baijia_tools 分包。
+计算在本地执行，历史记录只保存到设备。首页配置从自建服务器读取。
+当前不提供领券、下单、返佣或品牌供应商服务。
+
+维护
+在后台“站点管理”访问百迦好省，进入“装修管理 → 启动页 → 装修”。
+文字、图文导航、横幅与底部导航可通过原生后台修改。
+前端源码以 niucloud/addon/baijia_tools/uni-app 为准；编译前同步到
+uni-app/src/addon/baijia_tools，避免两份副本漂移。
+初始安装脚本 scripts/setup-baijia-site.php 只用于首次初始化，不覆盖已有站点。
+使用 PHP 进程用户 www 执行它，不要使用 root 生成运行缓存。
+服务器备份位于 /root/baijia-backup-20261109/，权限仅限服务器管理员。
+
+构建（仓库根目录进入 uni-app）
+export VITE_SITE_ID=100000
+export VITE_APP_BASE_URL=https://mini.baijia.life/api/
+export VITE_IMG_DOMAIN=https://mini.baijia.life
+export NIU_SKIP_WEB_COPY=1
+npm run build:h5
+npm run build:mp-weixin
+
+NIU_SKIP_WEB_COPY=1 保留 niucloud H5 多站点路由处理，但不覆盖仓库已跟踪的 public/wap。
+原生编译产物为 uni-app/dist/build/mp-weixin；不要选择之前的 tools 独立工程。
+在微信开发者工具导入该目录；AppID 已写入 project.config.json。
+当前已配置 mini.baijia.life 的 HTTPS；根域名 baijia.life 保留原站。
+微信公众平台仍须将 https://mini.baijia.life 加入 request/downloadFile 合法域名。
+不能将 /api/ 路径填写到合法域名设置中。
+开发工具内临时跳过域名校验的预览不等于真机或发布验收。
+
+验证
+node --test niucloud/addon/baijia_tools/tests/calculator.test.mjs
+已覆盖折扣舍入、重复满减、用券门槛、非法金额、结果范围与本地历史校验。
+H5 与微信产物均构建成功。
+微信官方 wechatide upload 已确认 1.0.0 上传成功。
+上传总大小 2,627,044 字节，主包 1,691,618 字节。
+尚未核实微信公众平台的“设为体验版”、体验成员及二维码；未提交公开审核或正式发布。
+真机后端访问仍待验证。
+
+HTTPS 运维（2026-11-09）
+DNS：mini A → 39.108.174.244，TTL 600；原 @ 和 * 解析未修改。
+TLS：Let's Encrypt，首次证书到期 2027-02-07；certbot.timer 已启用并运行。
+Nginx：/etc/nginx/conf.d/zz-niucloud-mini.conf；原 IP 站点配置保留。
+安全组：niucloud 专用、仅绑定目标 ECS 的组中已开放公网 TCP 443。
+备份：/root/baijia-https-backup-20261109/。
+公网校验：HTTPS 首页 HTTP 200，DIY_INDEX API code=1 / 百迦好省 / site_id=100000。
+1.0.1 原上传任务已查询确认 success / execution_success。主包 1,691,630 字节，总包 2,627,056 字节。
+微信服务器合法域名、设为体验版及真机访问仍待核验。

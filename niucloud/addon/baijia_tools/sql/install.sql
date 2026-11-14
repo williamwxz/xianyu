@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `{{prefix}}baijia_cps_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `site_id` int(11) NOT NULL DEFAULT 0 COMMENT '站点（来自 sid）',
+  `member_id` int(11) NOT NULL DEFAULT 0 COMMENT '会员（来自 sid，游客为 0）',
+  `source` varchar(20) NOT NULL DEFAULT '' COMMENT 'jtk / meituan',
+  `order_sn` varchar(64) NOT NULL DEFAULT '' COMMENT '上游订单号',
+  `sid` varchar(64) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `act_name` varchar(100) NOT NULL DEFAULT '',
+  `pay_amount` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '用户实付',
+  `commission` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '平台预估佣金',
+  `member_commission` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '会员返利',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0未付款 1已付款 2待结算 3已结算 4无效',
+  `credited` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0未入账 1已入账 2已扣回',
+  `credited_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `pay_time` int(11) NOT NULL DEFAULT 0,
+  `upstream_update_time` int(11) NOT NULL DEFAULT 0,
+  `create_time` int(11) NOT NULL DEFAULT 0,
+  `update_time` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_source_order` (`source`, `order_sn`),
+  KEY `idx_member` (`site_id`, `member_id`, `status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='百迦好省 CPS 订单';

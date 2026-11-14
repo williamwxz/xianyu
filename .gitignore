@@ -24,3 +24,5 @@ niucloud/public/.htaccess
 
 # Local backend credentials
 /niucloud/.env
+
+.DS_Store

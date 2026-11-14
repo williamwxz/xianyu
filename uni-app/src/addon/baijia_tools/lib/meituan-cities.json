@@ -1,0 +1,1797 @@
+[
+  {
+    "id": "3NUYJKKJXPHVNZUHFK3HWUDHNM",
+    "name": "宣城市",
+    "province": "安徽省"
+  },
+  {
+    "id": "LXXSHOY7LNK74ZK2SKVUXFY72Q",
+    "name": "阜阳市",
+    "province": "安徽省"
+  },
+  {
+    "id": "ZEBF2LBJOEHGM4XGFPNW4IHBIA",
+    "name": "合肥市",
+    "province": "安徽省"
+  },
+  {
+    "id": "WADWEY3GR6IARJLSNGQWG2KI4E",
+    "name": "滁州市",
+    "province": "安徽省"
+  },
+  {
+    "id": "Z62QL3X66AOT6MSY7LB6LVO4CI",
+    "name": "芜湖市",
+    "province": "安徽省"
+  },
+  {
+    "id": "M6QCWRCECRT6ZEJ6RERR6IWHFI",
+    "name": "淮南市",
+    "province": "安徽省"
+  },
+  {
+    "id": "UP2NBJACSAO7FUH4XQQDMBOUE4",
+    "name": "马鞍山市",
+    "province": "安徽省"
+  },
+  {
+    "id": "WLL7BSHUBPTLTMITFITJX2GKWY",
+    "name": "蚌埠市",
+    "province": "安徽省"
+  },
+  {
+    "id": "ECTBNJ4KNNHPGXEVI4TBJNU7BY",
+    "name": "亳州市",
+    "province": "安徽省"
+  },
+  {
+    "id": "KNEGDNOSRGNQPAMOMH54ATLIUU",
+    "name": "六安市",
+    "province": "安徽省"
+  },
+  {
+    "id": "YH53FRR55H6VA4KXW36OJ7RNSE",
+    "name": "宿州市",
+    "province": "安徽省"
+  },
+  {
+    "id": "LH6LX5DUVFPOFCAQ6NEGPWCLBI",
+    "name": "淮北市",
+    "province": "安徽省"
+  },
+  {
+    "id": "RIFXWJ46SEJXE7EP6HZXEUIALU",
+    "name": "铜陵市",
+    "province": "安徽省"
+  },
+  {
+    "id": "FK6F7KMO4WNARZKUXMMSBWGATM",
+    "name": "安庆市",
+    "province": "安徽省"
+  },
+  {
+    "id": "M3CHGNNUSFSPS5HRV3W7MCBWFI",
+    "name": "黄山市",
+    "province": "安徽省"
+  },
+  {
+    "id": "XFI6PM7SRO6NHBGYQUZEEA2WT4",
+    "name": "池州市",
+    "province": "安徽省"
+  },
+  {
+    "id": "D2ZILSASTTGEFQWZIDTHA7PWU4",
+    "name": "澳门",
+    "province": "澳门特别行政区"
+  },
+  {
+    "id": "WKV2HMXUEK634WP64CUCUQGM64",
+    "name": "北京市",
+    "province": "北京市"
+  },
+  {
+    "id": "HPMKHLM3QR6EZGMY7GEI4H3QYQ",
+    "name": "泉州市",
+    "province": "福建省"
+  },
+  {
+    "id": "6V523YRU54Y3PEAM2XPADNJM2U",
+    "name": "福州市",
+    "province": "福建省"
+  },
+  {
+    "id": "HH3ZZCERPVQIYUZPW4A2U4JKZI",
+    "name": "莆田市",
+    "province": "福建省"
+  },
+  {
+    "id": "BQ5RWEJS4O7W27SQMLPMRIRJDU",
+    "name": "宁德市",
+    "province": "福建省"
+  },
+  {
+    "id": "TDN7XDQMZEP6ZCK6UO3VVMCSMM",
+    "name": "三明市",
+    "province": "福建省"
+  },
+  {
+    "id": "ZKNTORN6YTZL2BXRYUSRGV3CHU",
+    "name": "厦门市",
+    "province": "福建省"
+  },
+  {
+    "id": "Y2DI2QLZN5NNACMD3KI2DBR4IA",
+    "name": "龙岩市",
+    "province": "福建省"
+  },
+  {
+    "id": "C4RS32I6QAHWLP55UQWI3N5LLY",
+    "name": "南平市",
+    "province": "福建省"
+  },
+  {
+    "id": "5T23WDEOAP7RYNU4JNL2ZG7PDQ",
+    "name": "漳州市",
+    "province": "福建省"
+  },
+  {
+    "id": "UHZBROATFB2KWNMNLS23DPRJBY",
+    "name": "定西市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "WLPAHIUOIVKS644QSN4V5ZY5XQ",
+    "name": "金昌市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "J7TO3UHZ57ABNUKIQUBCIJZQFA",
+    "name": "白银市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "GX277SS75375VEFYVCEHBL6ISA",
+    "name": "临夏回族自治州",
+    "province": "甘肃省"
+  },
+  {
+    "id": "ORA3R7F2LSJHUOCIDTZCP54G7Q",
+    "name": "张掖市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "L6VQYYOJNTHSLW5JCR5SXBITDM",
+    "name": "武威市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "65OXQPQVFXNOYHXTMCE2RNFRL4",
+    "name": "兰州市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "IUIZYQ7E2SPMEAIGOUUNZWBQOA",
+    "name": "天水市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "BYBRGRDRV4NKAWCU6GWBIVLX3Q",
+    "name": "酒泉市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "KDST2VRETG6WK5SMJO2G2FN2RU",
+    "name": "嘉峪关市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "R3Q2XWVFVF4T2ADZZZMPZJRWBA",
+    "name": "庆阳市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "7FWNT2TP66SU4QEP6IBBMZWFNE",
+    "name": "陇南市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "T33S2GYGPVHAL5SR2FLSPTJSBE",
+    "name": "平凉市",
+    "province": "甘肃省"
+  },
+  {
+    "id": "RR6KAWBLOKD4H2UINKYPFCPXO4",
+    "name": "甘南藏族自治州",
+    "province": "甘肃省"
+  },
+  {
+    "id": "QKX4DS3CTJJG7SFW5SBHPLD42I",
+    "name": "茂名市",
+    "province": "广东省"
+  },
+  {
+    "id": "JJZ75A32XCQNZU4IN2ZCEUGN3M",
+    "name": "梅州市",
+    "province": "广东省"
+  },
+  {
+    "id": "SJSOXOSJASLUT6LBH4E32SUKKQ",
+    "name": "清远市",
+    "province": "广东省"
+  },
+  {
+    "id": "SQQWAN5BQOVSX55S7EPF7QHMAU",
+    "name": "珠海市",
+    "province": "广东省"
+  },
+  {
+    "id": "NGRJMW6JMRS6U2KUJEONSORAEY",
+    "name": "韶关市",
+    "province": "广东省"
+  },
+  {
+    "id": "FAUMIGOSOET4E5WR5BL6P3OZHA",
+    "name": "佛山市",
+    "province": "广东省"
+  },
+  {
+    "id": "JSBIH55ICFZQ2D3LEV47YMZ2NI",
+    "name": "河源市",
+    "province": "广东省"
+  },
+  {
+    "id": "KOYAYPD2DBLDCF2ZI5GCW4LF6Y",
+    "name": "中山市",
+    "province": "广东省"
+  },
+  {
+    "id": "647JGFPUYM4VWVLZCPSHT63XKQ",
+    "name": "汕头市",
+    "province": "广东省"
+  },
+  {
+    "id": "AMOIPZW3Q2NMTDSEREFVM4SV74",
+    "name": "深圳市",
+    "province": "广东省"
+  },
+  {
+    "id": "XIHEJY4H2CDZJCLIXDIN36BKXQ",
+    "name": "广州市",
+    "province": "广东省"
+  },
+  {
+    "id": "UZ6OT4CYUR42KCTTED2KJW6EGA",
+    "name": "东莞市",
+    "province": "广东省"
+  },
+  {
+    "id": "RM3HLOIUEYKTQ5O2JSVEKDMFRY",
+    "name": "阳江市",
+    "province": "广东省"
+  },
+  {
+    "id": "C6XNJAZA6N3NNUDBUU3JIZPTDI",
+    "name": "潮州市",
+    "province": "广东省"
+  },
+  {
+    "id": "AUPF3G2ULSV4TDT4L3NMHRTY6Y",
+    "name": "揭阳市",
+    "province": "广东省"
+  },
+  {
+    "id": "7HIITKBPRXTVBA2FBBN443XITQ",
+    "name": "云浮市",
+    "province": "广东省"
+  },
+  {
+    "id": "TO6ILZ7MPJMJN3S7W2SXMIFQQY",
+    "name": "江门市",
+    "province": "广东省"
+  },
+  {
+    "id": "DTTBMGCIOMPCZY5NETUEKWJ6PY",
+    "name": "汕尾市",
+    "province": "广东省"
+  },
+  {
+    "id": "HJY7JYWBA6FQY42RYSKX3RZTRI",
+    "name": "湛江市",
+    "province": "广东省"
+  },
+  {
+    "id": "SLICHB4FBDVDLI53MR74WVUUNI",
+    "name": "肇庆市",
+    "province": "广东省"
+  },
+  {
+    "id": "ZPX4JXJVBBYSSD2KTWHAPXO6NE",
+    "name": "惠州市",
+    "province": "广东省"
+  },
+  {
+    "id": "JH4Q44RQA4EZ3Q6MHQVEVE7KZQ",
+    "name": "百色市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "H2JXFEJFIL4PPFMYOS4MHZ5IBM",
+    "name": "崇左市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "SXIRRISUOEGBU335AWT2ZFL6A4",
+    "name": "贵港市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "HEQHKC4KP7YGGYVBZM5JEUI5AQ",
+    "name": "北海市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "SKGG7KMFKVDIDKRVQEPTS7SIE4",
+    "name": "贺州市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "N4WR7CWCULNA5Z35OTDJSZYDCU",
+    "name": "钦州市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "T4RXX2WY6WPQYZEUXVJNZBXQZU",
+    "name": "梧州市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "3R23AS3EIY7EYE2D5MWWORZODI",
+    "name": "河池市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "57SMWWCV7X44E256P4I23OQ3AA",
+    "name": "防城港市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "YHGHVIQ37UCTNQ4JKPQEAUWIQA",
+    "name": "桂林市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "MQJZTM455OKZLAN5WQYUTA5TDE",
+    "name": "柳州市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "C6FZPLB4NJQ6VUPSKDJH3EWQDM",
+    "name": "玉林市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "BFSU5W6E5XBIDFPQLVPGRDSATY",
+    "name": "南宁市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "CKXOQUZDNOVNME3PEBOY2CULQQ",
+    "name": "来宾市",
+    "province": "广西壮族自治区"
+  },
+  {
+    "id": "LV32FV6IQTKFR7JIBEQMHRUVCA",
+    "name": "贵阳市",
+    "province": "贵州省"
+  },
+  {
+    "id": "F26RCNKMFTZONJCSJ5C6FHVY74",
+    "name": "毕节市",
+    "province": "贵州省"
+  },
+  {
+    "id": "G2LMYRWVRCK7BTD2WM4NWX4SYM",
+    "name": "黔南布依族苗族自治州",
+    "province": "贵州省"
+  },
+  {
+    "id": "MFSOO3NBMB2PVLIVSI5EJK7MWY",
+    "name": "黔西南布依族苗族自治州",
+    "province": "贵州省"
+  },
+  {
+    "id": "KWUL44L7SEMJGIMXCWSSEB3OOA",
+    "name": "遵义市",
+    "province": "贵州省"
+  },
+  {
+    "id": "T2P3OFGQZUGR7D6TGRCMDF22GI",
+    "name": "铜仁市",
+    "province": "贵州省"
+  },
+  {
+    "id": "AGUFUANSZNGC4TMOPZO65IRSPI",
+    "name": "六盘水市",
+    "province": "贵州省"
+  },
+  {
+    "id": "2XOCOSNUAK3J5QDGTKIBWKK7KU",
+    "name": "安顺市",
+    "province": "贵州省"
+  },
+  {
+    "id": "6XRTSAEYJTA2UBKXO4XEPQE5ZY",
+    "name": "黔东南苗族侗族自治州",
+    "province": "贵州省"
+  },
+  {
+    "id": "YRMKRP2GOE2VMRS73N4YRIZUHY",
+    "name": "三亚市",
+    "province": "海南省"
+  },
+  {
+    "id": "CJRGVLBNLJAVBJ4ZKKIZ3FZ2LY",
+    "name": "白沙黎族自治县",
+    "province": "海南省"
+  },
+  {
+    "id": "5XOUAJ5Z4J4K7SVIQGXL2OM2JQ",
+    "name": "保亭黎族苗族自治县",
+    "province": "海南省"
+  },
+  {
+    "id": "2UFQ6A2QRJPXPH3VOYEAQHMVSQ",
+    "name": "海口市",
+    "province": "海南省"
+  },
+  {
+    "id": "TGCVXVS4M7NDQM4ROUDCVI6I3A",
+    "name": "承德市",
+    "province": "河北省"
+  },
+  {
+    "id": "JEUP6QWCOXPSM3SQTINQCJKIGM",
+    "name": "衡水市",
+    "province": "河北省"
+  },
+  {
+    "id": "Z442MNCW6BO2BBHIRUPRBACXPI",
+    "name": "唐山市",
+    "province": "河北省"
+  },
+  {
+    "id": "RFE6R34GD4FY3LUKC2ICSF6AFY",
+    "name": "张家口市",
+    "province": "河北省"
+  },
+  {
+    "id": "CWJN55M73VZDCYJEQ7AHDBWGGY",
+    "name": "沧州市",
+    "province": "河北省"
+  },
+  {
+    "id": "DFL4ES776ECRGBYNOPLWKB247I",
+    "name": "雄安新区",
+    "province": "河北省"
+  },
+  {
+    "id": "ZLSXYY34IHBHIC2NOVPQQBFTBE",
+    "name": "保定市",
+    "province": "河北省"
+  },
+  {
+    "id": "3DO6Z2QRJQFMPLLDS55PG7DSBU",
+    "name": "石家庄市",
+    "province": "河北省"
+  },
+  {
+    "id": "PR57XT25LI3246VGASEPSHP63E",
+    "name": "邢台市",
+    "province": "河北省"
+  },
+  {
+    "id": "SKYLNH737BS56TD452FOKYL36U",
+    "name": "邯郸市",
+    "province": "河北省"
+  },
+  {
+    "id": "5PWPERL7GQKJD6QPLR2TWUUM7E",
+    "name": "秦皇岛市",
+    "province": "河北省"
+  },
+  {
+    "id": "5T2TGV6SJFVL3MO7HIMN2KTQTA",
+    "name": "廊坊市",
+    "province": "河北省"
+  },
+  {
+    "id": "ECSTLZ7GP7IX3MB5EVNKS47MLE",
+    "name": "焦作市",
+    "province": "河南省"
+  },
+  {
+    "id": "VTWW34QB2F5Q4LW7ISNUMWX7GY",
+    "name": "开封市",
+    "province": "河南省"
+  },
+  {
+    "id": "D2NUN47NY4Q55X3UED4JMSI6CM",
+    "name": "周口市",
+    "province": "河南省"
+  },
+  {
+    "id": "TR3XJFQR4EFYRRIX7TUQF3B26Y",
+    "name": "郑州市",
+    "province": "河南省"
+  },
+  {
+    "id": "CKJGF5S6XMHW5ZJEBU7MJC47QA",
+    "name": "新乡市",
+    "province": "河南省"
+  },
+  {
+    "id": "IFASZ625MCFJQKPLJ7EA2SMJUU",
+    "name": "商丘市",
+    "province": "河南省"
+  },
+  {
+    "id": "SKXPYKTTRG4YAUHE2HZXWRWXGM",
+    "name": "鹤壁市",
+    "province": "河南省"
+  },
+  {
+    "id": "G5LXE74CUHO2K6BBRN7Q5DSRJY",
+    "name": "漯河市",
+    "province": "河南省"
+  },
+  {
+    "id": "SLNOAFJV2LTBSH7SJCRXJA36K4",
+    "name": "驻马店市",
+    "province": "河南省"
+  },
+  {
+    "id": "65WO7LH7CFDUGKYMXQLRAYKKWM",
+    "name": "安阳市",
+    "province": "河南省"
+  },
+  {
+    "id": "RIX2X7FAVTZCAQ5RT2C2CWK22Q",
+    "name": "南阳市",
+    "province": "河南省"
+  },
+  {
+    "id": "SZOW5OY3U54SSY4WRC65VJUNTI",
+    "name": "平顶山市",
+    "province": "河南省"
+  },
+  {
+    "id": "7VPIDDUS4P2LSZ6Q5S57MAQDEM",
+    "name": "信阳市",
+    "province": "河南省"
+  },
+  {
+    "id": "4VYCRORUOZ4DC2U6S3CT6H6KWE",
+    "name": "洛阳市",
+    "province": "河南省"
+  },
+  {
+    "id": "M5WNO2BQ3UGLLHBCG4NCEFPP5U",
+    "name": "濮阳市",
+    "province": "河南省"
+  },
+  {
+    "id": "LY3O6PBPIWETMA3ZOL6ETY5UB4",
+    "name": "三门峡市",
+    "province": "河南省"
+  },
+  {
+    "id": "FXXJLIRE72LS2W4OWWQVJMRJHA",
+    "name": "许昌市",
+    "province": "河南省"
+  },
+  {
+    "id": "5XH353QTY3VWF2KYOCZCL3TOXY",
+    "name": "牡丹江市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "2KGRZKF6IECV2W7K5J64Y2LY4M",
+    "name": "齐齐哈尔市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "FASGWS5ADVSTFGJG6TGBZPZP6Q",
+    "name": "鹤岗市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "2O6CDIXSWIKBXILZEEPKCS7MVI",
+    "name": "双鸭山市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "OZ2PTOBYTBG57XJZMIC23QFJKM",
+    "name": "佳木斯市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "FO24MQMULT3J5JW64APNXSQEPU",
+    "name": "伊春市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "ETZ2HYWVU6U7SKU6G4JAO64RUQ",
+    "name": "黑河市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "PR7EJNBY2VZBEUT36JAWE3TM7I",
+    "name": "七台河市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "HADAAVLERKIW4SQGCTQYGX4AL4",
+    "name": "哈尔滨市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "CGTU45YC5C3JYLHMA47USDPA7Y",
+    "name": "大庆市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "T4W7SQIPOM4EYMEFFRAB5BSTII",
+    "name": "鸡西市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "TYGZHNQL6YT7CX6EEG5DJQQHMA",
+    "name": "绥化市",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "OOSJTSN2CVUUCKD6XAB7EYYIPY",
+    "name": "大兴安岭地区",
+    "province": "黑龙江省"
+  },
+  {
+    "id": "I3YF3EKZHIZTN6TZOTYTGZ2UXQ",
+    "name": "随州市",
+    "province": "湖北省"
+  },
+  {
+    "id": "ESGVBOSTHW7JWEVCGYJUTEHEBQ",
+    "name": "宜昌市",
+    "province": "湖北省"
+  },
+  {
+    "id": "MTJRWJ53XBW5SBTWHKNNZDLM7U",
+    "name": "十堰市",
+    "province": "湖北省"
+  },
+  {
+    "id": "PXZLF2ISKQL5ACM67ZCBNOGDT4",
+    "name": "黄石市",
+    "province": "湖北省"
+  },
+  {
+    "id": "44RMTOEHPUFXBHZXX4IQ4IRZVQ",
+    "name": "荆州市",
+    "province": "湖北省"
+  },
+  {
+    "id": "OTKZGG743NFC474ADMMRX4ZOOA",
+    "name": "鄂州市",
+    "province": "湖北省"
+  },
+  {
+    "id": "EXOUAZAQ73OEFAK72CHQ32GQHQ",
+    "name": "恩施土家族苗族自治州",
+    "province": "湖北省"
+  },
+  {
+    "id": "SUCY7I72QJDZD7EBFXREIQ67SI",
+    "name": "咸宁市",
+    "province": "湖北省"
+  },
+  {
+    "id": "QENSGB5R7HGYDXCG2LQZQTO3TU",
+    "name": "荆门市",
+    "province": "湖北省"
+  },
+  {
+    "id": "OHIWL6SAE2PR4EJR4BOMLAE6FU",
+    "name": "武汉市",
+    "province": "湖北省"
+  },
+  {
+    "id": "ZXCE4WV2CDVPQTA4HAOVELQMNE",
+    "name": "襄阳市",
+    "province": "湖北省"
+  },
+  {
+    "id": "KEFN5OPSS4ZZF6NU2TTL72S6HE",
+    "name": "孝感市",
+    "province": "湖北省"
+  },
+  {
+    "id": "ROAHLMQ67H6M5NDFVXROJG723E",
+    "name": "黄冈市",
+    "province": "湖北省"
+  },
+  {
+    "id": "YBEBX2YYN4WPBNH6Z6C73DNE7I",
+    "name": "张家界市",
+    "province": "湖南省"
+  },
+  {
+    "id": "45XGRKYGSCPE5VNRYF4FVJGFMM",
+    "name": "株洲市",
+    "province": "湖南省"
+  },
+  {
+    "id": "LK3SEIBRU7GTDT4J2EPTLIO33U",
+    "name": "永州市",
+    "province": "湖南省"
+  },
+  {
+    "id": "R4YXFIK53W5E556BSGSBJWS4DM",
+    "name": "郴州市",
+    "province": "湖南省"
+  },
+  {
+    "id": "PQDO3RNADWXX75OWZW2GSXJ4SE",
+    "name": "怀化市",
+    "province": "湖南省"
+  },
+  {
+    "id": "RRRT6QOJYEJ432L3F76ZN5NHCA",
+    "name": "长沙市",
+    "province": "湖南省"
+  },
+  {
+    "id": "B6WPNMCZ3ENQSV4NFY5MSTPDAM",
+    "name": "岳阳市",
+    "province": "湖南省"
+  },
+  {
+    "id": "KNDZW5EHDPKP2DX7HBLKP4DYLM",
+    "name": "益阳市",
+    "province": "湖南省"
+  },
+  {
+    "id": "PA2GHG3XZ7I47HTKZ4YAFH3OYY",
+    "name": "湘西土家族苗族自治州",
+    "province": "湖南省"
+  },
+  {
+    "id": "I7CNIUA5PYV2EHDEW3RGYT2R4U",
+    "name": "邵阳市",
+    "province": "湖南省"
+  },
+  {
+    "id": "SRI2SU4FN66FMJJCKQOCZD72ZY",
+    "name": "常德市",
+    "province": "湖南省"
+  },
+  {
+    "id": "H7UHHJAMQUL7UA5QEUTGKNSL3A",
+    "name": "湘潭市",
+    "province": "湖南省"
+  },
+  {
+    "id": "EFB255OBTB2BUDZENR5UVIC7ZQ",
+    "name": "衡阳市",
+    "province": "湖南省"
+  },
+  {
+    "id": "RDMANB4KCM3OJSNVGZWVYVME6E",
+    "name": "娄底市",
+    "province": "湖南省"
+  },
+  {
+    "id": "LD37PDU5OB4UAV5QDOBMKG5YTY",
+    "name": "吉林市",
+    "province": "吉林省"
+  },
+  {
+    "id": "EO3GF4XNF5RXWRPUVAT3KTQO4U",
+    "name": "四平市",
+    "province": "吉林省"
+  },
+  {
+    "id": "4GD7OS4CAQABH5YIWVK5SKGHMY",
+    "name": "通化市",
+    "province": "吉林省"
+  },
+  {
+    "id": "6DRI2R5VAWMYJHJPCJKUNMDYEQ",
+    "name": "延边朝鲜族自治州",
+    "province": "吉林省"
+  },
+  {
+    "id": "TVBCNVGUND4MOUOOUXFGX7DIUA",
+    "name": "松原市",
+    "province": "吉林省"
+  },
+  {
+    "id": "JYY62HSKBUVK5OU7KGJDKQ4RTA",
+    "name": "白城市",
+    "province": "吉林省"
+  },
+  {
+    "id": "QEDUHKMZ36CHJTKRD6O2ZPLNBU",
+    "name": "长春市",
+    "province": "吉林省"
+  },
+  {
+    "id": "4EADVCBJMZ5UBH2FVRT6QCLS2U",
+    "name": "辽源市",
+    "province": "吉林省"
+  },
+  {
+    "id": "EUQD5EGS2LR5KJSFNG6PPSIHHI",
+    "name": "白山市",
+    "province": "吉林省"
+  },
+  {
+    "id": "YLTIISPCLBEGTZZX3WUWAD7WDE",
+    "name": "淮安市",
+    "province": "江苏省"
+  },
+  {
+    "id": "L6U5DZP6MESXPMHOHCDMJS55O4",
+    "name": "宿迁市",
+    "province": "江苏省"
+  },
+  {
+    "id": "HQMLYA7TDGMYQAXFCDUXBZPYHI",
+    "name": "镇江市",
+    "province": "江苏省"
+  },
+  {
+    "id": "K6XJ4UN65ZD6XQKYEG5YN7HCRI",
+    "name": "盐城市",
+    "province": "江苏省"
+  },
+  {
+    "id": "36I4X3EZZU4EHOSCLQI5OAKKBE",
+    "name": "南通市",
+    "province": "江苏省"
+  },
+  {
+    "id": "S3GWFQU6QAVRDKLJT77LD6OFLE",
+    "name": "泰州市",
+    "province": "江苏省"
+  },
+  {
+    "id": "IO6F4AFGAVIFRGYTZEC4TXM7W4",
+    "name": "无锡市",
+    "province": "江苏省"
+  },
+  {
+    "id": "NUXNK2VOFSD2JFTEO2AMWX6NSU",
+    "name": "扬州市",
+    "province": "江苏省"
+  },
+  {
+    "id": "TEVZU6CU6SK57HFW7DFNGMQ44A",
+    "name": "南京市",
+    "province": "江苏省"
+  },
+  {
+    "id": "UTYSRBQ4FSB7XLWCF3Z2HTKNUA",
+    "name": "常州市",
+    "province": "江苏省"
+  },
+  {
+    "id": "OCZOBCJDEXKE7KBN3BD7AYQG2Q",
+    "name": "徐州市",
+    "province": "江苏省"
+  },
+  {
+    "id": "6LIBPJGZROLXE3CLZGJRYMYBOU",
+    "name": "连云港市",
+    "province": "江苏省"
+  },
+  {
+    "id": "FS4PIU74F7QKYARDWR5ZMOLICI",
+    "name": "苏州市",
+    "province": "江苏省"
+  },
+  {
+    "id": "R2F4OWUO65HYZW2IQIKINORZ7Y",
+    "name": "赣州市",
+    "province": "江西省"
+  },
+  {
+    "id": "YW346BTN3VFYNRC3744UR5MZXY",
+    "name": "抚州市",
+    "province": "江西省"
+  },
+  {
+    "id": "QR3FDR26U2EJIXOMBHL7IJLQSA",
+    "name": "南昌市",
+    "province": "江西省"
+  },
+  {
+    "id": "OAJHJL7L7VNW2Q5UXRE7F4CUJQ",
+    "name": "九江市",
+    "province": "江西省"
+  },
+  {
+    "id": "OMH7D45R4DX2KNHLV3G2UP56OY",
+    "name": "景德镇市",
+    "province": "江西省"
+  },
+  {
+    "id": "YSB2PAEROB2IZSJZFVFH7KJPEI",
+    "name": "鹰潭市",
+    "province": "江西省"
+  },
+  {
+    "id": "5OYAMNORCXKYA6UF7DW6KFFBIU",
+    "name": "上饶市",
+    "province": "江西省"
+  },
+  {
+    "id": "SMHZOYKE7BXQJ2NT6Q24TFMLEQ",
+    "name": "吉安市",
+    "province": "江西省"
+  },
+  {
+    "id": "2RZV26OUPKUHUJ5ZPB673VDGZU",
+    "name": "萍乡市",
+    "province": "江西省"
+  },
+  {
+    "id": "232VHZEEZ6SXACE4AC5HQ4ZTFQ",
+    "name": "新余市",
+    "province": "江西省"
+  },
+  {
+    "id": "QRLM74YXNDW2QDBWLTFGEMXK2I",
+    "name": "宜春市",
+    "province": "江西省"
+  },
+  {
+    "id": "S6OHUVUKIIWPVMQD44RREUMNT4",
+    "name": "葫芦岛市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "DQQ4OIFUGFYJY3XZRK5VDWMLCA",
+    "name": "辽阳市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "S4YXGFEYXEUG6ISZ6O337OPVSI",
+    "name": "阜新市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "D3JHM7A4CG6RJMBD7YRDS5JOYU",
+    "name": "盘锦市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "VTRWMOSS6PCUYUAIPG6VPBKUUQ",
+    "name": "营口市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "ZPHFGWBIEVLKP5CVZNZUB3CRT4",
+    "name": "朝阳市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "NGYYULZ4UAGD3Q2PG726FFXSHU",
+    "name": "抚顺市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "Q5BRTSW752VSHIAKLLL7KL5TNA",
+    "name": "锦州市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "ZGV3WNPOSS7J4ZWBP6ZQG46BNM",
+    "name": "沈阳市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "XEX676YYMTYIV5QPIUZB4TA7IY",
+    "name": "本溪市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "PRTEQZMLNLQNZXJHRCYYLWZB4E",
+    "name": "丹东市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "4GN4WF6UQRFU64T4FVZPRDXRWQ",
+    "name": "鞍山市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "3QTZDFLJFSLLOOVCZ65PSDAVOU",
+    "name": "铁岭市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "CC4ZTMKKXI73ZEVT5QQTJN5SMM",
+    "name": "大连市",
+    "province": "辽宁省"
+  },
+  {
+    "id": "3MBJEFDLAVOMQZ7L7CM5MNSYKA",
+    "name": "鄂尔多斯市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "5NOS4YC5WO2IZCQPVB6MCBYDJ4",
+    "name": "呼和浩特市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "OQNIP675H7L5R64652BH7KHUOQ",
+    "name": "通辽市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "4WA6I63MGVINV5DNLNWRRHCDDM",
+    "name": "阿拉善盟",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "ELI6BDJBAN6RCYTETMK2EX2UKU",
+    "name": "乌兰察布市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "PV5ZAAXFW2DZCVZKCF4I4KK7BQ",
+    "name": "巴彦淖尔市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "YU6UUT6G6T6AMWTJFECDIUQFEQ",
+    "name": "乌海市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "V4MYANW5QFZCXG3FIDPXA3HOTE",
+    "name": "呼伦贝尔市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "S5DCFJWJ7J3MJSLY2PHKWLNPOQ",
+    "name": "包头市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "LY7SAZRFSJJMRU3JEO5SKNKIVM",
+    "name": "兴安盟",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "NM2XP54CNQCFOILKACYEQWUSGM",
+    "name": "锡林郭勒盟",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "S5G3IO75IDEJPZQA6VFM3OYPDI",
+    "name": "赤峰市",
+    "province": "内蒙古自治区"
+  },
+  {
+    "id": "UUFUUPM5RT6ZU5UKILQC5YQV54",
+    "name": "吴忠市",
+    "province": "宁夏回族自治区"
+  },
+  {
+    "id": "VMSRLIATK44WQXQEWAL63AXJ3M",
+    "name": "固原市",
+    "province": "宁夏回族自治区"
+  },
+  {
+    "id": "4GWWCAAKGNJV2SMQPSWWZNCGYY",
+    "name": "中卫市",
+    "province": "宁夏回族自治区"
+  },
+  {
+    "id": "6IE7GEETBQEF7GUSGU2FLIUEEM",
+    "name": "石嘴山市",
+    "province": "宁夏回族自治区"
+  },
+  {
+    "id": "VI4YIH3URSON4Q4MWOEESXJ56Q",
+    "name": "银川市",
+    "province": "宁夏回族自治区"
+  },
+  {
+    "id": "SIE4ED6QWVRT727GEHWBFH3DAA",
+    "name": "海东市",
+    "province": "青海省"
+  },
+  {
+    "id": "JNJH6OJZIOQKXDXWW5ZGEHG5MA",
+    "name": "海西蒙古族藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "MJADYNCKQNDJU2TXACTDP5I52M",
+    "name": "海北藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "LRGFXIVB6RJWQWYAFH7EIUHCPE",
+    "name": "黄南藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "J4TG3PCK2ZEMNEUMIPZF32UNQY",
+    "name": "果洛藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "2YS5POGG53LKZGFBIUMDWP57SM",
+    "name": "玉树藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "GRZMJEZCA2DNCZK3O6ZSUHMRPM",
+    "name": "西宁市",
+    "province": "青海省"
+  },
+  {
+    "id": "NBFQIACRBBCAH5AZWJ5LVT7AU4",
+    "name": "海南藏族自治州",
+    "province": "青海省"
+  },
+  {
+    "id": "MQUKCLQ76P4FRRECDBA3HBKT7Q",
+    "name": "滨州市",
+    "province": "山东省"
+  },
+  {
+    "id": "633FVSBDDBM5WSMXSKOCX6QC5I",
+    "name": "潍坊市",
+    "province": "山东省"
+  },
+  {
+    "id": "4434FVT3PXLMV6UAWLEW6O3M5A",
+    "name": "菏泽市",
+    "province": "山东省"
+  },
+  {
+    "id": "P7PK4UBVCOHW3PI6IPEIA54DLY",
+    "name": "济南市",
+    "province": "山东省"
+  },
+  {
+    "id": "I5M6JGTGSQEWX6HL7E5I6GRBAY",
+    "name": "德州市",
+    "province": "山东省"
+  },
+  {
+    "id": "V562AOMBVU5NG5GB3EPK6U42XY",
+    "name": "烟台市",
+    "province": "山东省"
+  },
+  {
+    "id": "4OSPHTE5TD24J6DYGR6DXMEDKY",
+    "name": "淄博市",
+    "province": "山东省"
+  },
+  {
+    "id": "227TLAVTUJABWPJD4S4ZECJ3FY",
+    "name": "临沂市",
+    "province": "山东省"
+  },
+  {
+    "id": "DAEZKZU32ZAPJGUTA6LLGO3WTY",
+    "name": "聊城市",
+    "province": "山东省"
+  },
+  {
+    "id": "LBRRK2EOYJN5MLYJWT4R3QBSXM",
+    "name": "东营市",
+    "province": "山东省"
+  },
+  {
+    "id": "AB6PBGCDBTNTG4KUQROY2FJ4GY",
+    "name": "枣庄市",
+    "province": "山东省"
+  },
+  {
+    "id": "EVANGU7WZCVRAAM6NWTDJVP7SU",
+    "name": "济宁市",
+    "province": "山东省"
+  },
+  {
+    "id": "GNUEGWZ3OKRWAKKVJ5THHHX6YY",
+    "name": "泰安市",
+    "province": "山东省"
+  },
+  {
+    "id": "F3VWSF4ART2FYYBBOZYWKRXTUI",
+    "name": "青岛市",
+    "province": "山东省"
+  },
+  {
+    "id": "KD6MNWWLVKB4E655XMV6MMA3KE",
+    "name": "日照市",
+    "province": "山东省"
+  },
+  {
+    "id": "LHYVF4LBCOZ34G3WNZYUVEIQGA",
+    "name": "威海市",
+    "province": "山东省"
+  },
+  {
+    "id": "ENVYDMYGDO3BMDXSAVQYZXLX74",
+    "name": "阳泉市",
+    "province": "山西省"
+  },
+  {
+    "id": "UXOUG4UIF7ZRJYCNMQJ3LDN5FY",
+    "name": "临汾市",
+    "province": "山西省"
+  },
+  {
+    "id": "4NZPT6Z35BMYACJ2HZGHUWRJ6E",
+    "name": "吕梁市",
+    "province": "山西省"
+  },
+  {
+    "id": "KSNXQME2A3VFHCE3DM3SFZKIJQ",
+    "name": "晋城市",
+    "province": "山西省"
+  },
+  {
+    "id": "HDOX7WKYSHJKEHET6TUYMVCTMQ",
+    "name": "太原市",
+    "province": "山西省"
+  },
+  {
+    "id": "DFJIZVXJGBGBIABPSL3DGMIDIE",
+    "name": "长治市",
+    "province": "山西省"
+  },
+  {
+    "id": "5KQYYTJR2EMP653QIALMA6LXXI",
+    "name": "忻州市",
+    "province": "山西省"
+  },
+  {
+    "id": "T76EOJA332RIHML7B6LYS5LF4U",
+    "name": "朔州市",
+    "province": "山西省"
+  },
+  {
+    "id": "HVX67CKT5TS6GPRDFDYOOLK4PE",
+    "name": "大同市",
+    "province": "山西省"
+  },
+  {
+    "id": "S4NGXQJDOH7E4IHDWOH3EK6IIE",
+    "name": "晋中市",
+    "province": "山西省"
+  },
+  {
+    "id": "GWDLZXLAWU54FKQ6G3HRQRR7E4",
+    "name": "运城市",
+    "province": "山西省"
+  },
+  {
+    "id": "3FFTTN5PPV7MBCE5AGY2NGYOOI",
+    "name": "安康市",
+    "province": "陕西省"
+  },
+  {
+    "id": "GACVPL3SWO3ZKH73JMJV6YI4NY",
+    "name": "延安市",
+    "province": "陕西省"
+  },
+  {
+    "id": "6KPS7VRMW57P2DAC6OPR4ISHQQ",
+    "name": "商洛市",
+    "province": "陕西省"
+  },
+  {
+    "id": "OMMF6XLNDNYWG5TBSNTWO2ZJZ4",
+    "name": "渭南市",
+    "province": "陕西省"
+  },
+  {
+    "id": "EALFXGMWYRS6E6TWXQ2K3YHV4M",
+    "name": "咸阳市",
+    "province": "陕西省"
+  },
+  {
+    "id": "WFG7U6JNUWDIS5ZZYM4FSM5C64",
+    "name": "榆林市",
+    "province": "陕西省"
+  },
+  {
+    "id": "R3VBMYTCF5LVHO35X3MYJQFOOE",
+    "name": "宝鸡市",
+    "province": "陕西省"
+  },
+  {
+    "id": "RQOWP7C234IS4RKSHB26IYZ5IU",
+    "name": "西安市",
+    "province": "陕西省"
+  },
+  {
+    "id": "K4YU6B4T5GZLRWVHGVCR3576HI",
+    "name": "铜川市",
+    "province": "陕西省"
+  },
+  {
+    "id": "VVFVAPLKSCN5KN4Q6RK2GPGUUA",
+    "name": "汉中市",
+    "province": "陕西省"
+  },
+  {
+    "id": "2QSF6IG3KMDXWO5VP7FXHMMKXA",
+    "name": "上海市",
+    "province": "上海市"
+  },
+  {
+    "id": "X3JCRNIPTCUU6DGOFFJ4MUK37M",
+    "name": "眉山市",
+    "province": "四川省"
+  },
+  {
+    "id": "GQ24IZNTZJ3PUB5FDAMDA4W7UI",
+    "name": "攀枝花市",
+    "province": "四川省"
+  },
+  {
+    "id": "6B6WT62WHBZRHPQUT7BAD2N6ZI",
+    "name": "泸州市",
+    "province": "四川省"
+  },
+  {
+    "id": "HJ35P4KXL442MLIII7PFFWUNAE",
+    "name": "雅安市",
+    "province": "四川省"
+  },
+  {
+    "id": "K4A6VSJH2AJYT46LMUSVQZPCCU",
+    "name": "资阳市",
+    "province": "四川省"
+  },
+  {
+    "id": "646ZNPATOOM3MHI3LDU6HI4KFI",
+    "name": "阿坝藏族羌族自治州",
+    "province": "四川省"
+  },
+  {
+    "id": "MU735ZDBFPXRQDUZ3I35JK3XEU",
+    "name": "内江市",
+    "province": "四川省"
+  },
+  {
+    "id": "4WPGGJ63USY77GSRN2PPFCYKPQ",
+    "name": "广安市",
+    "province": "四川省"
+  },
+  {
+    "id": "O4FFS4DALDAAKIFAUH4F5V5VS4",
+    "name": "宜宾市",
+    "province": "四川省"
+  },
+  {
+    "id": "IRFJVK2KXBE6BZ7CSN4UFCI624",
+    "name": "绵阳市",
+    "province": "四川省"
+  },
+  {
+    "id": "NELFD7FEKKUNDJ46VLD55SMDCE",
+    "name": "甘孜藏族自治州",
+    "province": "四川省"
+  },
+  {
+    "id": "TKMVEUPZSQCXNRZPBEIK3F45AI",
+    "name": "遂宁市",
+    "province": "四川省"
+  },
+  {
+    "id": "VQW7DPB4KTUI65COJBO3NODU24",
+    "name": "巴中市",
+    "province": "四川省"
+  },
+  {
+    "id": "STP4ELXTVGQSB572LFRFJRIUUY",
+    "name": "南充市",
+    "province": "四川省"
+  },
+  {
+    "id": "6ST5EX2JVXUCLR5GP5VEFSKN5M",
+    "name": "成都市",
+    "province": "四川省"
+  },
+  {
+    "id": "UWNFCMW3HYJRALQI2MJH6EM2O4",
+    "name": "德阳市",
+    "province": "四川省"
+  },
+  {
+    "id": "J5ZYU7XRV6CHSJAGOPQKS5YXNA",
+    "name": "达州市",
+    "province": "四川省"
+  },
+  {
+    "id": "KYJTF5S746T35RFBMR65BLGM6U",
+    "name": "凉山彝族自治州",
+    "province": "四川省"
+  },
+  {
+    "id": "RDUXR23XROLB4NGRVDDLXFXDSE",
+    "name": "乐山市",
+    "province": "四川省"
+  },
+  {
+    "id": "4TUBIBHMVESJUCGMTUSLJPHXWI",
+    "name": "广元市",
+    "province": "四川省"
+  },
+  {
+    "id": "AXQL57AO27NCHYMEOLRHAAKMTA",
+    "name": "自贡市",
+    "province": "四川省"
+  },
+  {
+    "id": "4RXX566RZORCXS6HLEX3DIICSM",
+    "name": "花莲县",
+    "province": "台湾"
+  },
+  {
+    "id": "BD5Y7SISWSSQGP3HTVPU6TXAH4",
+    "name": "台东县",
+    "province": "台湾"
+  },
+  {
+    "id": "I4DNWLECRYOJAZLGYQB7PBBJXQ",
+    "name": "台中市",
+    "province": "台湾"
+  },
+  {
+    "id": "GIZQIESFOMAEQSDQKOEQ5RTTPA",
+    "name": "南投县",
+    "province": "台湾"
+  },
+  {
+    "id": "MPM6M2C634FAW7KYG3KIHERDTU",
+    "name": "彰化县",
+    "province": "台湾"
+  },
+  {
+    "id": "NH2NK6JVOBBYYTK2G53ADWLX4Y",
+    "name": "苗栗县",
+    "province": "台湾"
+  },
+  {
+    "id": "DW2Q2R2UEEDNQA7IHBGYV423K4",
+    "name": "新竹市",
+    "province": "台湾"
+  },
+  {
+    "id": "FX5AOPFRPHGHHYZB4XNIPXLNNM",
+    "name": "新北市",
+    "province": "台湾"
+  },
+  {
+    "id": "UVNZNB6G4M35RV3IGRUN6OXMXE",
+    "name": "屏东县",
+    "province": "台湾"
+  },
+  {
+    "id": "MPB3M2YK24ZORO3EDCJ6UDWIGQ",
+    "name": "基隆市",
+    "province": "台湾"
+  },
+  {
+    "id": "EBHVITJPDHJEEMMZTM4TD4UVRU",
+    "name": "台北市",
+    "province": "台湾"
+  },
+  {
+    "id": "FQS4PZNCTQEX6I5F34Z2AGJUZM",
+    "name": "高雄市",
+    "province": "台湾"
+  },
+  {
+    "id": "WVOJ636Q7MGT6RMN6QYQ4SZWIE",
+    "name": "嘉义市",
+    "province": "台湾"
+  },
+  {
+    "id": "QRLER4EEMMKYGQLER2RWEQA74E",
+    "name": "台南市",
+    "province": "台湾"
+  },
+  {
+    "id": "K2LHF64R2P4OJ7MDHJ6J2NSTPE",
+    "name": "桃园市",
+    "province": "台湾"
+  },
+  {
+    "id": "BILG6LJIWUCTXZ6CDPXYAVM6XI",
+    "name": "澎湖县",
+    "province": "台湾"
+  },
+  {
+    "id": "3FYRA3O2HUMLIQAAJQCPX2TETE",
+    "name": "宜兰县",
+    "province": "台湾"
+  },
+  {
+    "id": "4MW6X22PAPVMHB6SBGF3RYS324",
+    "name": "天津市",
+    "province": "天津市"
+  },
+  {
+    "id": "YEYPP4SQOBXU5UCNDN7ORSR6DI",
+    "name": "拉萨市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "UNE6UPENGWQDOWGABDJEAQ2FEY",
+    "name": "山南市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "VDXKN2YCIUPOHBZKKQHPN6HJWE",
+    "name": "林芝市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "EAWIMNI77H72EYSOAYV3M76CB4",
+    "name": "阿里地区",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "HCF6UHTXOOKIOA43AIJH3ARKXA",
+    "name": "昌都市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "Y47QI3KJY352QV3VOPXHM2IDWU",
+    "name": "日喀则市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "R4UWJX44GVAA54NFKHT4Y4ZC5A",
+    "name": "那曲市",
+    "province": "西藏自治区"
+  },
+  {
+    "id": "2D37GB5XUALJDXONWJIGXV3QXU",
+    "name": "香港",
+    "province": "香港特别行政区"
+  },
+  {
+    "id": "PA5W7Z255K3EGYA4LTA7BGLHRA",
+    "name": "巴音郭楞蒙古自治州",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "RJZOCU5ECQCOLCOCHJH2UNLQJM",
+    "name": "哈密市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "RYK6AR3VDQJFXZLX3MHYFV5VAI",
+    "name": "塔城地区",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "MXUVGU5NPVTNINAKKPNLWUQ54Q",
+    "name": "博尔塔拉蒙古自治州",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "T5RKMSH5VIGRTHDZOKV2EIKPIM",
+    "name": "伊犁哈萨克自治州",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "NABMKFZPOUCZMS4TUVJSZ24DNA",
+    "name": "克孜勒苏柯尔克孜自治州",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "2YQBXWNFYVJX4NU6WXB5II6X34",
+    "name": "昌吉回族自治州",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "DBKCQCCQU2URQG2EP5ZNPKBETY",
+    "name": "乌鲁木齐市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "DON6KYBCR2XJQOJQGOZTYV4RMM",
+    "name": "阿克苏地区",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "WKG47NEVYII5JISZJN7QSI2BDQ",
+    "name": "克拉玛依市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "DWLK6D3OUOXOVQHSEJVTRIDRAI",
+    "name": "喀什地区",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "SAPKF2PQGJD4UMVJZTC3IZKI64",
+    "name": "阿勒泰地区",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "ARWSLGG54LGUGN3XMIWW76NW34",
+    "name": "吐鲁番市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "VQCWAKL6ADHYFTSVPBGPDFSB2I",
+    "name": "北屯市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "ES5A6MOROAG6F2XAQ25TYYPWUE",
+    "name": "铁门关市",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "36IUY52AESIPF4QEQAR2RTNQYA",
+    "name": "和田地区",
+    "province": "新疆维吾尔自治区"
+  },
+  {
+    "id": "Z26KSUL6ULS65ITZNUCRRWBYJM",
+    "name": "文山壮族苗族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "XBBUUATPBD2IUJR47FCKVUXB2I",
+    "name": "昭通市",
+    "province": "云南省"
+  },
+  {
+    "id": "TK2LP3JCYYMPTV4OA3WJCH7UQ4",
+    "name": "怒江傈僳族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "ISJ4FESOYKCQ5LXOQO6NL7TQHA",
+    "name": "曲靖市",
+    "province": "云南省"
+  },
+  {
+    "id": "ELBUBVI5UMUIEQGIOAHPMESXFA",
+    "name": "西双版纳傣族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "QHOYHEGZM4WSJZPFEU6FCBYIWY",
+    "name": "玉溪市",
+    "province": "云南省"
+  },
+  {
+    "id": "4G4SPJ7MVHMYZAWMQ4642PMLVI",
+    "name": "保山市",
+    "province": "云南省"
+  },
+  {
+    "id": "HCHRV2LGJ2TJ4X6BWNWI2IMID4",
+    "name": "普洱市",
+    "province": "云南省"
+  },
+  {
+    "id": "IS4Q6NASBWHO3RFO7UCIWOXVI4",
+    "name": "昆明市",
+    "province": "云南省"
+  },
+  {
+    "id": "TDJZOAZFQUQPYRR5BHOJTG6RWM",
+    "name": "红河哈尼族彝族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "EIYC62RNU4SHQW3RLAMDPTQYTI",
+    "name": "大理白族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "BA3XFPITAYKBUWDKU3QONRHBC4",
+    "name": "德宏傣族景颇族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "6P6FFFO6C5MLNCVRJAJUICSVQI",
+    "name": "临沧市",
+    "province": "云南省"
+  },
+  {
+    "id": "OXHMWH2TSIDI7BQ43EHAMXJ6N4",
+    "name": "丽江市",
+    "province": "云南省"
+  },
+  {
+    "id": "QQPDT4LBI2K2KMBNXZ6YH7X2FI",
+    "name": "楚雄彝族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "XBG4EJAWCRJL2TDPNJ23PTFYHQ",
+    "name": "迪庆藏族自治州",
+    "province": "云南省"
+  },
+  {
+    "id": "DINNCH54AP74TJ62MICEYAZP74",
+    "name": "宁波市",
+    "province": "浙江省"
+  },
+  {
+    "id": "XYTSLYGB2ETU6HG7GIXA7X5SOE",
+    "name": "嘉兴市",
+    "province": "浙江省"
+  },
+  {
+    "id": "NNAALJZXGAWALR3LGE2V4UZT6U",
+    "name": "丽水市",
+    "province": "浙江省"
+  },
+  {
+    "id": "H5UOJ5MQYJ737GS3TXYN2OJHUU",
+    "name": "杭州市",
+    "province": "浙江省"
+  },
+  {
+    "id": "HG5VQGOMSCEGNXJXKO6XCNCHMY",
+    "name": "湖州市",
+    "province": "浙江省"
+  },
+  {
+    "id": "LJ2SWEPRINTYDH5A2QHRMI5US4",
+    "name": "衢州市",
+    "province": "浙江省"
+  },
+  {
+    "id": "TW4RRM62TDA7WWU77FDSLSAXGY",
+    "name": "台州市",
+    "province": "浙江省"
+  },
+  {
+    "id": "HBBN247QZ6YUW5ZYSS6D7RVJCA",
+    "name": "绍兴市",
+    "province": "浙江省"
+  },
+  {
+    "id": "GVFB23SJZGRPRXXTIKDCAOCDPI",
+    "name": "金华市",
+    "province": "浙江省"
+  },
+  {
+    "id": "UEW4ENX7N7IFGFM7FD5SZ5GI7Y",
+    "name": "舟山市",
+    "province": "浙江省"
+  },
+  {
+    "id": "HCCXS5DGRJQMYZMRLGVAMUIQEA",
+    "name": "温州市",
+    "province": "浙江省"
+  },
+  {
+    "id": "FDGY55I6IHKY76E3MWDBOT2R6Y",
+    "name": "重庆市",
+    "province": "重庆市"
+  }
+]

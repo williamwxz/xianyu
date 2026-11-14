@@ -1,0 +1,16 @@
+{
+  "name": "百迦好省",
+  "appid": "__UNI__9B03DBD",
+  "description": "折扣、满减、优惠券到手价计算工具",
+  "versionName": "1.0.1",
+  "versionCode": "101",
+  "vueVersion": "3",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wx63febce51396b8b5",
+    "usingComponents": true,
+    "setting": { "urlCheck": true, "es6": true, "minified": true }
+  },
+  "uniStatistics": { "enable": false },
+  "h5": { "title": "百迦好省", "router": { "mode": "hash", "base": "/" } }
+}
