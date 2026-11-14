@@ -2,6 +2,9 @@
     "name": "uni-preset-vue",
     "version": "0.0.0",
     "scripts": {
+        "build:tools:weixin": "node tools-scripts/build.cjs mp-weixin",
+        "build:tools:web": "node tools-scripts/build.cjs h5",
+        "test:tools": "node --test tools-tests/*.test.mjs",
         "dev:app": "uni -p app",
         "dev:app-android": "uni -p app-android",
         "dev:app-ios": "uni -p app-ios",

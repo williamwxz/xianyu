@@ -29,6 +29,9 @@ const publish = () => {
 
     solve()
 
+    // Allow artifact-only builds without overwriting the checked-in web release.
+    if (process.env.NIU_SKIP_WEB_COPY === '1') return
+
     // 目标目录不存在停止复制
     try {
         const dir = fs.readdirSync(dest)

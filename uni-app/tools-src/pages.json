@@ -1,0 +1,24 @@
+{
+  "pages": [
+    { "path": "pages/home/index", "style": { "navigationBarTitleText": "百迦好省" } },
+    { "path": "pages/calculator/index", "style": { "navigationBarTitleText": "优惠计算器" } },
+    { "path": "pages/guide/index", "style": { "navigationBarTitleText": "省钱攻略" } },
+    { "path": "pages/profile/index", "style": { "navigationBarTitleText": "我的" } },
+    { "path": "pages/article/index", "style": { "navigationBarTitleText": "省钱小课堂" } },
+    { "path": "pages/about/index", "style": { "navigationBarTitleText": "使用说明与隐私" } }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f7f8fa"
+  },
+  "tabBar": {
+    "color": "#777777", "selectedColor": "#ff482e", "backgroundColor": "#ffffff", "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "首页", "iconPath": "static/tabs/home.png", "selectedIconPath": "static/tabs/home-active.png" },
+      { "pagePath": "pages/calculator/index", "text": "计算器", "iconPath": "static/tabs/calculator.png", "selectedIconPath": "static/tabs/calculator-active.png" },
+      { "pagePath": "pages/guide/index", "text": "省钱攻略", "iconPath": "static/tabs/guide.png", "selectedIconPath": "static/tabs/guide-active.png" },
+      { "pagePath": "pages/profile/index", "text": "我的", "iconPath": "static/tabs/profile.png", "selectedIconPath": "static/tabs/profile-active.png" }
+    ]
+  }
+}
