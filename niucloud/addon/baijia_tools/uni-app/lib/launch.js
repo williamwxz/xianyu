@@ -53,3 +53,28 @@ export async function openService(id) {
     opening = false
   }
 }
+
+let openingProduct = false
+// Meituan product (from baijia_tools/meituan/products) -> converted promo link.
+export async function openMeituanProduct(item) {
+  if (openingProduct) return
+  openingProduct = true
+  uni.showLoading({ title: '正在打开' })
+  try {
+    const res = await request.get('baijia_tools/meituan/link', { id: item.id, platform: item.platform, biz_line: item.biz_line ?? '' })
+    let mini = false
+    // #ifdef MP-WEIXIN
+    mini = true
+    // #endif
+    const target = resolveLink(res.data, mini)
+    if (!target) throw new Error('empty link')
+    if (target.type === 'miniProgram') {
+      uni.navigateToMiniProgram({ appId: target.appId, path: target.path, fail: () => uni.showToast({ title: '未能打开美团，请重试', icon: 'none' }) })
+    } else if (target.type === 'redirect') {
+      // #ifdef H5
+      window.location.href = target.url
+      // #endif
+    } else if (target.type === 'copy') { uni.setClipboardData({ data: target.url }) }
+  } catch (e) { uni.showToast({ title: '商品暂不可购买，请稍后重试', icon: 'none' }) }
+  finally { uni.hideLoading(); openingProduct = false }
+}

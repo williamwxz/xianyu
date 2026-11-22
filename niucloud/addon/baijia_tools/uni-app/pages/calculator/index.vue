@@ -62,10 +62,11 @@
 
     <view class="footer"><text>本地计算 · 无需登录</text><button @click="openAbout">使用说明与隐私 ›</button></view>
   </view>
-  <tabbar />
+  <BjTabbar />
 </template>
 
 <script setup>
+import BjTabbar from '../../components/bj-tabbar.vue'
 import { ref, computed, watch } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { MODES, calculate, validHistory, HISTORY_KEY } from '../../lib/calculator.mjs'

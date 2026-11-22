@@ -31,6 +31,7 @@ return ['pages' => <<<'PAGES'
         {
             "path": "pages/home/index",
             "style": {
+                "navigationStyle": "custom",
                 "navigationBarTitleText": "百迦好省"
             }
         },
@@ -49,6 +50,7 @@ return ['pages' => <<<'PAGES'
         {
             "path": "pages/mine/index",
             "style": {
+                "navigationStyle": "custom",
                 "navigationBarTitleText": "我的"
             }
         },

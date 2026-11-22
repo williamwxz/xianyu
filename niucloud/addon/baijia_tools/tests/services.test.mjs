@@ -1,13 +1,14 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
-import { SERVICES, HOME_GRID, BRANDS, getService, isReady, resolveLink, searchServices, servicePageUrl } from '../uni-app/lib/services.mjs'
+import { readFileSync, existsSync } from 'node:fs'
+import { SERVICES, HOME_GRID, MORE_GRID, BRANDS, getService, isReady, resolveLink, searchServices, servicePageUrl } from '../uni-app/lib/services.mjs'
 
 test('service ids are unique and grids only reference known services', () => {
   const ids = SERVICES.map((item) => item.id)
   assert.equal(new Set(ids).size, ids.length)
-  for (const id of [...HOME_GRID, ...BRANDS]) assert.ok(getService(id), id)
-  assert.equal(BRANDS.length, 10)
+  for (const id of [...HOME_GRID, ...MORE_GRID, ...BRANDS]) assert.ok(getService(id), id)
+  assert.equal(BRANDS.length, 11)
+  assert.equal(HOME_GRID.length, 9) // + 「更多」 = 10 slots in the design grid
 })
 test('every jtk key used by the app exists in the server-side mapping', () => {
   const dict = readFileSync(new URL('../app/dict/JtkActDict.php', import.meta.url), 'utf8')
@@ -37,4 +38,8 @@ test('service page url is encoded and every new page is registered', () => {
   assert.equal(servicePageUrl('a b'), '/addon/baijia_tools/pages/service/index?id=a%20b')
   const pages = readFileSync(new URL('../package/uni-app-pages.php', import.meta.url), 'utf8')
   for (const page of ['home', 'groupbuy', 'express', 'mine', 'service']) assert.ok(pages.includes(`pages/${page}/index`), page)
+})
+test('designed icons referenced by services exist', () => {
+  for (const item of SERVICES.filter((s) => s.img)) assert.ok(existsSync(new URL(`../uni-app/static/design/${item.img}`, import.meta.url)), item.img)
+  for (const id of HOME_GRID) assert.ok(getService(id).img, id)
 })

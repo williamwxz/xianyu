@@ -1,43 +1,48 @@
 <template>
-  <view class="page-wrap">
-    <view class="profile">
-      <image v-if="info && info.headimg" class="avatar" :src="img(info.headimg)" mode="aspectFill" />
-      <view v-else class="avatar avatar-empty">省</view>
-      <view class="profile-copy" @click="info ? go('/app/pages/member/personal') : login()">
-        <text class="nickname">{{ info ? (info.nickname || '百迦用户') : '点击登录' }}</text>
-        <text class="profile-sub">{{ info ? `会员编号 ${info.member_no || info.member_id}` : '登录后查看余额、积分和收益' }}</text>
-      </view>
-      <button class="sign" @click="need('/app/pages/member/sign_in')">签到</button>
-    </view>
-
-    <view class="stats white-card">
-      <button class="stat" @click="need('/app/pages/member/balance')"><text class="stat-num">{{ money(balanceTotal) }}</text><text class="stat-name">余额</text></button>
-      <button class="stat" @click="need('/app/pages/member/point')"><text class="stat-num">{{ info ? (info.point || 0) : '--' }}</text><text class="stat-name">积分</text></button>
-      <button class="stat" @click="need('/app/pages/member/commission')"><text class="stat-num">{{ money(info && info.commission) }}</text><text class="stat-name">佣金</text></button>
-    </view>
-
-    <view class="vip" @click="need('/app/pages/member/level')">
-      <view><text class="vip-title">VIP {{ (info && info.member_level_name) || '普通会员' }}</text><text class="vip-sub">完成任务提升等级，享更多权益</text></view>
-      <text class="vip-btn">做任务 ›</text>
-    </view>
-
-    <view v-for="group in groups" :key="group.title" class="group white-card">
-      <view class="group-head"><text class="group-title">{{ group.title }}</text><text class="group-note">{{ group.note }}</text></view>
-      <view class="group-grid">
-        <button v-for="item in group.items" :key="item.name" class="cell" :open-type="item.share ? 'share' : ''" @click="tap(item)">
-          <view class="cell-icon" :style="{ color: item.color, background: item.bg }">{{ item.icon }}</view>
-          <text class="cell-name">{{ item.name }}</text>
-        </button>
+  <view class="mine">
+    <view class="top" :style="{ paddingTop: `${navTop + navHeight}px` }">
+      <view class="profile">
+        <image v-if="info && info.headimg" class="avatar" :src="img(info.headimg)" mode="aspectFill" />
+        <view v-else class="avatar avatar-empty">省</view>
+        <view class="profile-copy" @click="info ? go('/app/pages/member/personal') : login()">
+          <text class="nickname">{{ info ? (info.nickname || '百迦用户') : '点击登录' }}</text>
+          <text class="uid">{{ info ? `UID: ${info.member_no || info.member_id}` : '登录后查看余额、积分和收益' }}</text>
+        </view>
+        <view class="task" @click="need('/app/pages/member/sign_in')">做任务 ›</view>
       </view>
     </view>
 
-    <view class="footer-links white-card">
-      <button class="link-row" @click="need('/app/pages/member/address')"><text>收货地址</text><text class="arrow">›</text></button>
-      <button class="link-row" @click="go('/addon/baijia_tools/pages/about/index')"><text>使用说明与隐私</text><text class="arrow">›</text></button>
-      <button class="link-row" @click="go('/app/pages/setting/index')"><text>设置</text><text class="arrow">›</text></button>
+    <view class="panel">
+      <view class="level" @click="need('/app/pages/member/level')">
+        <text class="level-name">{{ (info && info.member_level_name) || '普通会员' }}</text>
+        <text class="level-sub">当前等级</text>
+      </view>
+      <view class="stats">
+        <view class="stat" @click="need('/app/pages/member/balance')"><text class="stat-num">{{ money(balanceTotal) }}</text><text class="stat-name">余额</text></view>
+        <view class="stat" @click="need('/app/pages/member/point')"><text class="stat-num">{{ info ? (info.point || 0) : '--' }}</text><text class="stat-name">积分</text></view>
+        <view class="stat" @click="need('/app/pages/member/commission')"><text class="stat-num">{{ money(info && info.commission) }}</text><text class="stat-name">佣金</text></view>
+      </view>
+
+      <view v-for="group in groups" :key="group.title" class="group">
+        <view class="group-head">
+          <text class="group-title">{{ group.title }}</text>
+          <view class="group-more" @click="tap(group.more)"><text>{{ group.moreText }}</text><image class="chevron" src="/addon/baijia_tools/static/design/mine/chevron-right.png" /></view>
+        </view>
+        <view class="group-grid">
+          <button v-for="item in group.items" :key="item.name" class="cell" :open-type="item.share ? 'share' : ''" @click="tap(item)">
+            <image class="cell-icon" :src="`/addon/baijia_tools/static/design/mine/${item.icon}.png`" />
+            <text class="cell-name">{{ item.name }}</text>
+          </button>
+        </view>
+      </view>
+
+      <view class="links">
+        <view class="link-row" @click="need('/app/pages/member/address')"><text>收货地址</text><text class="arrow">›</text></view>
+        <view class="link-row" @click="go('/app/pages/setting/index')"><text>设置</text><text class="arrow">›</text></view>
+      </view>
     </view>
   </view>
-  <tabbar />
+  <BjTabbar current="mine" />
 </template>
 
 <script setup>
@@ -46,6 +51,7 @@ import { onShow, onShareAppMessage } from '@dcloudio/uni-app'
 import useMemberStore from '@/stores/member'
 import { useLogin } from '@/hooks/useLogin'
 import { img } from '@/utils/common'
+import BjTabbar from '../../components/bj-tabbar.vue'
 import { openService } from '../../lib/launch.js'
 
 const memberStore = useMemberStore()
@@ -53,24 +59,34 @@ const info = computed(() => memberStore.info)
 const balanceTotal = computed(() => info.value ? Number(info.value.balance || 0) + Number(info.value.money || 0) : null)
 const money = (value) => (value === null || value === undefined) ? '--' : Number(value).toFixed(2)
 
+const sys = uni.getSystemInfoSync()
+const navTop = sys.statusBarHeight || 20
+let navHeight = 44
+// #ifdef MP-WEIXIN
+const capsule = uni.getMenuButtonBoundingClientRect()
+if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - navTop) * 2 }
+// #endif
+
+const ORDERS = '/addon/baijia_tools/pages/orders/index'
 const groups = [
-  { title: '订单中心', note: '消费明细', items: [
-    { name: '返利订单', icon: '单', color: '#ff7a1c', bg: '#fff3e8', url: '/addon/baijia_tools/pages/orders/index' },
-    { name: '霸王餐', icon: '餐', color: '#ff5a2c', bg: '#fff0eb', service: 'bawangcan' },
-    { name: '我的积分', icon: '积', color: '#e8384f', bg: '#ffecef', url: '/app/pages/member/point' },
-    { name: '我的余额', icon: '余', color: '#13a06a', bg: '#e9f8f1', url: '/app/pages/member/balance' }
+  { title: '订单中心', moreText: '全部', more: { url: ORDERS }, items: [
+    { name: '我的消费', icon: 'orders', url: ORDERS },
+    { name: '霸王餐', icon: 'bawangcan', service: 'bawangcan' },
+    { name: '我的积分', icon: 'point', url: '/app/pages/member/point' },
+    { name: '我的余额', icon: 'balance', url: '/app/pages/member/balance' }
   ] },
-  { title: '推广管理', note: '分销中心', items: [
-    { name: '推广订单', icon: '单', color: '#f0a020', bg: '#fff7e6', service: 'distribution' },
-    { name: '收益明细', icon: '益', color: '#e8384f', bg: '#ffecef', url: '/app/pages/member/commission' },
-    { name: '我的粉丝', icon: '粉', color: '#ff3d6e', bg: '#ffedf2', service: 'distribution' },
-    { name: '邀请好友', icon: '邀', color: '#2f7cf6', bg: '#ebf3ff', share: true }
+  { title: '推广管理', moreText: '进入', more: { service: 'distribution' }, items: [
+    { name: '订单管理', icon: 'order-manage', service: 'distribution' },
+    { name: '收益明细', icon: 'income', url: '/app/pages/member/commission' },
+    { name: '我的粉丝', icon: 'fans', service: 'distribution' },
+    { name: '邀请好友', icon: 'invite', share: true }
   ] },
-  { title: '合伙人管理', note: '独立站点', items: [
-    { name: '店铺订单', icon: '订', color: '#3a3f4b', bg: '#f0f1f3', service: 'partner' },
-    { name: '店铺收益', icon: '收', color: '#3a3f4b', bg: '#f0f1f3', service: 'partner' },
-    { name: '发圈素材', icon: '圈', color: '#3a3f4b', bg: '#f0f1f3', service: 'partner' },
-    { name: '店铺海报', icon: '报', color: '#3a3f4b', bg: '#f0f1f3', service: 'partner' }
+  { title: '合伙人管理', moreText: '进入', more: { service: 'partner' }, items: [
+    { name: '店铺订单', icon: 'shop', service: 'partner' },
+    { name: '店铺收益', icon: 'shop-income', service: 'partner' },
+    { name: '使用说明', icon: 'help', page: '/addon/baijia_tools/pages/about/index' },
+    { name: '发圈素材', icon: 'material', service: 'partner' },
+    { name: '店铺海报', icon: 'poster', service: 'partner' }
   ] }
 ]
 
@@ -82,6 +98,7 @@ const need = (url) => (memberStore.token ? go(url) : login())
 const tap = (item) => {
   if (item.share) return
   if (item.service) openService(item.service)
+  else if (item.page) go(item.page)
   else need(item.url)
 }
 
@@ -91,31 +108,35 @@ onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', pa
 
 <style scoped>
 @import "../../styles/base.css";
-.profile { display: flex; align-items: center; padding: 20rpx 6rpx 30rpx; }
-.avatar { width: 112rpx; height: 112rpx; border-radius: 50%; flex-shrink: 0; }
-.avatar-empty { background: linear-gradient(135deg, #ff4c30, #ff9a3c); color: #fff; font-size: 48rpx; font-weight: 700; text-align: center; line-height: 112rpx; }
-.profile-copy { flex: 1; padding-left: 24rpx; min-width: 0; }
-.nickname { display: block; font-size: 36rpx; font-weight: 700; }
-.profile-sub { display: block; font-size: 23rpx; color: #999; margin-top: 6rpx; }
-.sign { padding: 0 28rpx; height: 60rpx; line-height: 60rpx; border-radius: 30rpx; background: #fff1eb; color: #ff5a2c; font-size: 25rpx; }
-.stats { display: flex; padding: 24rpx 0; }
-.stat { flex: 1; background: transparent; line-height: 1.4; }
-.stat-num { display: block; font-size: 36rpx; font-weight: 700; }
-.stat-name { display: block; font-size: 23rpx; color: #999; margin-top: 6rpx; }
-.vip { display: flex; justify-content: space-between; align-items: center; margin-top: 20rpx; padding: 30rpx 28rpx; border-radius: 22rpx; background: linear-gradient(110deg, #2b2d33, #4a4c55); }
-.vip-title { display: block; font-size: 32rpx; font-weight: 800; color: #f5d6a0; }
-.vip-sub { display: block; font-size: 22rpx; color: #c9c2b3; margin-top: 6rpx; }
-.vip-btn { flex-shrink: 0; padding: 12rpx 26rpx; border-radius: 30rpx; background: linear-gradient(90deg, #f8dfb0, #f0c37d); color: #4a3510; font-size: 25rpx; font-weight: 600; }
-.group { margin-top: 20rpx; padding: 26rpx 12rpx 10rpx; }
-.group-head { padding: 0 14rpx; }
-.group-title { font-size: 31rpx; font-weight: 700; }
-.group-note { font-size: 24rpx; color: #aaa; margin-left: 14rpx; }
+.mine { min-height: 100vh; background: #fffdf7; color: #202120; font-size: 28rpx; padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }
+.top { padding-left: 32rpx; padding-right: 32rpx; padding-bottom: 90rpx; background: linear-gradient(180deg, #e6fc7b 0%, #fcf490 70%, #fffdf7 100%); }
+.profile { display: flex; align-items: center; padding-top: 24rpx; }
+.avatar { width: 112rpx; height: 112rpx; border-radius: 50%; border: 4rpx solid #fff; flex-shrink: 0; }
+.avatar-empty { background: #202120; color: #d4fa20; font-size: 48rpx; font-weight: 800; text-align: center; line-height: 104rpx; }
+.profile-copy { flex: 1; min-width: 0; padding-left: 24rpx; }
+.nickname { display: block; font-size: 36rpx; font-weight: 800; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.uid { display: block; font-size: 22rpx; color: #6b6d69; margin-top: 6rpx; }
+.task { flex-shrink: 0; padding: 0 26rpx; height: 60rpx; line-height: 60rpx; border-radius: 30rpx; background: #202120; color: #fff; font-size: 24rpx; font-weight: 600; }
+.panel { position: relative; margin-top: -50rpx; padding: 0 32rpx; border-radius: 40rpx 40rpx 0 0; background: #fffdf7; }
+.level { padding: 36rpx 0 8rpx; }
+.level-name { display: block; font-size: 40rpx; font-weight: 800; }
+.level-sub { display: block; font-size: 22rpx; color: #8a8c88; margin-top: 4rpx; }
+.stats { display: flex; padding: 30rpx 0; border-bottom: 1rpx solid #ecebe6; }
+.stat { flex: 1; text-align: center; }
+.stat + .stat { border-left: 1rpx solid #ecebe6; }
+.stat-num { display: block; font-size: 38rpx; font-weight: 800; }
+.stat-name { display: block; font-size: 22rpx; color: #8a8c88; margin-top: 4rpx; }
+.group { padding: 34rpx 0 6rpx; border-bottom: 1rpx solid #ecebe6; }
+.group-head { display: flex; justify-content: space-between; align-items: center; }
+.group-title { font-size: 30rpx; font-weight: 800; }
+.group-more { display: flex; align-items: center; font-size: 22rpx; color: #8a8c88; }
+.chevron { width: 28rpx; height: 28rpx; margin-left: 4rpx; }
 .group-grid { display: flex; flex-wrap: wrap; margin-top: 12rpx; }
-.cell { width: 25%; background: transparent; padding: 16rpx 0 20rpx; line-height: 1.4; display: flex; flex-direction: column; align-items: center; }
-.cell-icon { width: 72rpx; height: 72rpx; border-radius: 22rpx; font-size: 32rpx; font-weight: 700; text-align: center; line-height: 72rpx; }
-.cell-name { font-size: 24rpx; color: #43464d; margin-top: 10rpx; }
-.footer-links { margin-top: 20rpx; padding: 0 24rpx; }
-.link-row { display: flex; justify-content: space-between; background: transparent; padding: 26rpx 0; font-size: 27rpx; line-height: 1.5; text-align: left; }
-.link-row + .link-row { border-top: 1rpx solid #f1f1f3; }
-.arrow { color: #bbb; }
+.cell { width: 25%; background: transparent; padding: 18rpx 0 22rpx; line-height: 1.4; display: flex; flex-direction: column; align-items: center; }
+.cell-icon { width: 48rpx; height: 48rpx; }
+.cell-name { font-size: 24rpx; color: #202120; margin-top: 10rpx; }
+.links { padding: 12rpx 0; }
+.link-row { display: flex; justify-content: space-between; padding: 26rpx 0; font-size: 27rpx; }
+.link-row + .link-row { border-top: 1rpx solid #ecebe6; }
+.arrow { color: #b9bbb7; }
 </style>

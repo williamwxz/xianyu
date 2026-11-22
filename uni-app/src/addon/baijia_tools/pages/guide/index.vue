@@ -1,5 +1,6 @@
-<template><view class="page-wrap"><view class="guide-banner"><text>买前多看一步</text><text>省钱，先从看懂优惠开始</text></view><button v-for="item in ARTICLES" :key="item.id" class="guide-row white-card" @click="openArticle(item.id)"><view class="guide-art" :style="{ background: item.color }">{{ item.symbol }}</view><view class="guide-copy"><text class="guide-tag">{{ item.tag }}</text><text class="guide-title">{{ item.title }}</text><text class="guide-brief">{{ item.brief }}</text></view><text class="guide-arrow">›</text></button><view class="guide-note">结合实际规则计算，让每一笔优惠都清清楚楚。</view></view><tabbar /></template>
+<template><view class="page-wrap"><view class="guide-banner"><text>买前多看一步</text><text>省钱，先从看懂优惠开始</text></view><button v-for="item in ARTICLES" :key="item.id" class="guide-row white-card" @click="openArticle(item.id)"><view class="guide-art" :style="{ background: item.color }">{{ item.symbol }}</view><view class="guide-copy"><text class="guide-tag">{{ item.tag }}</text><text class="guide-title">{{ item.title }}</text><text class="guide-brief">{{ item.brief }}</text></view><text class="guide-arrow">›</text></button><view class="guide-note">结合实际规则计算，让每一笔优惠都清清楚楚。</view></view><BjTabbar /></template>
 <script setup>
+import BjTabbar from '../../components/bj-tabbar.vue'
 import { ARTICLES, openArticle } from '../../lib/content.mjs'
 </script>
 <style scoped>

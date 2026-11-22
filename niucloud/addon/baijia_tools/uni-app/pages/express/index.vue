@@ -28,10 +28,11 @@
       <text class="tip">· 包装尺寸会影响计费重量，尽量选择合适的箱子。</text>
     </view>
   </view>
-  <tabbar />
+  <BjTabbar current="express" />
 </template>
 
 <script setup>
+import BjTabbar from '../../components/bj-tabbar.vue'
 import { ref } from 'vue'
 import { openService } from '../../lib/launch.js'
 
