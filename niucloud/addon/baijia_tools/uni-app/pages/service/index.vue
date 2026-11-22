@@ -46,14 +46,14 @@ const goCalculator = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/calc
 .hero-name { font-size: 48rpx; font-weight: 800; }
 .hero-sub { font-size: 26rpx; margin-top: 10rpx; opacity: .92; }
 .card { margin-top: 24rpx; padding: 32rpx; }
-.status { display: flex; align-items: center; font-size: 26rpx; color: #ff6a2c; font-weight: 600; }
-.dot { width: 14rpx; height: 14rpx; border-radius: 50%; background: #ff6a2c; margin-right: 12rpx; }
+.status { display: flex; align-items: center; font-size: 26rpx; color: #202120; font-weight: 600; }
+.dot { width: 14rpx; height: 14rpx; border-radius: 50%; background: #d4fa20; margin-right: 12rpx; }
 .lead { display: block; font-size: 28rpx; color: #43464d; line-height: 1.8; margin: 18rpx 0 10rpx; }
 .row { display: flex; justify-content: space-between; padding: 20rpx 0; border-top: 1rpx solid #f1f1f3; font-size: 25rpx; }
 .row-label { color: #999; flex-shrink: 0; margin-right: 24rpx; }
 .row-value { color: #43464d; text-align: right; }
 .actions { margin-top: 36rpx; }
 .primary, .ghost { height: 88rpx; line-height: 88rpx; border-radius: 44rpx; font-size: 28rpx; }
-.primary { background: linear-gradient(90deg, #ff4c30, #ff8a3c); color: #fff; }
-.ghost { margin-top: 20rpx; background: #fff; color: #ff5a2c; }
+.primary { background: #202120; color: #d4fa20; }
+.ghost { margin-top: 20rpx; background: #fff; color: #202120; border: 1rpx solid #202120; }
 </style>

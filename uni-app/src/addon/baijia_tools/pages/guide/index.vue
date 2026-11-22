@@ -4,9 +4,9 @@ import BjTabbar from '../../components/bj-tabbar.vue'
 import { ARTICLES, openArticle } from '../../lib/content.mjs'
 </script>
 <style scoped>
-.guide-banner { padding: 32rpx; border-radius: 24rpx; background: linear-gradient(110deg,#ff4d34,#ff942f); color: white; margin-bottom: 24rpx; }
+.guide-banner { padding: 32rpx; border-radius: 24rpx; background: linear-gradient(120deg, #e6fc7b, #fcf490); color: #202120; margin-bottom: 24rpx; }
 .guide-banner text { display: block; font-size: 38rpx; font-weight: 700; }
-.guide-banner text + text { font-size: 24rpx; font-weight: 400; margin-top: 12rpx; color: #fff2d9; }
+.guide-banner text + text { font-size: 24rpx; font-weight: 400; margin-top: 12rpx; color: #6b6d69; }
 .guide-row { display: flex; align-items: center; padding: 26rpx; margin-bottom: 20rpx; text-align: left; line-height: 1.5; }
 .guide-art { flex-shrink: 0; width: 106rpx; height: 120rpx; color: white; border-radius: 18rpx; font-size: 66rpx; font-weight: 700; text-align: center; line-height: 120rpx; }
 .guide-copy { flex: 1; min-width: 0; padding: 0 22rpx; }

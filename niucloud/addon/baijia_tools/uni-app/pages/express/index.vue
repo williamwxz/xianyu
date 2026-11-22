@@ -48,7 +48,7 @@ const track = () => {
 
 <style scoped>
 @import "../../styles/base.css";
-.banner { border-radius: 24rpx; padding: 40rpx 32rpx; background: linear-gradient(120deg, #6b4ff0, #a58bff); color: #fff; }
+.banner { border-radius: 24rpx; padding: 40rpx 32rpx; background: linear-gradient(120deg, #e6fc7b, #fcf490); color: #202120; }
 .banner text { display: block; }
 .banner-title { font-size: 44rpx; font-weight: 800; }
 .banner-sub { font-size: 24rpx; margin-top: 10rpx; opacity: .92; }
@@ -56,17 +56,17 @@ const track = () => {
 .addr { display: flex; align-items: center; padding: 22rpx 0; border-bottom: 1rpx solid #f1f1f3; }
 .tag { width: 60rpx; height: 60rpx; border-radius: 50%; color: #fff; font-weight: 700; text-align: center; line-height: 60rpx; font-size: 28rpx; flex-shrink: 0; }
 .send-tag { background: #2f7cf6; }
-.recv-tag { background: #ff6a2c; }
+.recv-tag { background: #d4fa20; color: #202120; }
 .addr-copy { flex: 1; padding-left: 20rpx; }
 .addr-title { display: block; font-size: 29rpx; font-weight: 600; }
 .addr-sub { display: block; font-size: 23rpx; color: #999; margin-top: 4rpx; }
 .arrow { font-size: 36rpx; color: #bbb; }
-.primary { margin-top: 28rpx; height: 88rpx; line-height: 88rpx; border-radius: 44rpx; background: linear-gradient(90deg, #6b4ff0, #a58bff); color: #fff; font-size: 29rpx; font-weight: 600; }
+.primary { margin-top: 28rpx; height: 88rpx; line-height: 88rpx; border-radius: 44rpx; background: #202120; color: #d4fa20; font-size: 29rpx; font-weight: 600; }
 .note { display: block; font-size: 23rpx; color: #999; line-height: 1.7; margin-top: 16rpx; }
 .track-title, .tips-title { display: block; font-size: 31rpx; font-weight: 700; }
 .track-row { display: flex; gap: 16rpx; margin-top: 18rpx; }
 .track-input { flex: 1; height: 76rpx; border-radius: 38rpx; background: #f4f5f7; padding: 0 28rpx; font-size: 26rpx; }
 .placeholder { color: #a8abb2; }
-.track-btn { width: 140rpx; height: 76rpx; line-height: 76rpx; border-radius: 38rpx; background: #6b4ff0; color: #fff; font-size: 27rpx; }
+.track-btn { width: 140rpx; height: 76rpx; line-height: 76rpx; border-radius: 38rpx; background: #202120; color: #d4fa20; font-size: 27rpx; }
 .tip { display: block; font-size: 25rpx; color: #666; line-height: 1.9; margin-top: 8rpx; }
 </style>

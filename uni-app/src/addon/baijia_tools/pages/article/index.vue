@@ -9,11 +9,11 @@ function goGuides() { uni.redirectTo({url:'/addon/baijia_tools/pages/guide/index
 </script>
 <style scoped>
 .article { padding: 36rpx 30rpx; }
-.category { font-size: 23rpx; color: #ff623a; background: #fff0e9; border-radius: 8rpx; padding: 8rpx 14rpx; }
+.category { font-size: 23rpx; color: #202120; background: #f4fbd2; border-radius: 8rpx; padding: 8rpx 14rpx; }
 .article-title { display: block; font-size: 40rpx; font-weight: 700; line-height: 1.5; margin: 28rpx 0; }
 .line { height: 1rpx; background: #eee; margin-bottom: 30rpx; }
 .paragraph { display: block; font-size: 29rpx; color: #686868; line-height: 1.9; margin-bottom: 28rpx; }
-.try { margin-top: 40rpx; background: linear-gradient(100deg,#ff6b2b,#ff393f); color: white; border-radius: 40rpx; padding: 22rpx; font-size: 27rpx; line-height: 1.5; }
+.try { margin-top: 40rpx; background: #202120; color: #d4fa20; border-radius: 40rpx; padding: 22rpx; font-size: 27rpx; line-height: 1.5; }
 .article-note { display: block; padding: 24rpx 12rpx; font-size: 23rpx; color: #aaa; line-height: 1.8; }
 .missing { padding: 32rpx; text-align: center; }
 </style>
