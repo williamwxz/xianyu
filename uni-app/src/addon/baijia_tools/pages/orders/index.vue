@@ -20,7 +20,7 @@
       </view>
     </view>
 
-    <view v-if="loaded && !list.length" class="empty">还没有订单。去首页领券、点外卖或买团购，下单后会显示在这里。</view>
+    <view v-if="loaded && !list.length" class="empty"><image class="empty-art" src="/addon/baijia_tools/static/design/empty-order.png" mode="aspectFit" /><text>暂无订单，去首页领券、点外卖或买团购吧~</text></view>
     <button v-if="hasMore" class="more" @click="load(false)">加载更多</button>
   </view>
 </template>
@@ -61,14 +61,14 @@ onShow(() => {
 
 <style scoped>
 @import "../../styles/base.css";
-.summary { display: flex; padding: 32rpx 0; border-radius: 24rpx; background: linear-gradient(120deg, #ff4c30, #ff9a3c); color: #fff; }
+.summary { display: flex; padding: 32rpx 0; border-radius: 24rpx; background: linear-gradient(120deg, #e6fc7b, #fcf490); color: #202120; }
 .sum-item { flex: 1; text-align: center; }
 .sum-num { display: block; font-size: 38rpx; font-weight: 800; }
-.sum-name { display: block; font-size: 23rpx; opacity: .9; margin-top: 6rpx; }
+.sum-name { display: block; font-size: 23rpx; color: #6b6d69; margin-top: 6rpx; }
 .rule { font-size: 23rpx; color: #999; line-height: 1.7; padding: 18rpx 6rpx; }
 .tabs { display: flex; gap: 14rpx; margin-bottom: 18rpx; }
 .tab { flex: 1; height: 64rpx; line-height: 64rpx; border-radius: 32rpx; background: #fff; color: #666; font-size: 25rpx; }
-.tab.active { background: #ff5a2c; color: #fff; font-weight: 600; }
+.tab.active { background: #202120; color: #d4fa20; font-weight: 600; }
 .order { padding: 24rpx; margin-bottom: 18rpx; }
 .order-top { display: flex; justify-content: space-between; font-size: 23rpx; }
 .order-source { color: #999; }
@@ -79,6 +79,7 @@ onShow(() => {
 .order-bottom { display: flex; justify-content: space-between; align-items: center; }
 .order-meta { font-size: 23rpx; color: #999; }
 .order-rebate { font-size: 26rpx; color: #ff4c30; font-weight: 700; }
-.empty { text-align: center; color: #aaa; font-size: 25rpx; line-height: 1.8; padding: 80rpx 40rpx; }
+.empty { display: flex; flex-direction: column; align-items: center; color: #8a8c88; font-size: 24rpx; line-height: 1.8; padding: 60rpx 40rpx; }
+.empty-art { width: 300rpx; height: 240rpx; margin-bottom: 12rpx; }
 .more { margin: 10rpx 0 30rpx; background: #fff; color: #666; font-size: 26rpx; border-radius: 40rpx; }
 </style>

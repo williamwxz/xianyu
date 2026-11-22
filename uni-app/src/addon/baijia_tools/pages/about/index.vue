@@ -8,8 +8,9 @@
     <text class="footnote">优惠以商家实际结算为准。当前版本提供计算功能，不提供领券、下单、返佣或提现服务。</text>
     <button class="back" @click="back">返回计算</button>
   </view>
-<tabbar /></template>
+<BjTabbar /></template>
 <script setup>
+import BjTabbar from '../../components/bj-tabbar.vue'
 const privacy = [
   '计算在设备本地完成，输入金额和计算记录不会上传。首页内容和页面配置由百迦好省服务器提供；访问服务器时会产生包含 IP、请求路径和时间的服务日志。当前功能无需登录，不要求提供手机号、位置或支付信息。',
   '只有点击“保存本次计算”，才会把输入金额、规则、结果及保存时间存到当前设备，最多保留最近 20 条。可在计算页点击“清空记录”删除。记录不会同步到其他设备，清除小程序数据后可能丢失。',

@@ -25,23 +25,24 @@
       <button v-else-if="block.error" class="retry" @click="loadBlock(block)">{{ block.error }} · 重试</button>
       <text v-else-if="!block.items.length" class="hint">当前城市暂无该榜单商品。</text>
     </view>
-  </view><tabbar />
+  </view><BjTabbar current="groupbuy" />
 </template>
 <script setup>
 import { ref, computed } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import request from '@/utils/request'
 import MeituanProducts from '../../components/meituan-products.vue'
+import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
-import { getService, resolveLink } from '../../lib/services.mjs'
-import { openService } from '../../lib/launch.js'
+import { getService } from '../../lib/services.mjs'
+import { openService, openMeituanProduct } from '../../lib/launch.js'
 const cities = cityData.map(c => ({ ...c, label: `${c.province} · ${c.name}` }))
 const initialCity = uni.getStorageSync('baijia_meituan_city') || 'WKV2HMXUEK634WP64CUCUQGM64'
 const cityIndex = ref(Math.max(0, cities.findIndex(c => c.id === initialCity)))
 const city = computed(() => cities[cityIndex.value])
 const keyword = ref(''), activeKeyword = ref(''), focus = ref(false), searched = ref(false)
 const results = ref([]), searchBusy = ref(false), searchError = ref(''), cursor = ref(''), hasMore = ref(false)
-let searchVersion = 0, opening = false
+let searchVersion = 0
 const quick = ['daodian', 'waimai', 'bawangcan', 'movie'].map(getService)
 const blocks = ref([{ topic:2, title:'今日必推' }, { topic:5, title:'实时热销' }, { topic:3, title:'同城优选' }].map(b => ({ ...b, items:[], loading:false, error:'', version:0 })))
 async function loadBlock(block) {
@@ -80,27 +81,7 @@ async function runSearch(append) {
   } catch (e) { if (version === searchVersion) searchError.value = '搜索暂不可用' }
   finally { if (version === searchVersion) searchBusy.value = false }
 }
-async function openProduct(item) {
-  if (opening) return
-  opening = true; uni.showLoading({ title:'正在打开' })
-  try {
-    const res = await request.get('baijia_tools/meituan/link', { id:item.id, platform:item.platform, biz_line:item.biz_line ?? '' })
-    let mini = false
-    // #ifdef MP-WEIXIN
-    mini = true
-    // #endif
-    const target = resolveLink(res.data, mini)
-    if (!target) throw new Error('empty link')
-    if (target.type === 'miniProgram') {
-      uni.navigateToMiniProgram({ appId:target.appId, path:target.path, fail: () => uni.showToast({ title:'未能打开美团，请重试', icon:'none' }) })
-    } else if (target.type === 'redirect') {
-      // #ifdef H5
-      window.location.href = target.url
-      // #endif
-    } else if (target.type === 'copy') { uni.setClipboardData({ data:target.url }) }
-  } catch (e) { uni.showToast({ title:'商品暂不可购买，请稍后重试', icon:'none' }) }
-  finally { uni.hideLoading(); opening = false }
-}
+const openProduct = openMeituanProduct
 onLoad(query => { focus.value = Boolean(query && query.focus); loadBoards() })
 </script>
 <style scoped>
