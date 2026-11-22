@@ -24,6 +24,6 @@ defineEmits(['open'])
 .placeholder { display:flex; align-items:center; justify-content:center; color:#999; }
 .info { min-width:0; flex:1; }
 .name { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; font-size:27rpx; font-weight:600; }
-.prices { margin:8rpx 0; }.price { font-size:34rpx; color:#f35428; font-weight:700; }.original { font-size:23rpx; color:#999; text-decoration:line-through; margin-left:12rpx; }
-.meta { display:block; font-size:21rpx; color:#888; }.buy { display:block; margin-top:6rpx; color:#159c6a; font-size:24rpx; }
+.prices { margin:8rpx 0; }.price { font-size:34rpx; color:#f5222d; font-weight:700; }.original { font-size:23rpx; color:#999; text-decoration:line-through; margin-left:12rpx; }
+.meta { display:block; font-size:21rpx; color:#888; }.buy { display:block; margin-top:6rpx; color:#202120; font-weight:600; font-size:24rpx; }
 </style>

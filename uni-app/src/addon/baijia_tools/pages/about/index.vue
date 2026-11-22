@@ -32,10 +32,10 @@ function back() { uni.redirectTo({ url: '/addon/baijia_tools/pages/calculator/in
 .section { border-radius: 22rpx; background: white; border: 1rpx solid #eeeeee; padding: 28rpx; margin-bottom: 20rpx; }
 .section-title { font-size: 29rpx; font-weight: 600; display: block; margin-bottom: 18rpx; }
 .body { display: block; white-space: pre-line; font-size: 26rpx; line-height: 1.9; color: #888888; }
-.privacy { background: #fff2e6; }
+.privacy { background: #f4fbd2; }
 .privacy-paragraph + .privacy-paragraph { margin-top: 20rpx; }
 .footnote { display: block; font-size: 23rpx; line-height: 1.8; color: #aaaaaa; padding: 12rpx 0 28rpx; }
-.back { background: #ff5838; color: #fff; font-size: 28rpx; border-radius: 14rpx; padding: 20rpx; line-height: 1.5; }
+.back { background: #202120; color: #d4fa20; font-size: 28rpx; border-radius: 14rpx; padding: 20rpx; line-height: 1.5; }
 </style>
 
 <style scoped>
