@@ -83,7 +83,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
+import { onLoad, onShow, onShareAppMessage } from '@dcloudio/uni-app'
 import request from '@/utils/request'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
@@ -109,7 +109,7 @@ const cityIndex = ref(Math.max(0, cities.findIndex((c) => c.id === savedCity)))
 const city = computed(() => cities[cityIndex.value])
 
 // Server allows topics 2 / 3 / 5 (see MEITUAN.md).
-const TOPICS = [{ topic: 2, name: '今日上新' }, { topic: 3, name: '同城优选' }, { topic: 5, name: '飙升热榜' }]
+const TOPICS = [{ topic: 2, name: '今日必推' }, { topic: 3, name: '同城优选' }, { topic: 5, name: '实时热销' }]
 const topic = ref(2)
 const products = ref([])
 const loading = ref(false)
@@ -132,6 +132,12 @@ const changeCity = (e) => {
 }
 
 onLoad(loadProducts)
+// The city can change on the 团购 page; pick it up when coming back.
+onShow(() => {
+  const id = uni.getStorageSync('baijia_meituan_city')
+  const index = cities.findIndex((c) => c.id === id)
+  if (index >= 0 && index !== cityIndex.value) { cityIndex.value = index; loadProducts() }
+})
 
 const goSearch = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/groupbuy/index?focus=1' })
 const goGroupbuy = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/groupbuy/index' })

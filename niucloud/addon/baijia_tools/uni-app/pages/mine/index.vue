@@ -84,7 +84,7 @@ const groups = [
   { title: '合伙人管理', moreText: '进入', more: { service: 'partner' }, items: [
     { name: '店铺订单', icon: 'shop', service: 'partner' },
     { name: '店铺收益', icon: 'shop-income', service: 'partner' },
-    { name: '帮助中心', icon: 'help', page: '/addon/baijia_tools/pages/about/index' },
+    { name: '使用说明', icon: 'help', page: '/addon/baijia_tools/pages/about/index' },
     { name: '发圈素材', icon: 'material', service: 'partner' },
     { name: '店铺海报', icon: 'poster', service: 'partner' }
   ] }
