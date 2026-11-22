@@ -178,7 +178,7 @@ input { flex: 1; width: 0; min-width: 0; height: 80rpx; font-size: 32rpx; color:
 .result-divider { border-top: 1rpx dashed #efcfb9; }
 .breakdown { display: flex; justify-content: space-between; padding: 24rpx 0; font-size: 27rpx; }
 .breakdown > view { flex: 1; min-width: 0; }
-.metric-label { display: block; color: #8a8c88; font-size: 21rpx; margin-bottom: 8rpx; }
+.metric-label { display: block; color: #6b6d69; font-size: 21rpx; margin-bottom: 8rpx; }
 .saved { color: #f5222d; font-weight: 600; }
 .result-note { display: block; font-size: 22rpx; color: #a48473; line-height: 1.6; }
 .save { width: 100%; font-size: 24rpx; background: transparent; border: 1rpx solid #e6b89a; border-radius: 12rpx; color: #c77850; margin-top: 24rpx; line-height: 1.5; padding: 15rpx; }
@@ -188,7 +188,7 @@ input { flex: 1; width: 0; min-width: 0; height: 80rpx; font-size: 32rpx; color:
 .disclaimer { display: block; color: #aaaaaa; font-size: 21rpx; line-height: 1.6; margin: 20rpx 4rpx 38rpx; }
 .history-heading { display: flex; justify-content: space-between; align-items: center; font-size: 28rpx; font-weight: 600; margin-bottom: 18rpx; }
 .count { font-size: 20rpx; color: #bbbbbb; font-weight: 400; margin-left: 8rpx; }
-.empty { padding: 30rpx; background: #f4fbd2; border-radius: 18rpx; font-size: 24rpx; color: #8a8c88; }
+.empty { padding: 30rpx; background: #f4fbd2; border-radius: 18rpx; font-size: 24rpx; color: #6b6d69; }
 .history-item { text-align: left; display: flex; justify-content: space-between; align-items: center; padding: 24rpx; margin-bottom: 12rpx; background: white; border-radius: 16rpx; line-height: 1.5; }
 .history-left { flex: 1; min-width: 0; padding-right: 16rpx; }
 .history-title { font-size: 25rpx; color: #555555; display: block; }

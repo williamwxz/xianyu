@@ -13,7 +13,7 @@
       <view v-if="progress" class="growth" @click="need('/app/pages/member/level')">
         <view class="track">
           <view class="track-fill" :style="{ width: `${progress.percent}%` }" />
-          <view v-for="n in progress.nodes" :key="n.id" class="node" :class="{ reached: n.reached, current: n.current }" :style="{ left: `${n.left}%` }">
+          <view v-for="n in progress.nodes" :key="n.id" class="node" :class="{ reached: n.reached, current: n.current, first: n.left === 0, last: n.left === 100 }" :style="{ left: `${n.left}%` }">
             <text v-if="n.current" class="node-tip">{{ n.name }}</text>
           </view>
         </view>
@@ -112,7 +112,7 @@ const groups = [
 
 // Levels, thresholds and perks are configured in the niucloud admin (会员等级).
 const levels = ref([])
-const progress = computed(() => info.value ? levelProgress(levels.value, info.value.growth) : null)
+const progress = computed(() => info.value ? levelProgress(levels.value, info.value.growth, info.value.member_level) : null)
 const perks = computed(() => {
   const id = info.value && info.value.member_level
   return levelPerks(levels.value.find((l) => l.level_id == id)).slice(0, 4)
@@ -120,7 +120,8 @@ const perks = computed(() => {
 onShow(() => {
   if (!memberStore.token) return
   memberStore.getMemberInfo()
-  request.get('member/level', {}, { showErrorMessage: false }).then((res) => { levels.value = res.data || [] }).catch(() => {})
+  // Site-wide config: load once per page; retried on later shows only if it failed.
+  if (!levels.value.length) request.get('member/level', {}, { showErrorMessage: false }).then((res) => { levels.value = res.data || [] }).catch(() => {})
 })
 
 const go = (url) => uni.navigateTo({ url })
@@ -155,6 +156,8 @@ onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', pa
 .node.reached { border-color: #202120; }
 .node.current { background: #202120; }
 .node-tip { position: absolute; bottom: 30rpx; left: 50%; transform: translateX(-50%); padding: 8rpx 18rpx; border-radius: 10rpx; background: #202120; color: #fff; font-size: 20rpx; white-space: nowrap; }
+.node.first .node-tip { left: -10rpx; transform: none; }
+.node.last .node-tip { left: auto; right: -10rpx; transform: none; }
 .growth-text { display: flex; justify-content: space-between; margin-top: 20rpx; font-size: 22rpx; color: #6b6d69; }
 .growth-num { color: #202120; font-weight: 800; }
 .perks { display: flex; flex-wrap: wrap; gap: 20rpx 40rpx; margin-top: 24rpx; }
