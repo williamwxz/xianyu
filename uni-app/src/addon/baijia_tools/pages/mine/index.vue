@@ -112,6 +112,7 @@ const groups = [
 
 // Levels, thresholds and perks are configured in the niucloud admin (会员等级).
 const levels = ref([])
+let levelsLoad = null
 const progress = computed(() => info.value ? levelProgress(levels.value, info.value.growth, info.value.member_level) : null)
 const perks = computed(() => {
   const id = info.value && info.value.member_level
@@ -120,8 +121,12 @@ const perks = computed(() => {
 onShow(() => {
   if (!memberStore.token) return
   memberStore.getMemberInfo()
-  // Site-wide config: load once per page; retried on later shows only if it failed.
-  if (!levels.value.length) request.get('member/level', {}, { showErrorMessage: false }).then((res) => { levels.value = res.data || [] }).catch(() => {})
+  // Site-wide config: one shared request per page; cleared only on failure so a later show retries.
+  if (!levelsLoad) {
+    levelsLoad = request.get('member/level', {}, { showErrorMessage: false })
+      .then((res) => { levels.value = res.data || [] })
+      .catch(() => { levelsLoad = null })
+  }
 })
 
 const go = (url) => uni.navigateTo({ url })
