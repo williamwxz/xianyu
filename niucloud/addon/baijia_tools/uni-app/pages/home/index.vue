@@ -66,7 +66,7 @@
           <view v-else class="photo photo-empty">团购</view>
           <view class="product-info">
             <text class="product-name">{{ item.name }}</text>
-            <text v-if="item.sales" class="product-meta">已售 {{ item.sales }}</text>
+            <text v-if="item.sales" class="product-meta">{{ item.sales }}</text>
             <view class="prices">
               <text class="price"><text class="yen">¥</text>{{ item.price }}</text>
               <text v-if="Number(item.original_price) > Number(item.price)" class="original">¥{{ item.original_price }}</text>
