@@ -75,8 +75,9 @@
         </view>
       </view>
       <text v-if="loading" class="hint">正在加载优惠…</text>
-      <view v-else-if="error" class="hint" @click="loadProducts">{{ error }} · 点击重试</view>
-      <text v-else-if="!products.length" class="hint">{{ activeKeyword ? '没有找到相关商品，换个关键词试试' : '当前城市暂无该榜单商品' }}</text>
+      <view v-else-if="error" class="hint" @click="loadProducts(products.length > 0)">{{ error }} · 点击重试</view>
+      <view v-else-if="hasMore" class="load-more" @click="loadProducts(true)">加载更多</view>
+      <text v-else-if="!products.length && !hasMore" class="hint">{{ activeKeyword ? '没有找到相关商品，换个关键词试试' : '当前城市暂无该榜单商品' }}</text>
     </view>
   </view>
   <BjTabbar current="home" />
@@ -120,13 +121,26 @@ const searchFocus = ref(false)
 const loading = ref(false)
 const error = ref('')
 let version = 0
-async function loadProducts() {
+// append=true loads the next search page (topic lists are fixed at 20 items).
+const cursor = ref('')
+const hasMore = ref(false)
+async function loadProducts(append = false) {
+  if (append && (loading.value || !hasMore.value)) return
   const v = ++version
-  loading.value = true; error.value = ''; products.value = []
+  loading.value = true; error.value = ''
+  if (!append) { products.value = []; cursor.value = ''; hasMore.value = false }
   try {
-    const params = activeKeyword.value ? { city_id: city.value.id, keyword: activeKeyword.value } : { city_id: city.value.id, topic: topic.value }
+    const params = activeKeyword.value
+      ? { city_id: city.value.id, keyword: activeKeyword.value, cursor: append ? cursor.value : '' }
+      : { city_id: city.value.id, topic: topic.value }
     const res = await request.get('baijia_tools/meituan/products', params, { showErrorMessage: false })
-    if (v === version) products.value = res.data.items || []
+    if (v !== version) return
+    const data = res.data || {}
+    const seen = new Set(append ? products.value.map((p) => p.id) : [])
+    const items = (data.items || []).filter((p) => { if (seen.has(p.id)) return false; seen.add(p.id); return true })
+    products.value = append ? products.value.concat(items) : items
+    hasMore.value = Boolean(activeKeyword.value && data.has_more && data.cursor && data.cursor !== cursor.value)
+    cursor.value = data.cursor || ''
   } catch (e) { if (v === version) error.value = '暂时无法加载' }
   finally { if (v === version) loading.value = false }
 }
@@ -211,5 +225,6 @@ onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', pa
 .price { font-size: 38rpx; font-weight: 800; color: #f5222d; }
 .yen { font-size: 24rpx; }
 .original { font-size: 22rpx; color: #b9bbb7; text-decoration: line-through; margin-left: 10rpx; }
+.load-more { margin: 8rpx auto 0; width: 260rpx; height: 64rpx; line-height: 64rpx; border-radius: 32rpx; background: #202120; color: #d4fa20; font-size: 24rpx; text-align: center; }
 .hint { display: block; text-align: center; font-size: 24rpx; color: #8a8c88; padding: 24rpx 0; }
 </style>

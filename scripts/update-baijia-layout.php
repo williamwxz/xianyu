@@ -1,5 +1,5 @@
 <?php
-// Switches the 百迦好省 site to the 首页 / 同城团购 / 聚合快递 / 计算 / 我的 layout.
+// Switches the 百迦好省 site to the 首页 / 街区 / 我的 layout.
 // Run as the PHP pool user: sudo -u www php update-baijia-layout.php /www/wwwroot/niucloud
 // Only touches the start page and bottom navigation; re-running gives the same result.
 if (function_exists('posix_geteuid') && posix_geteuid() === 0) {
@@ -28,12 +28,10 @@ $config->setStartUpPageConfig($siteId, ['type' => 'DIY_INDEX', 'name' => 'BAIJIA
 
 $tabs = [
     ['BAIJIA_HOME', '首页', $home, 'home'],
-    ['BAIJIA_GROUPBUY', '同城团购', '/addon/baijia_tools/pages/groupbuy/index', 'groupbuy'],
-    ['BAIJIA_EXPRESS', '聚合快递', '/addon/baijia_tools/pages/express/index', 'express'],
-    ['BAIJIA_CALCULATOR', '计算', '/addon/baijia_tools/pages/calculator/index', 'calculator'],
+    ['BAIJIA_MAP', '街区', '/addon/baijia_tools/pages/map/index', 'map'],
     ['BAIJIA_MINE', '我的', '/addon/baijia_tools/pages/mine/index', 'profile'],
 ];
-$bottom = ['backgroundColor' => '#ffffff', 'textColor' => '#666666', 'textHoverColor' => '#ff542e', 'type' => '1', 'list' => []];
+$bottom = ['backgroundColor' => '#ffffff', 'textColor' => '#8a8c88', 'textHoverColor' => '#202120', 'type' => '1', 'list' => []];
 foreach ($tabs as [$name, $title, $url, $icon]) {
     $bottom['list'][] = ['text' => $title, 'link' => $link($name, $title, $url),
         'iconPath' => 'addon/baijia_tools/tabs/' . $icon . '.png',

@@ -67,7 +67,7 @@ onShareAppMessage(() => ({ title: '百迦好省 · 逛逛生活街区', path: '/
 
 <style scoped>
 .street { position: relative; min-height: 100vh; background: #fff9f2; padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }
-.header { position: absolute; top: 0; left: 0; right: 0; z-index: 2; padding-left: 32rpx; padding-right: 32rpx; }
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 2; padding: 0 32rpx 24rpx; background: linear-gradient(180deg, rgba(255, 249, 242, .95) 70%, rgba(255, 249, 242, 0)); }
 .title-row { display: flex; align-items: center; }
 .pin { width: 32rpx; height: 32rpx; }
 .city { font-size: 28rpx; font-weight: 700; color: #202120; margin-left: 6rpx; }
