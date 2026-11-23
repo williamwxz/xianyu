@@ -5,30 +5,6 @@ return ['pages' => <<<'PAGES'
     "root": "addon/baijia_tools",
     "pages": [
         {
-            "path": "pages/calculator/index",
-            "style": {
-                "navigationBarTitleText": "优惠计算"
-            }
-        },
-        {
-            "path": "pages/guide/index",
-            "style": {
-                "navigationBarTitleText": "省钱指南"
-            }
-        },
-        {
-            "path": "pages/article/index",
-            "style": {
-                "navigationBarTitleText": "省钱指南"
-            }
-        },
-        {
-            "path": "pages/about/index",
-            "style": {
-                "navigationBarTitleText": "使用说明与隐私"
-            }
-        },
-        {
             "path": "pages/home/index",
             "style": {
                 "navigationStyle": "custom",
@@ -36,15 +12,10 @@ return ['pages' => <<<'PAGES'
             }
         },
         {
-            "path": "pages/groupbuy/index",
+            "path": "pages/map/index",
             "style": {
-                "navigationBarTitleText": "同城团购"
-            }
-        },
-        {
-            "path": "pages/express/index",
-            "style": {
-                "navigationBarTitleText": "聚合快递"
+                "navigationStyle": "custom",
+                "navigationBarTitleText": "生活街区"
             }
         },
         {

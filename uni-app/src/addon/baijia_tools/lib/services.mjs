@@ -16,9 +16,8 @@ export const SERVICES = [
   { id: 'fuel', name: '加油服务', slogan: '附近油站 · 直降优惠', icon: '油', color: '#12a36b', colorTo: '#3ccf8e', channel: '加油服务商（需商务洽谈）' },
   { id: 'distribution', name: '推广中心', slogan: '邀请好友 · 共享收益', icon: '推', color: '#f0a020', colorTo: '#ffc94d', channel: '分销模块（开发中）' },
   { id: 'partner', name: '合伙人', slogan: '独立站点 · 自主经营', icon: '合', color: '#3a3f4b', colorTo: '#6a7080', channel: '合伙人模块（开发中）' },
+  { id: 'ai', name: 'AI助手', slogan: '问问附近有什么好吃好玩', icon: 'AI', color: '#202120', colorTo: '#4a4c48', channel: 'AI 助手（开发中）' },
   { id: 'jiazheng', name: '家政服务', slogan: '保洁维修 · 上门服务', icon: '家', img: 'grid/jiazheng.png', color: '#2f7cf6', colorTo: '#5fb0ff', channel: '家政服务商（需商务洽谈）' },
-  { id: 'calculator', name: '优惠计算', slogan: '折扣 · 满减 · 券后价', icon: '算', color: '#202120', colorTo: '#4a4c48', launch: { type: 'page', url: '/addon/baijia_tools/pages/calculator/index' } },
-  { id: 'guide', name: '省钱指南', slogan: '凑单 · 叠券 · 折扣速查', icon: '指', color: '#202120', colorTo: '#4a4c48', launch: { type: 'page', url: '/addon/baijia_tools/pages/guide/index' } },
   // 大牌点餐
   { id: 'mcdonalds', brand: true, name: '麦当劳', icon: '麦', img: 'grid/mcdonalds.png', color: '#da291c', colorTo: '#ffc72c', channel: '麦当劳点餐（待接入）' },
   { id: 'kfc', jtk: 'kfc', brand: true, img: 'grid/kfc.png', name: '肯德基', icon: 'K', color: '#e4002b', colorTo: '#ff4d6a', tag: '在线点餐' },
@@ -35,7 +34,7 @@ export const SERVICES = [
 
 // Home grid follows the design; 「更多」 expands MORE_GRID.
 export const HOME_GRID = ['mcdonalds', 'kfc', 'starbucks', 'cotti', 'nayuki', 'pizzahut', 'luckin', 'eleme', 'jiazheng']
-export const MORE_GRID = ['daodian', 'waimai', 'express', 'taxi', 'hotel', 'goods', 'heytea', 'burgerking', 'pagoda', 'carwash', 'fuel', 'calculator', 'guide']
+export const MORE_GRID = ['daodian', 'waimai', 'express', 'taxi', 'hotel', 'goods', 'heytea', 'burgerking', 'pagoda', 'carwash', 'fuel']
 export const BRANDS = SERVICES.filter((item) => item.brand).map((item) => item.id)
 
 export function getService(id) {

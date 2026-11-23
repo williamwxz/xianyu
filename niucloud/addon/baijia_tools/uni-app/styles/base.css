@@ -1,5 +1,5 @@
 
-.page, .page-wrap, .about { background: #fffdf7; color: #202120; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 28rpx; }
+.page, .page-wrap { background: #fffdf7; color: #202120; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 28rpx; }
 view, button, input, text { box-sizing: border-box; }
 button { font-family: inherit; margin: 0; }
 button::after { border: 0; }
@@ -10,4 +10,4 @@ button[disabled] { opacity: .45; }
 .section-head button { padding: 0; background: transparent; color: #999; font-size: 24rpx; line-height: 1.5; }
 .white-card { background: white; border-radius: 24rpx; }
 
-.page, .page-wrap, .about { padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); min-height: 100vh; background: #fffdf7; }
+.page, .page-wrap { padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); min-height: 100vh; background: #fffdf7; }
