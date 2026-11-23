@@ -75,7 +75,7 @@
         </view>
       </view>
       <text v-if="loading" class="hint">正在加载优惠…</text>
-      <view v-else-if="error" class="hint" @click="loadProducts(products.length > 0)">{{ error }} · 点击重试</view>
+      <view v-else-if="error" class="hint" @click="loadProducts(hasMore)">{{ error }} · 点击重试</view>
       <view v-else-if="hasMore" class="load-more" @click="loadProducts(true)">加载更多</view>
       <text v-else-if="!products.length && !hasMore" class="hint">{{ activeKeyword ? '没有找到相关商品，换个关键词试试' : '当前城市暂无该榜单商品' }}</text>
     </view>
