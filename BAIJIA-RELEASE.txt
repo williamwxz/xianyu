@@ -1,0 +1,80 @@
+百迦好省 — niucloud 原生应用 1.1.0（惠省团设计改版）
+
+部署位置
+站点：100000 / 百迦好省
+后台：https://mini.baijia.life/site/diy/index
+H5：https://mini.baijia.life/wap/100000/
+AppID：wx63febce51396b8b5
+
+实现
+niucloud/addon/baijia_tools 是本项目自定义原生应用；未购买商业插件。
+页面全部在 uni-app 工程的 addon/baijia_tools 分包：首页、生活街区（地图）、我的、
+服务说明、返利订单。界面按设计师在 Moonvy「惠省团」项目交付的设计稿实现，
+切图位于分包 static/design/。
+底部导航为分包自带组件 components/bj-tabbar.vue（首页 / 街区 / 我的），
+不读取后台底部导航配置；后台底部导航只影响 niucloud 自带页面（会员、设置等）。
+首页：品牌宫格、霸王餐 / 热门电影入口、美团到店榜单（今日必推 / 同城优选 / 实时热销）
+与美团商品搜索。品牌和活动入口通过聚推客转链，商品通过美团联盟转链。
+街区：街区插画 + 6 个店铺招牌，点击打开对应服务（AI助手暂为「即将上线」）。
+我的：余额 / 积分 / 佣金、成长值与等级权益（来自后台「会员等级」配置）、订单与推广入口。
+1.1.0 起移除了同城团购、聚合快递、优惠计算、省钱指南、文章和使用说明页面。
+
+维护
+启动页为 /addon/baijia_tools/pages/home/index。首页、街区、我的的内容由代码决定，
+不通过后台装修修改；会员等级与权益在后台「会员等级」中配置。
+前端源码以 niucloud/addon/baijia_tools/uni-app 为准；编译前同步到
+uni-app/src/addon/baijia_tools，避免两份副本漂移。
+初始安装脚本 scripts/setup-baijia-site.php 只用于首次初始化，不覆盖已有站点；
+它把启动页设为插件首页，底部导航设为 首页 / 街区 / 我的。
+已有站点用 scripts/deploy-baijia.sh <niucloud 根目录> --layout 部署插件并重设启动页
+与底部导航（会覆盖后台对这两项的修改）。
+PHP 脚本都使用 PHP 进程用户 www 执行，不要使用 root 生成运行缓存。
+服务器备份位于 /root/baijia-backup-20261109/，权限仅限服务器管理员。
+
+构建（仓库根目录进入 uni-app）
+export VITE_SITE_ID=100000
+export VITE_APP_BASE_URL=https://mini.baijia.life/api/
+export VITE_IMG_DOMAIN=https://mini.baijia.life
+export NIU_SKIP_WEB_COPY=1
+npm run build:h5
+npm run build:mp-weixin
+
+NIU_SKIP_WEB_COPY=1 保留 niucloud H5 多站点路由处理，但不覆盖仓库已跟踪的 public/wap。
+原生编译产物为 uni-app/dist/build/mp-weixin；不要选择之前的 tools 独立工程。
+在微信开发者工具导入该目录；AppID 已写入 project.config.json。
+当前已配置 mini.baijia.life 的 HTTPS；根域名 baijia.life 保留原站。
+微信公众平台仍须将 https://mini.baijia.life 加入 request/downloadFile 合法域名。
+不能将 /api/ 路径填写到合法域名设置中。
+开发工具内临时跳过域名校验的预览不等于真机或发布验收。
+
+验证
+node --test niucloud/addon/baijia_tools/tests/
+覆盖服务配置、设计切图存在性、页面注册、成长值计算与等级权益、聚推客映射。
+diff -rq niucloud/addon/baijia_tools/uni-app uni-app/src/addon/baijia_tools 应无输出。
+PR #2–#5 经 Codex 逐轮复审，无遗留问题。
+
+1.1.0 上传（2026-11-22）
+从 main a2111218 按上方「构建」环境变量编译 mp-weixin。
+微信开发者工具模拟器连接生产后端核对：首页美团商品正常加载，街区招牌位置与设计稿一致，
+我的页登录态正常。
+使用开发者工具命令行上传（无需弹窗确认）：
+/Applications/wechatwebdevtools.app/Contents/MacOS/cli upload \
+  --project uni-app/dist/build/mp-weixin -v 1.1.0 -d "<备注>"
+上传成功：总包 3,848,832 字节；主包 1,551,981；/addon/baijia_tools/ 1,461,576；
+/app/components/ 598,936；/app/pages/member/ 236,339。
+注意：编译会重建 dist 目录，开发者工具若已打开该项目需关闭后重新打开，
+否则模拟器和上传都会报 app.json 不存在。
+待办：
+- 微信公众平台设为体验版、真机测试，再提交审核与发布。
+- 核实 https://mini.baijia.life 已加入 request/downloadFile 合法域名。
+- 服务器尚未部署 1.1.0 插件（deploy-baijia.sh --layout）：后台底部导航与装修链接
+  仍是旧版，小程序分包页面不受影响。
+
+HTTPS 运维（2026-11-09）
+DNS：mini A → 39.108.174.244，TTL 600；原 @ 和 * 解析未修改。
+TLS：Let's Encrypt，首次证书到期 2027-02-07；certbot.timer 已启用并运行。
+Nginx：/etc/nginx/conf.d/zz-niucloud-mini.conf；原 IP 站点配置保留。
+安全组：niucloud 专用、仅绑定目标 ECS 的组中已开放公网 TCP 443。
+备份：/root/baijia-https-backup-20261109/。
+公网校验：HTTPS 首页 HTTP 200，DIY_INDEX API code=1 / 百迦好省 / site_id=100000。
+历史：1.0.1 上传 success，主包 1,691,630 字节，总包 2,627,056 字节。
