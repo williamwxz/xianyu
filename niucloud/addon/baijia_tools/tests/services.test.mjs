@@ -37,7 +37,7 @@ test('search matches names and slogans, ignores blank input', () => {
 test('service page url is encoded and every new page is registered', () => {
   assert.equal(servicePageUrl('a b'), '/addon/baijia_tools/pages/service/index?id=a%20b')
   const pages = readFileSync(new URL('../package/uni-app-pages.php', import.meta.url), 'utf8')
-  for (const page of ['home', 'groupbuy', 'express', 'mine', 'service']) assert.ok(pages.includes(`pages/${page}/index`), page)
+  for (const page of ['home', 'map', 'mine', 'service', 'orders']) assert.ok(pages.includes(`pages/${page}/index`), page)
 })
 test('designed icons referenced by services exist', () => {
   for (const item of SERVICES.filter((s) => s.img)) assert.ok(existsSync(new URL(`../uni-app/static/design/${item.img}`, import.meta.url)), item.img)

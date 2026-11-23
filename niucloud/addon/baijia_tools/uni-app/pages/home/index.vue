@@ -11,9 +11,9 @@
             <image class="city-arrow" src="/addon/baijia_tools/static/design/icon-arrow-down.png" />
           </view>
         </picker>
-        <view class="search" @click="goSearch">
+        <view class="search">
           <image class="search-icon" src="/addon/baijia_tools/static/design/icon-search.png" />
-          <text>搜索霸王餐、电影票、团购</text>
+          <input v-model="keyword" class="search-input" :focus="searchFocus" maxlength="100" confirm-type="search" placeholder="搜索美团优惠商品" placeholder-class="search-ph" @confirm="search" />
         </view>
       </view>
     </view>
@@ -53,9 +53,10 @@
 
       <view class="section-bar">
         <view class="section-name"><image class="section-icon" src="/addon/baijia_tools/static/design/icon-meituan.png" /><text>美团到店</text></view>
-        <view class="section-more" @click="goGroupbuy"><text>更多</text><image class="chevron" src="/addon/baijia_tools/static/design/icon-chevron.png" /></view>
+        <view v-if="activeKeyword" class="section-more" @click="clearSearch"><text>清除搜索</text></view>
       </view>
-      <scroll-view scroll-x class="tabs" :show-scrollbar="false">
+      <view v-if="activeKeyword" class="search-note">「{{ activeKeyword }}」的搜索结果</view>
+      <scroll-view v-else scroll-x class="tabs" :show-scrollbar="false">
         <view v-for="t in TOPICS" :key="t.topic" class="tab" :class="{ active: t.topic === topic }" @click="switchTopic(t.topic)">{{ t.name }}</view>
       </scroll-view>
 
@@ -75,7 +76,7 @@
       </view>
       <text v-if="loading" class="hint">正在加载优惠…</text>
       <view v-else-if="error" class="hint" @click="loadProducts">{{ error }} · 点击重试</view>
-      <text v-else-if="!products.length" class="hint">当前城市暂无该榜单商品</text>
+      <text v-else-if="!products.length" class="hint">{{ activeKeyword ? '没有找到相关商品，换个关键词试试' : '当前城市暂无该榜单商品' }}</text>
     </view>
   </view>
   <BjTabbar current="home" />
@@ -83,7 +84,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { onLoad, onShow, onShareAppMessage } from '@dcloudio/uni-app'
+import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
 import request from '@/utils/request'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
@@ -112,6 +113,10 @@ const city = computed(() => cities[cityIndex.value])
 const TOPICS = [{ topic: 2, name: '今日必推' }, { topic: 3, name: '同城优选' }, { topic: 5, name: '实时热销' }]
 const topic = ref(2)
 const products = ref([])
+// Keyword search replaces the topic feed until cleared (the server's keyword search covers all Meituan categories).
+const keyword = ref('')
+const activeKeyword = ref('')
+const searchFocus = ref(false)
 const loading = ref(false)
 const error = ref('')
 let version = 0
@@ -119,7 +124,8 @@ async function loadProducts() {
   const v = ++version
   loading.value = true; error.value = ''; products.value = []
   try {
-    const res = await request.get('baijia_tools/meituan/products', { city_id: city.value.id, topic: topic.value }, { showErrorMessage: false })
+    const params = activeKeyword.value ? { city_id: city.value.id, keyword: activeKeyword.value } : { city_id: city.value.id, topic: topic.value }
+    const res = await request.get('baijia_tools/meituan/products', params, { showErrorMessage: false })
     if (v === version) products.value = res.data.items || []
   } catch (e) { if (v === version) error.value = '暂时无法加载' }
   finally { if (v === version) loading.value = false }
@@ -131,16 +137,24 @@ const changeCity = (e) => {
   loadProducts()
 }
 
-onLoad(loadProducts)
-// The city can change on the 团购 page; pick it up when coming back.
-onShow(() => {
-  const id = uni.getStorageSync('baijia_meituan_city')
-  const index = cities.findIndex((c) => c.id === id)
-  if (index >= 0 && index !== cityIndex.value) { cityIndex.value = index; loadProducts() }
-})
+const search = () => {
+  const q = keyword.value.trim()
+  if (!q) { clearSearch(); return }
+  activeKeyword.value = q
+  loadProducts()
+}
+const clearSearch = () => {
+  keyword.value = ''
+  if (!activeKeyword.value) return
+  activeKeyword.value = ''
+  loadProducts()
+}
 
-const goSearch = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/groupbuy/index?focus=1' })
-const goGroupbuy = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/groupbuy/index' })
+// ?search=1 comes from the search box on the 街区 page.
+onLoad((query) => {
+  searchFocus.value = Boolean(query && query.search)
+  loadProducts()
+})
 
 onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
 </script>
@@ -158,6 +172,9 @@ onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', pa
 .city-name { font-size: 28rpx; font-weight: 600; margin: 0 6rpx; max-width: 160rpx; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .city-arrow { width: 24rpx; height: 24rpx; }
 .search { flex: 1; height: 68rpx; border-radius: 34rpx; background: rgba(255, 255, 255, .9); display: flex; align-items: center; padding: 0 24rpx; color: #a6a8a4; font-size: 26rpx; }
+.search-input { flex: 1; min-width: 0; height: 68rpx; font-size: 26rpx; color: #202120; }
+.search-ph { color: #a6a8a4; }
+.search-note { margin-top: 24rpx; font-size: 24rpx; color: #6b6d69; }
 .search-icon { width: 32rpx; height: 32rpx; margin-right: 12rpx; }
 .body { position: relative; z-index: 1; padding: 0 24rpx; padding-top: 560rpx; } /* hero headline ends ~520rpx */
 .card { background: #fff; border-radius: 32rpx; box-shadow: 0 8rpx 28rpx rgba(113, 105, 72, .11); }

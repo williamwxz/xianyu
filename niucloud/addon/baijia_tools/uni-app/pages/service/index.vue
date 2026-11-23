@@ -15,7 +15,6 @@
     <view v-if="!service" class="card white-card"><text class="lead">没有找到这个服务。</text></view>
     <view class="actions">
       <button class="primary" @click="goHome">去首页看看</button>
-      <button class="ghost" @click="goCalculator">先用优惠计算</button>
     </view>
   </view>
 </template>
@@ -35,7 +34,6 @@ const webviewUrl = computed(() => {
   return item && isReady(item) && item.launch.type === 'webview' ? item.launch.url : ''
 })
 const goHome = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/home/index' })
-const goCalculator = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/calculator/index' })
 </script>
 
 <style scoped>
