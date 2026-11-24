@@ -8,7 +8,7 @@ return ['pages' => <<<'PAGES'
             "path": "pages/home/index",
             "style": {
                 "navigationStyle": "custom",
-                "navigationBarTitleText": "百迦好省"
+                "navigationBarTitleText": "的确省"
             }
         },
         {

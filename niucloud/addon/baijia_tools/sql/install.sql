@@ -20,4 +20,4 @@ CREATE TABLE IF NOT EXISTS `{{prefix}}baijia_cps_order` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_source_order` (`source`, `order_sn`),
   KEY `idx_member` (`site_id`, `member_id`, `status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='百迦好省 CPS 订单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='的确省 CPS 订单';

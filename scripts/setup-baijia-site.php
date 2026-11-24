@@ -25,20 +25,21 @@ if (!Db::name('addon')->where('key', 'baijia_tools')->count()) {
     $installer->install('local');
 }
 
-$site = Db::name('site')->where('site_name', '百迦好省')->find();
+// Renamed from 百迦好省; accept either name so an existing site is never duplicated.
+$site = Db::name('site')->whereIn('site_name', ['的确省', '百迦好省'])->find();
 if ($site) {
     echo json_encode(['site_id' => $site['site_id'], 'existing' => true], JSON_UNESCAPED_UNICODE), PHP_EOL;
     exit;
 }
 $uid = Db::name('sys_user_role')->where('site_id', 0)->where('is_admin', 1)->value('uid');
 if (!$uid) throw new RuntimeException('Existing platform administrator not found');
-$group = Db::name('site_group')->where('group_name', '百迦好省基础版')->find();
+$group = Db::name('site_group')->whereIn('group_name', ['的确省基础版', '百迦好省基础版'])->find();
 $groupId = $group['group_id'] ?? (new SiteGroupService())->add([
-    'group_name' => '百迦好省基础版', 'group_desc' => '生活服务、霸王餐、电影票、美团到店',
+    'group_name' => '的确省基础版', 'group_desc' => '生活服务、霸王餐、电影票、美团到店',
     'app' => ['baijia_tools'], 'addon' => []
 ]);
 $siteId = (new SiteService())->add([
-    'site_name' => '百迦好省', 'site_domain' => '', 'group_id' => $groupId,
+    'site_name' => '的确省', 'site_domain' => '', 'group_id' => $groupId,
     'expire_time' => '2036-11-09 23:59:59', 'uid' => $uid
 ]);
 request()->siteId($siteId);
@@ -57,7 +58,7 @@ foreach ([['BAIJIA_HOME', '首页', $home, 'home'], ['BAIJIA_MAP', '街区', '/a
 }
 $config->setBottomConfig($siteId, $bottom);
 $weapp = new CoreWeappConfigService();
-$weapp->setWeappConfig($siteId, array_merge($weapp->getWeappConfig($siteId), ['weapp_name' => '百迦好省', 'app_id' => 'wx63febce51396b8b5']));
+$weapp->setWeappConfig($siteId, array_merge($weapp->getWeappConfig($siteId), ['weapp_name' => '的确省', 'app_id' => 'wx63febce51396b8b5']));
 Cache::tag('site_cash' . $siteId)->clear();
 Cache::tag('sys_menu')->clear();
 echo json_encode(['site_id' => $siteId, 'start_page' => $home, 'appid' => 'wx63febce51396b8b5'], JSON_UNESCAPED_UNICODE), PHP_EOL;

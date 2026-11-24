@@ -62,7 +62,7 @@ onShow(() => {
 
 const goSearch = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/home/index?search=1' })
 
-onShareAppMessage(() => ({ title: '百迦好省 · 逛逛生活街区', path: '/addon/baijia_tools/pages/map/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 逛逛生活街区', path: '/addon/baijia_tools/pages/map/index' }))
 </script>
 
 <style scoped>

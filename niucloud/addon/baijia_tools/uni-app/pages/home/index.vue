@@ -2,7 +2,7 @@
   <view class="home">
     <image class="hero" src="/addon/baijia_tools/static/design/hero.png" mode="widthFix" />
     <view class="header" :style="{ paddingTop: `${navTop}px` }">
-      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">百迦好省</text></view>
+      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">的确省</text></view>
       <view class="search-row">
         <picker :range="cities" range-key="label" :value="cityIndex" @change="changeCity">
           <view class="city">
@@ -170,7 +170,7 @@ onLoad((query) => {
   loadProducts()
 })
 
-onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
 </script>
 
 <style scoped>

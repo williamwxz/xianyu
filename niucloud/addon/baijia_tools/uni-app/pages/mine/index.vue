@@ -5,7 +5,7 @@
         <image v-if="info && info.headimg" class="avatar" :src="img(info.headimg)" mode="aspectFill" />
         <view v-else class="avatar avatar-empty">省</view>
         <view class="profile-copy" @click="info ? go('/app/pages/member/personal') : login()">
-          <text class="nickname">{{ info ? (info.nickname || '百迦用户') : '点击登录' }}</text>
+          <text class="nickname">{{ info ? (info.nickname || '的确省用户') : '点击登录' }}</text>
           <text class="uid">{{ info ? `UID: ${info.member_no || info.member_id}` : '登录后查看余额、积分和收益' }}</text>
         </view>
         <view class="task" @click="need('/app/pages/member/sign_in')">做任务 ›</view>
@@ -140,7 +140,7 @@ const tap = (item) => {
 }
 
 // Referral attribution belongs to the distribution module; this share is a plain invite.
-onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
 </script>
 
 <style scoped>
