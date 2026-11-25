@@ -5,7 +5,7 @@
         <image v-if="info && info.headimg" class="avatar" :src="img(info.headimg)" mode="aspectFill" />
         <view v-else class="avatar avatar-empty">省</view>
         <view class="profile-copy" @click="info ? go('/app/pages/member/personal') : login()">
-          <text class="nickname">{{ info ? (info.nickname || '百迦用户') : '点击登录' }}</text>
+          <text class="nickname">{{ info ? (info.nickname || '的确省用户') : '点击登录' }}</text>
           <text class="uid">{{ info ? `UID: ${info.member_no || info.member_id}` : '登录后查看余额、积分和收益' }}</text>
         </view>
         <view class="task" @click="need('/app/pages/member/sign_in')">做任务 ›</view>
@@ -47,7 +47,7 @@
           <view class="group-more" @click="tap(group.more)"><text>{{ group.moreText }}</text><image class="chevron" src="/addon/baijia_tools/static/design/mine/chevron-right.png" /></view>
         </view>
         <view class="group-grid">
-          <button v-for="item in group.items" :key="item.name" class="cell" :open-type="item.share ? 'share' : ''" @click="tap(item)">
+          <button v-for="item in group.items" :key="item.name" class="cell" :disabled="item.share && memberStore.token && !info?.member_id" :open-type="item.share && memberStore.token && info?.member_id ? 'share' : ''" @click="tap(item)">
             <image class="cell-icon" :src="`/addon/baijia_tools/static/design/mine/${item.icon}.png`" />
             <text class="cell-name">{{ item.name }}</text>
           </button>
@@ -88,6 +88,7 @@ if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - nav
 // #endif
 
 const ORDERS = '/addon/baijia_tools/pages/orders/index'
+const PROMOTION = '/addon/baijia_tools/pages/promotion/index'
 const groups = [
   { title: '订单中心', moreText: '全部', more: { url: ORDERS }, items: [
     { name: '我的消费', icon: 'orders', url: ORDERS },
@@ -95,10 +96,10 @@ const groups = [
     { name: '我的积分', icon: 'point', url: '/app/pages/member/point' },
     { name: '我的余额', icon: 'balance', url: '/app/pages/member/balance' }
   ] },
-  { title: '推广管理', moreText: '进入', more: { service: 'distribution' }, items: [
-    { name: '订单管理', icon: 'order-manage', service: 'distribution' },
+  { title: '推广管理', moreText: '进入', more: { url: PROMOTION }, items: [
+    { name: '订单管理', icon: 'order-manage', url: ORDERS },
     { name: '收益明细', icon: 'income', url: '/app/pages/member/commission' },
-    { name: '我的粉丝', icon: 'fans', service: 'distribution' },
+    { name: '我的粉丝', icon: 'fans', url: PROMOTION },
     { name: '邀请好友', icon: 'invite', share: true }
   ] },
   { title: '合伙人管理', moreText: '进入', more: { service: 'partner' }, items: [
@@ -133,14 +134,16 @@ const go = (url) => uni.navigateTo({ url })
 const login = () => useLogin().setLoginBack({ url: '/addon/baijia_tools/pages/mine/index' })
 const need = (url) => (memberStore.token ? go(url) : login())
 const tap = (item) => {
-  if (item.share) return
+  if (item.share) {
+    if (!memberStore.token) login()
+    return
+  }
   if (item.service) openService(item.service)
   else if (item.page) go(item.page)
   else need(item.url)
 }
 
-// Referral attribution belongs to the distribution module; this share is a plain invite.
-onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' + (info.value?.member_id ? '?mid=' + info.value.member_id : '') }))
 </script>
 
 <style scoped>

@@ -48,6 +48,12 @@ export const redirectInterceptor = (route: { path: string, query: object }) => {
 /**
  * 应用初始化拦截器
  */
+export function saveInviteReferrer(mid: unknown) {
+    if ((typeof mid === 'string' || typeof mid === 'number') && /^[1-9]\d*$/.test(String(mid))) {
+        uni.setStorageSync('pid', String(mid))
+    }
+}
+
 export const launchInterceptor = () => {
     const launch = uni.getLaunchOptionsSync()
     launch.path = `/${ launch.path }`
@@ -84,9 +90,7 @@ export const launchInterceptor = () => {
     checkNeedLogin(launch)
 
     // 存储分享会员id
-    if (launch.query && launch.query.mid) {
-        uni.setStorageSync('pid', launch.query.mid)
-    }
+    saveInviteReferrer(launch.query?.mid)
 
     loadShare()
 

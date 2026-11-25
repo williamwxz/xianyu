@@ -8,7 +8,7 @@ return ['pages' => <<<'PAGES'
             "path": "pages/home/index",
             "style": {
                 "navigationStyle": "custom",
-                "navigationBarTitleText": "百迦好省"
+                "navigationBarTitleText": "的确省"
             }
         },
         {
@@ -30,6 +30,22 @@ return ['pages' => <<<'PAGES'
             "style": {
                 "navigationBarTitleText": "服务"
             }
+        },
+        {
+            "path": "pages/promotion/index",
+            "style": { "navigationBarTitleText": "推广中心" }
+        },
+        {
+            "path": "pages/dining/index",
+            "style": { "navigationBarTitleText": "选门店" }
+        },
+        {
+            "path": "pages/dining/menu",
+            "style": { "navigationBarTitleText": "到店自取" }
+        },
+        {
+            "path": "pages/catalog/index",
+            "style": { "navigationBarTitleText": "美团到店" }
         },
         {
             "path": "pages/orders/index",

@@ -1,0 +1,8 @@
+.dining { box-sizing: border-box; min-height: 100vh; padding: 36rpx 28rpx calc(176rpx + env(safe-area-inset-bottom)); background: #fffaf0; color: #202120; }
+.eyebrow, .muted, .note { font-size: 26rpx; color: #666a64; }
+.title { margin: 10rpx 0 28rpx; font-size: 44rpx; font-weight: 750; }
+.find, .card { background: white; padding: 22rpx 26rpx; border-radius: 24rpx; margin-bottom: 16rpx; }
+.find { height: 48rpx; }
+.name { font-size: 32rpx; font-weight: 700; margin-bottom: 8rpx; }
+.status { display: inline-block; margin-top: 18rpx; font-weight: 650; }
+.note { text-align: center; padding: 64rpx 0; }

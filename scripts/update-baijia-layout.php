@@ -1,5 +1,5 @@
 <?php
-// Switches the 百迦好省 site to the 首页 / 街区 / 我的 layout.
+// Switches the 的确省 (formerly 百迦好省) site to the 首页 / 街区 / 我的 layout.
 // Run as the PHP pool user: sudo -u www php update-baijia-layout.php /www/wwwroot/niucloud
 // Only touches the start page and bottom navigation; re-running gives the same result.
 if (function_exists('posix_geteuid') && posix_geteuid() === 0) {
@@ -15,8 +15,8 @@ use think\facade\Db;
 use think\facade\Cache;
 use app\service\core\diy\CoreDiyConfigService;
 
-$siteId = Db::name('site')->where('site_name', '百迦好省')->value('site_id');
-if (!$siteId) throw new RuntimeException('百迦好省 site not found; run setup-baijia-site.php first');
+$siteId = Db::name('site')->whereIn('site_name', ['的确省', '百迦好省'])->value('site_id');
+if (!$siteId) throw new RuntimeException('的确省 site not found; run setup-baijia-site.php first');
 request()->siteId($siteId);
 
 $link = function ($name, $title, $url) {

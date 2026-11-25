@@ -19,6 +19,9 @@ const TABS = [
 ]
 const go = (tab) => {
   if (tab.key === props.current) return
+  // #ifdef MP-WEIXIN
+  if (typeof wx.vibrateShort === 'function') wx.vibrateShort({ type: 'light', fail: () => {} })
+  // #endif
   uni.reLaunch({ url: `/addon/baijia_tools/pages/${tab.key}/index` })
 }
 </script>
@@ -29,6 +32,9 @@ const go = (tab) => {
 .bj-tab-icon { width: 60rpx; height: 60rpx; }
 .bj-tab.active .bj-tab-icon { width: 84rpx; height: 84rpx; margin-top: -24rpx; }
 .bj-tab-text { font-size: 20rpx; line-height: 1.3; color: #8a8c88; margin-top: 2rpx; }
-.bj-tab.center .bj-tab-icon, .bj-tab.center.active .bj-tab-icon { width: 100rpx; height: 100rpx; margin-top: -40rpx; }
+.bj-tab.center .bj-tab-icon { width: 100rpx; height: 100rpx; margin-top: -40rpx; }
+.bj-tab.center.active .bj-tab-icon { width: 88rpx; height: 88rpx; margin-top: 0; }
+.bj-tab:active { transform: scale(.96); }
+.bj-tab { transition: transform .16s ease-out; }
 .bj-tab.active .bj-tab-text { color: #fff; font-weight: 600; }
 </style>

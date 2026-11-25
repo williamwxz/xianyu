@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
-import { launchInterceptor } from '@/utils/interceptor'
+import { launchInterceptor, saveInviteReferrer } from '@/utils/interceptor'
 import { getToken, isWeixinBrowser, getSiteId, currRoute, deepClone, setThemeColor } from '@/utils/common'
 import useMemberStore from '@/stores/member'
 import useConfigStore from '@/stores/config'
@@ -222,8 +222,8 @@ onLaunch((data: any) => {
     // #endif
 })
 
-onShow(() => {
-
+onShow(options => {
+    saveInviteReferrer(options?.query?.mid)
 })
 
 onHide(() => {

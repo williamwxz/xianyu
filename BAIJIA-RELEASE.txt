@@ -1,10 +1,14 @@
-百迦好省 — niucloud 原生应用 1.1.0（惠省团设计改版）
+的确省（原名 百迦好省）— niucloud 原生应用 1.1.0（惠省团设计改版）
 
 部署位置
-站点：100000 / 百迦好省
+站点：100000 / 的确省（原名 百迦好省）
 后台：https://mini.baijia.life/site/diy/index
 H5：https://mini.baijia.life/wap/100000/
 AppID：wx63febce51396b8b5
+
+品牌
+2026-11-23 起小程序名称为「的确省」。界面文案、页面标题、分享标题已同步；
+插件目录 baijia_tools、脚本与文件名保持不变。部署脚本按「的确省」或旧名「百迦好省」查找站点。
 
 实现
 niucloud/addon/baijia_tools 是本项目自定义原生应用；未购买商业插件。

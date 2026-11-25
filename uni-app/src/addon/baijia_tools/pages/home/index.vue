@@ -2,18 +2,18 @@
   <view class="home">
     <image class="hero" src="/addon/baijia_tools/static/design/hero.png" mode="widthFix" />
     <view class="header" :style="{ paddingTop: `${navTop}px` }">
-      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">百迦好省</text></view>
+      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">的确省</text></view>
       <view class="search-row">
-        <picker :range="cities" range-key="label" :value="cityIndex" @change="changeCity">
+        <picker mode="multiSelector" :range="[provinces, pickerNames]" :value="pickerValue" @cancel="resetPicker" @columnchange="changeColumn" @change="changeCity">
           <view class="city">
             <image class="city-icon" src="/addon/baijia_tools/static/design/icon-location.png" />
             <text class="city-name">{{ city.name }}</text>
             <image class="city-arrow" src="/addon/baijia_tools/static/design/icon-arrow-down.png" />
           </view>
         </picker>
-        <view class="search">
+        <view class="search" @click="browse(true)">
           <image class="search-icon" src="/addon/baijia_tools/static/design/icon-search.png" />
-          <input v-model="keyword" class="search-input" :focus="searchFocus" maxlength="100" confirm-type="search" placeholder="搜索美团优惠商品" placeholder-class="search-ph" @confirm="search" />
+          <text>搜索商品、品牌和服务</text>
         </view>
       </view>
     </view>
@@ -53,44 +53,25 @@
 
       <view class="section-bar">
         <view class="section-name"><image class="section-icon" src="/addon/baijia_tools/static/design/icon-meituan.png" /><text>美团到店</text></view>
-        <view v-if="activeKeyword" class="section-more" @click="clearSearch"><text>清除搜索</text></view>
+        <view class="section-more" @click="browse(false)">更多 ›</view>
       </view>
-      <view v-if="activeKeyword" class="search-note">「{{ activeKeyword }}」的搜索结果</view>
-      <scroll-view v-else scroll-x class="tabs" :show-scrollbar="false">
-        <view v-for="t in TOPICS" :key="t.topic" class="tab" :class="{ active: t.topic === topic }" @click="switchTopic(t.topic)">{{ t.name }}</view>
-      </scroll-view>
-
-      <view class="products">
-        <view v-for="item in products" :key="item.id" class="product" @click="openMeituanProduct(item)">
-          <image v-if="item.image" class="photo" :src="item.image" mode="aspectFill" />
-          <view v-else class="photo photo-empty">团购</view>
-          <view class="product-info">
-            <text class="product-name">{{ item.name }}</text>
-            <text v-if="item.sales" class="product-meta">{{ item.sales }}</text>
-            <view class="prices">
-              <text class="price"><text class="yen">¥</text>{{ item.price }}</text>
-              <text v-if="Number(item.original_price) > Number(item.price)" class="original">¥{{ item.original_price }}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <text v-if="loading" class="hint">正在加载优惠…</text>
-      <view v-else-if="error" class="hint" @click="loadProducts(hasMore)">{{ error }} · 点击重试</view>
-      <view v-else-if="hasMore" class="load-more" @click="loadProducts(true)">加载更多</view>
-      <text v-else-if="!products.length && !hasMore" class="hint">{{ activeKeyword ? '没有找到相关商品，换个关键词试试' : '当前城市暂无该榜单商品' }}</text>
+      <ProductFeed :city-id="city.id" />
     </view>
   </view>
   <BjTabbar current="home" />
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
-import request from '@/utils/request'
+import ProductFeed from '../../components/product-feed.vue'
+import { getAddressByLatlng } from '@/app/api/system'
+import { saveInviteReferrer } from '@/utils/interceptor'
+import useSystemStore from '@/stores/system'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
 import { HOME_GRID, MORE_GRID, getService } from '../../lib/services.mjs'
-import { openService, openMeituanProduct } from '../../lib/launch.js'
+import { openService } from '../../lib/launch.js'
 
 const grid = HOME_GRID.map(getService)
 const more = MORE_GRID.map(getService)
@@ -105,72 +86,58 @@ const capsule = uni.getMenuButtonBoundingClientRect()
 if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - navTop) * 2 }
 // #endif
 
-const cities = cityData.map((c) => ({ ...c, label: `${c.province} · ${c.name}` }))
-const savedCity = uni.getStorageSync('baijia_meituan_city') || 'WKV2HMXUEK634WP64CUCUQGM64'
-const cityIndex = ref(Math.max(0, cities.findIndex((c) => c.id === savedCity)))
-const city = computed(() => cities[cityIndex.value])
-
-// Server allows topics 2 / 3 / 5 (see MEITUAN.md).
-const TOPICS = [{ topic: 2, name: '今日必推' }, { topic: 3, name: '同城优选' }, { topic: 5, name: '实时热销' }]
-const topic = ref(2)
-const products = ref([])
-// Keyword search replaces the topic feed until cleared (the server's keyword search covers all Meituan categories).
-const keyword = ref('')
-const activeKeyword = ref('')
-const searchFocus = ref(false)
-const loading = ref(false)
-const error = ref('')
-let version = 0
-// append=true loads the next search page (topic lists are fixed at 20 items).
-const cursor = ref('')
-const hasMore = ref(false)
-async function loadProducts(append = false) {
-  if (append && (loading.value || !hasMore.value)) return
-  const v = ++version
-  loading.value = true; error.value = ''
-  if (!append) { products.value = []; cursor.value = ''; hasMore.value = false }
-  try {
-    const params = activeKeyword.value
-      ? { city_id: city.value.id, keyword: activeKeyword.value, cursor: append ? cursor.value : '' }
-      : { city_id: city.value.id, topic: topic.value }
-    const res = await request.get('baijia_tools/meituan/products', params, { showErrorMessage: false })
-    if (v !== version) return
-    const data = res.data || {}
-    const seen = new Set(append ? products.value.map((p) => p.id) : [])
-    const items = (data.items || []).filter((p) => { if (seen.has(p.id)) return false; seen.add(p.id); return true })
-    products.value = append ? products.value.concat(items) : items
-    hasMore.value = Boolean(activeKeyword.value && data.has_more && data.cursor && data.cursor !== cursor.value)
-    cursor.value = data.cursor || ''
-  } catch (e) { if (v === version) error.value = '暂时无法加载' }
-  finally { if (v === version) loading.value = false }
+const systemStore = useSystemStore()
+const savedCity = uni.getStorageSync('baijia_meituan_city')
+const city = ref(cityData.find(c => c.id === (savedCity || 'WKV2HMXUEK634WP64CUCUQGM64')) || cityData[0])
+const provinces = [...new Set(cityData.map(c => c.province))]
+const pickerValue = ref([0, 0])
+const pickerCities = computed(() => cityData.filter(c => c.province === provinces[pickerValue.value[0]]))
+const pickerNames = computed(() => pickerCities.value.map(c => c.name))
+function resetPicker() {
+  const cities = cityData.filter(c => c.province === city.value.province)
+  pickerValue.value = [provinces.indexOf(city.value.province), cities.findIndex(c => c.id === city.value.id)]
 }
-const switchTopic = (t) => { if (t !== topic.value) { topic.value = t; loadProducts() } }
-const changeCity = (e) => {
-  cityIndex.value = Number(e.detail.value)
+resetPicker()
+function changeColumn({ detail }) {
+  const value = Number(detail.value)
+  if (Number(detail.column) === 0 && provinces[value]) pickerValue.value = [value, 0]
+  if (Number(detail.column) === 1 && pickerCities.value[value]) pickerValue.value = [pickerValue.value[0], value]
+}
+function changeCity({ detail }) {
+  const [province, index] = detail.value
+  const next = cityData.filter(c => c.province === provinces[province])[index]
+  if (!next) return resetPicker()
+  city.value = next
   uni.setStorageSync('baijia_meituan_city', city.value.id)
-  loadProducts()
+  resetPicker()
 }
-
-const search = () => {
-  const q = keyword.value.trim()
-  if (!q) { clearSearch(); return }
-  activeKeyword.value = q
-  loadProducts()
+function browse(search) {
+  uni.navigateTo({ url: '/addon/baijia_tools/pages/catalog/index?city=' + city.value.id + (search ? '&search=1' : '') })
 }
-const clearSearch = () => {
-  keyword.value = ''
-  if (!activeKeyword.value) return
-  activeKeyword.value = ''
-  loadProducts()
-}
-
-// ?search=1 comes from the search box on the 街区 page.
-onLoad((query) => {
-  searchFocus.value = Boolean(query && query.search)
-  loadProducts()
+onLoad(query => {
+  saveInviteReferrer(query?.mid)
+  if (query?.search) browse(true)
 })
+watch(() => systemStore.initStatus, status => {
+  if (status !== 'finish' || uni.getStorageSync('baijia_meituan_city') || Number(systemStore.mapConfig.is_open) !== 1) return
+  uni.getLocation({
+    type: 'gcj02',
+    success: async ({ latitude, longitude }) => {
+      try {
+        const { data } = await getAddressByLatlng({ latlng: latitude + ',' + longitude }, false)
+        const match = cityData.find(c => c.name === data?.city && (!data.province || c.province === data.province))
+          || cityData.find(c => c.name === data?.province && c.province === c.name)
+        if (match && !uni.getStorageSync('baijia_meituan_city')) {
+          city.value = match
+          uni.setStorageSync('baijia_meituan_city', match.id)
+          resetPicker()
+        }
+      } catch { /* Manual selection remains available. */ }
+    }
+  })
+}, { immediate: true })
 
-onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
 </script>
 
 <style scoped>
@@ -211,20 +178,4 @@ onShareAppMessage(() => ({ title: '百迦好省 · 吃喝玩乐先省一笔', pa
 .section-icon { width: 48rpx; height: 48rpx; margin-right: 12rpx; }
 .section-more { display: flex; align-items: center; font-size: 24rpx; color: #8a8c88; }
 .chevron { width: 24rpx; height: 24rpx; margin-left: 4rpx; }
-.tabs { white-space: nowrap; margin-top: 24rpx; }
-.tab { display: inline-block; height: 60rpx; line-height: 60rpx; padding: 0 28rpx; margin-right: 16rpx; border-radius: 30rpx; background: #fff; color: #43464d; font-size: 26rpx; }
-.tab.active { background: #d4fa20; color: #202120; font-weight: 800; }
-.products { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20rpx; }
-.product { width: 340rpx; margin-bottom: 20rpx; border-radius: 24rpx; background: #fff; overflow: hidden; }
-.photo { display: block; width: 340rpx; height: 240rpx; background: #f3eee8; }
-.photo-empty { color: #aaa; text-align: center; line-height: 240rpx; }
-.product-info { padding: 16rpx 18rpx 20rpx; }
-.product-name { display: block; font-size: 27rpx; font-weight: 700; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.product-meta { display: block; font-size: 22rpx; color: #8a8c88; margin-top: 6rpx; }
-.prices { margin-top: 8rpx; }
-.price { font-size: 38rpx; font-weight: 800; color: #f5222d; }
-.yen { font-size: 24rpx; }
-.original { font-size: 22rpx; color: #b9bbb7; text-decoration: line-through; margin-left: 10rpx; }
-.load-more { margin: 8rpx auto 0; width: 260rpx; height: 64rpx; line-height: 64rpx; border-radius: 32rpx; background: #202120; color: #d4fa20; font-size: 24rpx; text-align: center; }
-.hint { display: block; text-align: center; font-size: 24rpx; color: #8a8c88; padding: 24rpx 0; }
 </style>
