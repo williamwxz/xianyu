@@ -64,9 +64,11 @@ export function resolveLink(link, canOpenMiniProgram) {
 // Keep explicit brands ahead of broad categories in conversational searches.
 export function productKeyword(query) {
   const text = String(query || '').trim()
-  const brand = SERVICES.find(item => item.brand && (text.includes(item.name) || text.toLowerCase().includes(item.id)))
-  if (brand) return brand.name
-  return text.replace(/^(?:帮我找找|帮我找|附近有没有|附近的|我想吃|我想喝|我想看|我想买)/, '').trim() || text
+  const words = text.replace(/^(?:帮我找找|帮我找|附近有没有|附近的|想点|我想吃|我想喝|我想看|我想买)/, '').trim() || text
+  const alias = SERVICES.find(item => item.brand && words.toLowerCase().includes(item.id))
+  if (!alias) return words
+  const index = words.toLowerCase().indexOf(alias.id)
+  return words.slice(0, index) + alias.name + words.slice(index + alias.id.length)
 }
 
 export function searchServices(keyword) {

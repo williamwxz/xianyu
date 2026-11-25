@@ -20,7 +20,7 @@ const TABS = [
 const go = (tab) => {
   if (tab.key === props.current) return
   // #ifdef MP-WEIXIN
-  wx.vibrateShort({ type: 'light' })
+  if (typeof wx.vibrateShort === 'function') wx.vibrateShort({ type: 'light', fail: () => {} })
   // #endif
   uni.reLaunch({ url: `/addon/baijia_tools/pages/${tab.key}/index` })
 }

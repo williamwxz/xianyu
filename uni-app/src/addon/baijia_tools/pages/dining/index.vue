@@ -1,5 +1,6 @@
 <template>
-  <view class="dining">
+  <view v-if="!brand" class="note">未找到点餐品牌</view>
+  <view v-else class="dining">
     <view class="eyebrow">{{ brand?.name }} · 到店自取</view>
     <picker :range="cities" range-key="name" :value="cityIndex" @change="changeCity">
       <view class="title">{{ cities[cityIndex].name }} ⌄</view>
@@ -41,6 +42,7 @@ async function load() {
   finally { if (version === current) loading.value = false }
 }
 function changeCity(e) {
+  if (!brand.value || !cities[Number(e.detail.value)]) return
   cityIndex.value = Number(e.detail.value)
   keyword.value = ''
   load()
@@ -49,8 +51,9 @@ function select(store) {
   if (store.open) uni.navigateTo({ url: './menu?brand=' + brand.value.id + '&city=' + cities[cityIndex.value].id + '&store=' + encodeURIComponent(store.id) })
 }
 onLoad(query => {
-  brand.value = getService(query?.brand)
-  if (!brand.value?.brand || brand.value.jtk) { loading.value = false; return }
+  const service = getService(query?.brand)
+  if (!service?.brand || service.jtk) return
+  brand.value = service
   uni.setNavigationBarTitle({ title: brand.value.name + ' · 选门店' })
   const saved = uni.getStorageSync('baijia_meituan_city') || 'WKV2HMXUEK634WP64CUCUQGM64'
   cityIndex.value = Math.max(0, cities.findIndex(c => c.id === saved))

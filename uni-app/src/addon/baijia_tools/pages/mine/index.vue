@@ -47,7 +47,7 @@
           <view class="group-more" @click="tap(group.more)"><text>{{ group.moreText }}</text><image class="chevron" src="/addon/baijia_tools/static/design/mine/chevron-right.png" /></view>
         </view>
         <view class="group-grid">
-          <button v-for="item in group.items" :key="item.name" class="cell" :open-type="item.share ? 'share' : ''" @click="tap(item)">
+          <button v-for="item in group.items" :key="item.name" class="cell" :disabled="item.share && memberStore.token && !info?.member_id" :open-type="item.share && memberStore.token && info?.member_id ? 'share' : ''" @click="tap(item)">
             <image class="cell-icon" :src="`/addon/baijia_tools/static/design/mine/${item.icon}.png`" />
             <text class="cell-name">{{ item.name }}</text>
           </button>
@@ -134,7 +134,10 @@ const go = (url) => uni.navigateTo({ url })
 const login = () => useLogin().setLoginBack({ url: '/addon/baijia_tools/pages/mine/index' })
 const need = (url) => (memberStore.token ? go(url) : login())
 const tap = (item) => {
-  if (item.share) return
+  if (item.share) {
+    if (!memberStore.token) login()
+    return
+  }
   if (item.service) openService(item.service)
   else if (item.page) go(item.page)
   else need(item.url)

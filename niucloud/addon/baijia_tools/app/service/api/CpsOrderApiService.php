@@ -32,7 +32,7 @@ class CpsOrderApiService extends BaseApiService
     public function fans(int $page): array
     {
         $page = max(1, $page);
-        $query = Db::name('member')->where(['site_id' => $this->site_id, 'pid' => $this->member_id]);
+        $query = Db::name('member')->where(['site_id' => $this->site_id, 'pid' => $this->member_id, 'delete_time' => 0]);
         $total = (clone $query)->count();
         $rows = $query->field('member_id,nickname')->order('member_id desc')->page($page, 20)->select()->toArray();
         return ['list' => $rows, 'total' => $total, 'has_more' => $page * 20 < $total];

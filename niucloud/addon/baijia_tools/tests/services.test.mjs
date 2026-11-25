@@ -57,5 +57,7 @@ test('conversational search extracts a product or brand', () => {
   assert.equal(productKeyword('附近有没有火锅'), '火锅')
   assert.equal(productKeyword('想点KFC'), '肯德基')
   assert.equal(productKeyword('附近的'), '附近的')
+  assert.equal(productKeyword('星巴克拿铁'), '星巴克拿铁')
+  assert.equal(productKeyword('想点KFC蛋挞'), '肯德基蛋挞')
   assert.equal(productKeyword('芝士蛋糕'), '芝士蛋糕')
 })

@@ -54,6 +54,7 @@ async function load() {
   loading.value = true
   error.value = false
   try {
+    if (!params.store) throw new Error('缺少门店编号')
     const { data } = await request.get('baijia_tools/dining/catalog', params, { showErrorMessage: false })
     if (!data.store || !Array.isArray(data.items)) throw new Error('门店菜单无效')
     store.value = data.store
@@ -63,6 +64,11 @@ async function load() {
 }
 onLoad(query => {
   params = { brand: query?.brand, city: query?.city, store: query?.store }
+  // The WeChat page receives the raw query. The H5 router decodes it itself.
+  // #ifdef MP-WEIXIN
+  try { params.store = decodeURIComponent(params.store || '') }
+  catch { params.store = '' }
+  // #endif
   brandName.value = getService(params.brand)?.name || ''
   load()
 })

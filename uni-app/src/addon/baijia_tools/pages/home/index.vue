@@ -4,7 +4,7 @@
     <view class="header" :style="{ paddingTop: `${navTop}px` }">
       <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">的确省</text></view>
       <view class="search-row">
-        <picker mode="multiSelector" :range="[provinces, pickerNames]" :value="pickerValue" @click="resetPicker" @columnchange="changeColumn" @change="changeCity">
+        <picker mode="multiSelector" :range="[provinces, pickerNames]" :value="pickerValue" @cancel="resetPicker" @columnchange="changeColumn" @change="changeCity">
           <view class="city">
             <image class="city-icon" src="/addon/baijia_tools/static/design/icon-location.png" />
             <text class="city-name">{{ city.name }}</text>
@@ -62,10 +62,11 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
 import ProductFeed from '../../components/product-feed.vue'
 import { getAddressByLatlng } from '@/app/api/system'
+import { saveInviteReferrer } from '@/utils/interceptor'
 import useSystemStore from '@/stores/system'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
@@ -98,11 +99,15 @@ function resetPicker() {
 }
 resetPicker()
 function changeColumn({ detail }) {
-  if (detail.column === 0) pickerValue.value = [detail.value, 0]
+  const value = Number(detail.value)
+  if (Number(detail.column) === 0 && provinces[value]) pickerValue.value = [value, 0]
+  if (Number(detail.column) === 1 && pickerCities.value[value]) pickerValue.value = [pickerValue.value[0], value]
 }
 function changeCity({ detail }) {
   const [province, index] = detail.value
-  city.value = cityData.filter(c => c.province === provinces[province])[index]
+  const next = cityData.filter(c => c.province === provinces[province])[index]
+  if (!next) return resetPicker()
+  city.value = next
   uni.setStorageSync('baijia_meituan_city', city.value.id)
   resetPicker()
 }
@@ -110,13 +115,16 @@ function browse(search) {
   uni.navigateTo({ url: '/addon/baijia_tools/pages/catalog/index?city=' + city.value.id + (search ? '&search=1' : '') })
 }
 onLoad(query => {
+  saveInviteReferrer(query?.mid)
   if (query?.search) browse(true)
-  if (savedCity || Number(systemStore.mapConfig.is_open) !== 1) return
+})
+watch(() => systemStore.initStatus, status => {
+  if (status !== 'finish' || uni.getStorageSync('baijia_meituan_city') || Number(systemStore.mapConfig.is_open) !== 1) return
   uni.getLocation({
     type: 'gcj02',
     success: async ({ latitude, longitude }) => {
       try {
-        const { data } = await getAddressByLatlng({ latlng: latitude + ',' + longitude })
+        const { data } = await getAddressByLatlng({ latlng: latitude + ',' + longitude }, false)
         const match = cityData.find(c => c.name === data?.city && (!data.province || c.province === data.province))
           || cityData.find(c => c.name === data?.province && c.province === c.name)
         if (match && !uni.getStorageSync('baijia_meituan_city')) {
@@ -127,7 +135,7 @@ onLoad(query => {
       } catch { /* Manual selection remains available. */ }
     }
   })
-})
+}, { immediate: true })
 
 onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
 </script>
