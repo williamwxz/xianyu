@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync, existsSync } from 'node:fs'
-import { SERVICES, HOME_GRID, MORE_GRID, BRANDS, getService, isReady, resolveLink, searchServices, servicePageUrl } from '../uni-app/lib/services.mjs'
+import { productKeyword, SERVICES, HOME_GRID, MORE_GRID, BRANDS, getService, isReady, resolveLink, searchServices, servicePageUrl } from '../uni-app/lib/services.mjs'
 
 test('service ids are unique and grids only reference known services', () => {
   const ids = SERVICES.map((item) => item.id)
@@ -37,9 +37,27 @@ test('search matches names and slogans, ignores blank input', () => {
 test('service page url is encoded and every new page is registered', () => {
   assert.equal(servicePageUrl('a b'), '/addon/baijia_tools/pages/service/index?id=a%20b')
   const pages = readFileSync(new URL('../package/uni-app-pages.php', import.meta.url), 'utf8')
-  for (const page of ['home', 'map', 'mine', 'service', 'orders']) assert.ok(pages.includes(`pages/${page}/index`), page)
+  for (const page of ['home', 'map', 'mine', 'service', 'orders', 'catalog', 'promotion']) assert.ok(pages.includes(`pages/${page}/index`), page)
 })
 test('designed icons referenced by services exist', () => {
   for (const item of SERVICES.filter((s) => s.img)) assert.ok(existsSync(new URL(`../uni-app/static/design/${item.img}`, import.meta.url)), item.img)
   for (const id of HOME_GRID) assert.ok(getService(id).img, id)
+})
+
+test('brand pickup and movie entries stay inside the app', () => {
+  for (const id of BRANDS.filter(id => id !== 'eleme')) {
+    assert.ok(!getService(id).jtk, id)
+    assert.deepEqual(getService(id).launch, { type: 'page', url: '/addon/baijia_tools/pages/dining/index?brand=' + id })
+  }
+  assert.ok(!getService('movie').jtk)
+  const pages = readFileSync(new URL('../package/uni-app-pages.php', import.meta.url), 'utf8')
+  for (const page of ['index', 'menu']) assert.ok(pages.includes('pages/dining/' + page))
+})
+test('conversational search extracts a product or brand', () => {
+  assert.equal(productKeyword('附近有没有火锅'), '火锅')
+  assert.equal(productKeyword('想点KFC'), '肯德基')
+  assert.equal(productKeyword('附近的'), '附近的')
+  assert.equal(productKeyword('星巴克拿铁'), '星巴克拿铁')
+  assert.equal(productKeyword('想点KFC蛋挞'), '肯德基蛋挞')
+  assert.equal(productKeyword('芝士蛋糕'), '芝士蛋糕')
 })

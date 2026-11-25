@@ -135,8 +135,8 @@ export function getAreaByCode(code: number | string) {
  * 通过经纬度查询地址
  * @param params
  */
-export function getAddressByLatlng(params: Record<string, any>) {
-    return request.get(`area/address_by_latlng`, params, { showErrorMessage: true })
+export function getAddressByLatlng(params: Record<string, any>, showErrorMessage = true) {
+    return request.get(`area/address_by_latlng`, params, { showErrorMessage })
 }
 
 /**

@@ -32,6 +32,22 @@ return ['pages' => <<<'PAGES'
             }
         },
         {
+            "path": "pages/promotion/index",
+            "style": { "navigationBarTitleText": "推广中心" }
+        },
+        {
+            "path": "pages/dining/index",
+            "style": { "navigationBarTitleText": "选门店" }
+        },
+        {
+            "path": "pages/dining/menu",
+            "style": { "navigationBarTitleText": "到店自取" }
+        },
+        {
+            "path": "pages/catalog/index",
+            "style": { "navigationBarTitleText": "美团到店" }
+        },
+        {
             "path": "pages/orders/index",
             "style": {
                 "navigationBarTitleText": "返利订单"

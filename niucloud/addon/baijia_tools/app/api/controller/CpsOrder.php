@@ -13,6 +13,12 @@ class CpsOrder extends BaseApiController
         return success((new CpsOrderApiService())->orders($data));
     }
 
+    public function fans(): Response
+    {
+        $data = $this->request->params([['page', 1]]);
+        return success((new CpsOrderApiService())->fans((int)$data['page']));
+    }
+
     public function summary(): Response
     {
         return success((new CpsOrderApiService())->summary());

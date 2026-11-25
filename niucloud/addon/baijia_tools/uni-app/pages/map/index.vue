@@ -17,22 +17,37 @@
       <image
         v-for="spot in SPOTS"
         :key="spot.key"
-        class="spot"
+        class="spot" :class="{ selected: selected?.key === spot.key }"
         :src="`/addon/baijia_tools/static/design/map/label-${spot.key}.png`"
         :style="{ left: `${spot.x * 2}rpx`, top: `${spot.y * 2}rpx`, width: `${spot.w * 2}rpx`, height: `${spot.h * 2}rpx` }"
-        @click="openService(spot.service)"
+        @click="selected = spot"
       />
+    </view>
+    <view v-if="selected" class="shelf">
+      <view class="shelf-bar">
+        <text class="shop-name">{{ getService(selected.service).name }}</text>
+        <text class="enter" @click="openService(selected.service)">进入 ›</text>
+        <text class="dismiss" aria-label="关闭" @click="selected = null">×</text>
+      </view>
+      <ProductFeed v-if="shelfKeyword" :city-id="cityId" :keyword="shelfKeyword" horizontal />
     </view>
   </view>
   <BjTabbar current="map" />
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { onShow, onShareAppMessage } from '@dcloudio/uni-app'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
 import { openService } from '../../lib/launch.js'
+
+import ProductFeed from '../../components/product-feed.vue'
+import { getService } from '../../lib/services.mjs'
+const selected = ref(null)
+const cityId = ref('')
+const categories = { coffee: '瑞幸咖啡', tea: '奈雪的茶', food: '美食', bawangcan: '餐饮' }
+const shelfKeyword = computed(() => categories[selected.value?.key])
 
 // Shop signs from the 地图 board (Moonvy), position/size in design pt.
 const SPOTS = [
@@ -56,11 +71,12 @@ if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - nav
 const cityName = ref('')
 onShow(() => {
   const id = uni.getStorageSync('baijia_meituan_city') || 'WKV2HMXUEK634WP64CUCUQGM64'
+  cityId.value = id
   const city = cityData.find((c) => c.id === id)
   cityName.value = city ? city.name : ''
 })
 
-const goSearch = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/home/index?search=1' })
+const goSearch = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/catalog/index?search=1&city=' + cityId.value })
 
 onShareAppMessage(() => ({ title: '的确省 · 逛逛生活街区', path: '/addon/baijia_tools/pages/map/index' }))
 </script>
@@ -77,4 +93,12 @@ onShareAppMessage(() => ({ title: '的确省 · 逛逛生活街区', path: '/add
 .street-art { display: block; width: 750rpx; }
 .spot { position: absolute; z-index: 1; }
 .spot:active { transform: scale(.94); }
+.spot { transition: transform .2s ease-out; transform-origin: bottom center; }
+.spot.selected { animation: bounce .35s ease-out; transform: scale(1.08); }
+@keyframes bounce { 50% { transform: translateY(-8rpx) scale(1.12); } }
+.shelf { position: fixed; z-index: 3; left: 20rpx; right: 20rpx; bottom: calc(152rpx + env(safe-area-inset-bottom)); background: #fffaf0; padding: 18rpx; border-radius: 28rpx; box-shadow: 0 8rpx 40rpx #43332030; animation: rise .2s ease-out; }
+@keyframes rise { from { transform: translateY(18rpx); opacity: 0; } }
+.shelf-bar { display: flex; align-items: center; gap: 24rpx; }
+.shop-name { flex: 1; font-weight: 700; }
+.enter, .dismiss { padding: 8rpx; }
 </style>

@@ -29,6 +29,15 @@ class CpsOrderApiService extends BaseApiService
         return ['list' => $rows, 'total' => $total, 'page' => $page, 'has_more' => $page * 20 < $total];
     }
 
+    public function fans(int $page): array
+    {
+        $page = max(1, $page);
+        $query = Db::name('member')->where(['site_id' => $this->site_id, 'pid' => $this->member_id, 'delete_time' => 0]);
+        $total = (clone $query)->count();
+        $rows = $query->field('member_id,nickname')->order('member_id desc')->page($page, 20)->select()->toArray();
+        return ['list' => $rows, 'total' => $total, 'has_more' => $page * 20 < $total];
+    }
+
     public function summary(): array
     {
         $base = Db::name('baijia_cps_order')->where([['site_id', '=', $this->site_id], ['member_id', '=', $this->member_id]]);

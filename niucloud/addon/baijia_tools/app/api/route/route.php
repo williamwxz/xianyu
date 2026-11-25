@@ -6,6 +6,7 @@ use think\facade\Route;
 
 // Login is optional: logged-in members get their own sid for order attribution.
 Route::group('baijia_tools', function () {
+    Route::get('dining/catalog', 'addon\baijia_tools\app\api\controller\Dining@catalog');
     Route::get('meituan/products', 'addon\baijia_tools\app\api\controller\Meituan@products');
     Route::get('meituan/link', 'addon\baijia_tools\app\api\controller\Meituan@link');
     Route::get('jtk/acts', 'addon\baijia_tools\app\api\controller\Jtk@acts');
@@ -18,6 +19,7 @@ Route::group('baijia_tools', function () {
 Route::group('baijia_tools', function () {
     Route::get('cps/orders', 'addon\baijia_tools\app\api\controller\CpsOrder@orders');
     Route::get('cps/summary', 'addon\baijia_tools\app\api\controller\CpsOrder@summary');
+    Route::get('promotion/fans', 'addon\baijia_tools\app\api\controller\CpsOrder@fans');
 })->middleware(ApiChannel::class)
     ->middleware(ApiCheckToken::class, true)
     ->middleware(ApiLog::class);
