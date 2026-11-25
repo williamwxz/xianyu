@@ -62,6 +62,8 @@
     },
     "quickapp": {},
     "mp-weixin": {
+        "permission": { "scope.userLocation": { "desc": "用于显示所在城市的到店优惠" } },
+        "requiredPrivateInfos": ["getLocation", "chooseLocation"],
         "appid": "wx63febce51396b8b5",
         "setting": {
             "urlCheck": true

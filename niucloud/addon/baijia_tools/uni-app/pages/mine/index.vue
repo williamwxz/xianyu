@@ -88,6 +88,7 @@ if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - nav
 // #endif
 
 const ORDERS = '/addon/baijia_tools/pages/orders/index'
+const PROMOTION = '/addon/baijia_tools/pages/promotion/index'
 const groups = [
   { title: '订单中心', moreText: '全部', more: { url: ORDERS }, items: [
     { name: '我的消费', icon: 'orders', url: ORDERS },
@@ -95,10 +96,10 @@ const groups = [
     { name: '我的积分', icon: 'point', url: '/app/pages/member/point' },
     { name: '我的余额', icon: 'balance', url: '/app/pages/member/balance' }
   ] },
-  { title: '推广管理', moreText: '进入', more: { service: 'distribution' }, items: [
-    { name: '订单管理', icon: 'order-manage', service: 'distribution' },
+  { title: '推广管理', moreText: '进入', more: { url: PROMOTION }, items: [
+    { name: '订单管理', icon: 'order-manage', url: ORDERS },
     { name: '收益明细', icon: 'income', url: '/app/pages/member/commission' },
-    { name: '我的粉丝', icon: 'fans', service: 'distribution' },
+    { name: '我的粉丝', icon: 'fans', url: PROMOTION },
     { name: '邀请好友', icon: 'invite', share: true }
   ] },
   { title: '合伙人管理', moreText: '进入', more: { service: 'partner' }, items: [
@@ -139,8 +140,7 @@ const tap = (item) => {
   else need(item.url)
 }
 
-// Referral attribution belongs to the distribution module; this share is a plain invite.
-onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' }))
+onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path: '/addon/baijia_tools/pages/home/index' + (info.value?.member_id ? '?mid=' + info.value.member_id : '') }))
 </script>
 
 <style scoped>
