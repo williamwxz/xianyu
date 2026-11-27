@@ -17,6 +17,8 @@ Route::group('baijia_tools', function () {
 
 // Member's own rebate orders: login required.
 Route::group('baijia_tools', function () {
+    Route::get('mayi/launch', 'addon\baijia_tools\app\api\controller\Mayi@launch');
+    Route::get('mayi/orders', 'addon\baijia_tools\app\api\controller\Mayi@orders');
     Route::get('cps/orders', 'addon\baijia_tools\app\api\controller\CpsOrder@orders');
     Route::get('cps/summary', 'addon\baijia_tools\app\api\controller\CpsOrder@summary');
     Route::get('promotion/fans', 'addon\baijia_tools\app\api\controller\CpsOrder@fans');

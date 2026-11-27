@@ -17,6 +17,7 @@ export const SERVICES = [
   { id: 'distribution', name: '推广中心', slogan: '邀请好友 · 共享收益', icon: '推', color: '#f0a020', colorTo: '#ffc94d', launch: { type: 'page', url: '/addon/baijia_tools/pages/promotion/index' } },
   { id: 'partner', name: '合伙人', slogan: '独立站点 · 自主经营', icon: '合', color: '#3a3f4b', colorTo: '#6a7080', channel: '合伙人模块（开发中）' },
   { id: 'ai', name: 'AI助手', slogan: '问问附近有什么好吃好玩', icon: 'AI', color: '#202120', colorTo: '#4a4c48', channel: 'AI 助手（开发中）' },
+  { id: 'mayi', name: '蚂蚁星球', slogan: '话费电费 · 美团券包', icon: '惠', launch: { type: 'page', url: '/addon/baijia_tools/pages/mayi/index' } },
   { id: 'jiazheng', name: '家政服务', slogan: '保洁维修 · 上门服务', icon: '家', img: 'grid/jiazheng.png', color: '#2f7cf6', colorTo: '#5fb0ff', channel: '家政服务商（需商务洽谈）' },
   // 大牌点餐
   { id: 'mcdonalds', brand: true, name: '麦当劳', icon: '麦', img: 'grid/mcdonalds.png', color: '#da291c', colorTo: '#ffc72c', channel: '麦当劳点餐（待接入）' },
@@ -38,7 +39,7 @@ for (const service of SERVICES.filter(item => item.brand && !item.jtk)) {
 
 // Home grid follows the design; 「更多」 expands MORE_GRID.
 export const HOME_GRID = ['mcdonalds', 'kfc', 'starbucks', 'cotti', 'nayuki', 'pizzahut', 'luckin', 'eleme', 'jiazheng']
-export const MORE_GRID = ['daodian', 'waimai', 'express', 'taxi', 'hotel', 'goods', 'heytea', 'burgerking', 'pagoda', 'carwash', 'fuel']
+export const MORE_GRID = ['mayi', 'daodian', 'waimai', 'express', 'taxi', 'hotel', 'goods', 'heytea', 'burgerking', 'pagoda', 'carwash', 'fuel']
 export const BRANDS = SERVICES.filter((item) => item.brand).map((item) => item.id)
 
 export function getService(id) {

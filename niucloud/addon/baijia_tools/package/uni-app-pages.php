@@ -44,6 +44,10 @@ return ['pages' => <<<'PAGES'
             "style": { "navigationBarTitleText": "到店自取" }
         },
         {
+            "path": "pages/mayi/index",
+            "style": { "navigationBarTitleText": "蚂蚁星球" }
+        },
+        {
             "path": "pages/catalog/index",
             "style": { "navigationBarTitleText": "美团到店" }
         },

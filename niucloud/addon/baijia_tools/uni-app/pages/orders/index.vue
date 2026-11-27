@@ -7,6 +7,7 @@
     </view>
     <view class="rule">通过本小程序进入美团、聚推客合作活动下单，订单结算后返利自动转入「佣金」，可在「我的 → 佣金」提现。订单同步约有 10 分钟延迟，结算时间以合作平台为准。</view>
 
+    <button class="more" @click="openMayi">蚂蚁星球订单 ›</button>
     <view class="tabs">
       <button v-for="t in tabs" :key="t.key" class="tab" :class="{ active: tab === t.key }" @click="switchTab(t.key)">{{ t.name }}</button>
     </view>
@@ -32,6 +33,7 @@ import request from '@/utils/request'
 import useMemberStore from '@/stores/member'
 import { useLogin } from '@/hooks/useLogin'
 
+const openMayi = () => uni.navigateTo({ url: '/addon/baijia_tools/pages/mayi/index?orders=1' })
 const tabs = [{ key: '', name: '全部' }, { key: 'pending', name: '待结算' }, { key: 'settled', name: '已结算' }, { key: 'invalid', name: '已失效' }]
 const tab = ref('')
 const list = ref([])
