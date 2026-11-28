@@ -6,6 +6,8 @@
     <button v-if="member.info?.member_id" class="invite" open-type="share">邀请好友</button>
     <view class="row" @click="go('/app/pages/member/commission')">我的佣金明细 ›</view>
     <view class="row" @click="go('/addon/baijia_tools/pages/orders/index')">本人消费返利 · 待到账及已到账 ›</view>
+    <view v-if="report" class="row">好友消费 {{ report.orders }} 笔 · 已入账 ¥{{ report.promotion_credited }} · 待入账 ¥{{ report.promotion_pending }}</view>
+    <MemberOrderList :key="refresh" title="好友推广订单" promotion />
     <view class="heading">我邀请的好友 {{ total ?? '' }}</view>
     <text v-for="fan in fans" :key="fan.member_id" class="row">{{ fan.nickname || '的确省用户' }}</text>
     <text v-if="loading" class="row">加载中…</text>
@@ -20,6 +22,9 @@ import { onShow, onShareAppMessage } from '@dcloudio/uni-app'
 import request from '@/utils/request'
 import useMemberStore from '@/stores/member'
 import { useLogin } from '@/hooks/useLogin'
+import MemberOrderList from '../../components/member-order-list.vue'
+const report = ref(null)
+const refresh = ref(0)
 const member = useMemberStore()
 const fans = ref([])
 const total = ref(null)
@@ -46,6 +51,8 @@ async function load() {
 const go = url => uni.navigateTo({ url })
 const login = () => useLogin().setLoginBack({ url: '/addon/baijia_tools/pages/promotion/index' })
 onShow(() => {
+  const cycle = ++refresh.value
+  report.value = null
   version++
   page = 1
   fans.value = []
@@ -54,6 +61,9 @@ onShow(() => {
   loading.value = false
   error.value = false
   if (!member.token) return
+  request.get('baijia_tools/distribution/summary', {}, { showErrorMessage: false })
+    .then(({ data }) => { if (cycle === refresh.value) report.value = data })
+    .catch(() => { if (cycle === refresh.value) report.value = null })
   member.getMemberInfo()
   load()
 })

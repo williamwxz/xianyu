@@ -553,11 +553,7 @@ class CorePayService extends BaseCoreService
     public function paySuccess($site_id, $params)
     {
         $out_trade_no = $params[ 'out_trade_no' ];
-        $pay = $this->findPayInfoByOutTradeNo($site_id, $out_trade_no);
         $type = $params[ 'type' ];
-        $trade_type = $pay->trade_type;
-        $trade_id = $pay->trade_id;
-        $main_id = $pay->main_id;
         $data = array(
             'pay_time' => time(),
             'status' => PayDict::STATUS_FINISH,
@@ -572,6 +568,16 @@ class CorePayService extends BaseCoreService
         // 启动事务
         Db::startTrans();
         try {
+            $pay = $this->model->where(['site_id'=>$site_id,'out_trade_no'=>$out_trade_no])->lock(true)->findOrEmpty();
+            if ($pay->isEmpty()) throw new PayException('ALIPAY_TRANSACTION_NO_NOT_EXIST');
+            // A WeChat notification and a successful status query can arrive together.
+            if ((string)$pay->status === PayDict::STATUS_FINISH) {
+                Db::commit();
+                return true;
+            }
+            $trade_type = $pay->trade_type;
+            $trade_id = $pay->trade_id;
+            $main_id = $pay->main_id;
             $pay->allowField($allow_field)->save($data);
             $result = event('PaySuccess', [ 'out_trade_no' => $out_trade_no, 'trade_type' => $trade_type, 'site_id' => $site_id, 'trade_id' => $trade_id, 'main_id' => $main_id ]);
 //            if (!check_event_result($result)) {

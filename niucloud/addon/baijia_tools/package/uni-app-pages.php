@@ -35,6 +35,12 @@ return ['pages' => <<<'PAGES'
             "path": "pages/promotion/index",
             "style": { "navigationBarTitleText": "推广中心" }
         },
+        {"path": "pages/movie/seats", "style": {"navigationBarTitleText": "选择座位"}},
+        {"path": "pages/movie/ticket", "style": {"navigationBarTitleText": "我的影票"}},
+        {
+            "path": "pages/movie/index",
+            "style": { "navigationBarTitleText": "热门电影" }
+        },
         {
             "path": "pages/dining/index",
             "style": { "navigationBarTitleText": "选门店" }
@@ -44,13 +50,17 @@ return ['pages' => <<<'PAGES'
             "style": { "navigationBarTitleText": "到店自取" }
         },
         {
+            "path": "pages/mayi/index",
+            "style": { "navigationBarTitleText": "蚂蚁星球" }
+        },
+        {
             "path": "pages/catalog/index",
             "style": { "navigationBarTitleText": "美团到店" }
         },
         {
             "path": "pages/orders/index",
             "style": {
-                "navigationBarTitleText": "返利订单"
+                "navigationBarTitleText": "我的订单"
             }
         }
     ]

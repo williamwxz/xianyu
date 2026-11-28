@@ -1,5 +1,5 @@
 <template>
-  <view class="page-wrap">
+  <view v-if="member.token" class="page-wrap">
     <view class="summary">
       <view class="sum-item"><text class="sum-num">{{ money(summary.credited) }}</text><text class="sum-name">已到账返利</text></view>
       <view class="sum-item"><text class="sum-num">{{ money(summary.pending) }}</text><text class="sum-name">待到账返利</text></view>
@@ -7,6 +7,13 @@
     </view>
     <view class="rule">通过本小程序进入美团、聚推客合作活动下单，订单结算后返利自动转入「佣金」，可在「我的 → 佣金」提现。订单同步约有 10 分钟延迟，结算时间以合作平台为准。</view>
 
+    <view class="tabs sources">
+      <button v-for="item in sources" :key="item.id" class="tab" :class="{ active: source === item.id }" @click="source = item.id">{{ item.name }}</button>
+    </view>
+    <MemberOrderList v-if="source === 'all' || source === 'movie'" :key="refresh+'native'" title="自选座影票" kind="native-movie" />
+    <MemberOrderList v-for="item in visibleMayi" :key="refresh + item.id" :title="item.name + '订单'" :kind="item.id" />
+    <template v-if="source === 'all' || source === 'cps'">
+    <view class="subtitle">美团及合作活动返利订单</view>
     <view class="tabs">
       <button v-for="t in tabs" :key="t.key" class="tab" :class="{ active: tab === t.key }" @click="switchTab(t.key)">{{ t.name }}</button>
     </view>
@@ -20,18 +27,29 @@
       </view>
     </view>
 
-    <view v-if="loaded && !list.length" class="empty"><image class="empty-art" src="/addon/baijia_tools/static/design/empty-order.png" mode="aspectFit" /><text>暂无订单，去首页领券、点外卖或买团购吧~</text></view>
-    <button v-if="hasMore" class="more" @click="load(false)">加载更多</button>
+    <view v-if="loaded && !list.length" class="empty"><image class="empty-art" src="/addon/baijia_tools/static/design/empty-order.png" mode="aspectFit" /><text>暂无符合条件的返利订单</text></view>
+    <button v-if="cpsError" class="more" @click="load(false)">返利订单加载失败，点击重试</button>
+    <button v-else-if="hasMore" class="more" @click="load(false)">加载更多</button>
+    </template>
   </view>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { onShow } from '@dcloudio/uni-app'
+import { ref, computed } from 'vue'
+import { onShow, onHide } from '@dcloudio/uni-app'
 import request from '@/utils/request'
 import useMemberStore from '@/stores/member'
 import { useLogin } from '@/hooks/useLogin'
 
+import MemberOrderList from '../../components/member-order-list.vue'
+const member = useMemberStore()
+const source = ref('all')
+const refresh = ref(0)
+const sources = [{ id: 'all', name: '全部订单' }, { id: 'cps', name: '返利' }, { id: 'dining', name: '餐饮' }, { id: 'movie', name: '电影' }, { id: 'recharge', name: '充值' }]
+const visibleMayi = computed(() => sources.slice(2).filter(item => source.value === 'all' || source.value === item.id))
+let version = 0
+const busy = ref(false)
+const cpsError = ref(false)
 const tabs = [{ key: '', name: '全部' }, { key: 'pending', name: '待结算' }, { key: 'settled', name: '已结算' }, { key: 'invalid', name: '已失效' }]
 const tab = ref('')
 const list = ref([])
@@ -42,25 +60,43 @@ const summary = ref({})
 const money = (v) => (v === undefined || v === null) ? '--' : Number(v).toFixed(2)
 
 const load = async (reset) => {
-  if (reset) { page.value = 1; list.value = [] }
-  const res = await request.get('baijia_tools/cps/orders', { tab: tab.value, page: page.value })
-  const data = res.data || {}
-  list.value = list.value.concat(data.list || [])
-  hasMore.value = Boolean(data.has_more)
-  page.value += 1
-  loaded.value = true
+  if (!reset && busy.value) return
+  if (reset) { version++; page.value = 1; list.value = []; hasMore.value = false; loaded.value = false }
+  const current = version
+  busy.value = true
+  cpsError.value = false
+  try {
+    const { data } = await request.get('baijia_tools/cps/orders', { tab: tab.value, page: page.value }, { showErrorMessage: false })
+    if (current !== version) return
+    const ids = new Set(list.value.map(order => order.id))
+    list.value.push(...data.list.filter(order => !ids.has(order.id)))
+    hasMore.value = data.has_more
+    page.value++
+    loaded.value = true
+  } catch {
+    if (current === version) cpsError.value = true
+  } finally {
+    if (current === version) busy.value = false
+  }
 }
 const switchTab = (key) => { tab.value = key; load(true) }
 
 onShow(() => {
-  if (!useMemberStore().token) { useLogin().setLoginBack({ url: '/addon/baijia_tools/pages/orders/index' }); return }
-  request.get('baijia_tools/cps/summary').then((res) => { summary.value = res.data || {} })
+  refresh.value++
+  const cycle = refresh.value
+  summary.value = {}
+  if (!member.token) { useLogin().setLoginBack({ url: '/addon/baijia_tools/pages/orders/index' }); return }
+  request.get('baijia_tools/cps/summary', {}, { showErrorMessage: false }).then((res) => { if (cycle === refresh.value) summary.value = res.data || {} }).catch(() => {})
   load(true)
 })
+onHide(() => { version++ })
 </script>
 
 <style scoped>
 @import "../../styles/base.css";
+.sources { flex-wrap: wrap; }
+.sources .tab { flex: 1 0 auto; padding: 0 12rpx; }
+.subtitle { font-weight: 650; margin: 22rpx 0; }
 .summary { display: flex; padding: 32rpx 0; border-radius: 24rpx; background: linear-gradient(120deg, #e6fc7b, #fcf490); color: #202120; }
 .sum-item { flex: 1; text-align: center; }
 .sum-num { display: block; font-size: 38rpx; font-weight: 800; }

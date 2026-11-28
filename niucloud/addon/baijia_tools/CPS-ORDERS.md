@@ -28,6 +28,10 @@ MEMBER_RATE = 0.5   ; 不配置时默认 0.5
 `scripts/deploy-baijia.sh` 依次执行：备份、rsync、`baijia-post-deploy.php`（建表、登记计划任务）、重启 `niucloud-worker`。worker 只在启动时加载任务，所以新增或修改任务后必须重启。
 手动同步一次：`sudo -u www php -r 'require "vendor/autoload.php"; (new think\App())->initialize(); var_dump((new addon\baijia_tools\app\service\core\CpsOrderService())->sync());'`
 
+## 直接邀请推广
+
+推广中心展示本人直接邀请的好友、推广订单和佣金明细。站点 100000 的推广规则为平台佣金的 5%，按分向下取整。会员归属与已结算/失效订单的处理见 `CpsOrderService`。已有安装部署此版本时，运行上述 post-deploy 步骤补齐推广字段。
+
 ## 未做
 
-邀请好友、粉丝、二级分佣；美团订单推送回调；后台订单管理页；H5 重新构建。
+二级分佣、美团订单推送回调、后台订单管理页。

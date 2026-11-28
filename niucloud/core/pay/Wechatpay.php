@@ -476,6 +476,10 @@ class Wechatpay extends BasePay
         $result = $this->returnFormat($result);
         return [
             'status' => OnlinePayDict::getWechatPayStatus($result['trade_state']),
+            'out_trade_no' => $result['out_trade_no'] ?? '',
+            'trade_no' => $result['transaction_id'] ?? '',
+            'mch_id' => $result['mchid'] ?? '',
+            'total_fen' => $result['amount']['total'] ?? null,
         ];
     }
 

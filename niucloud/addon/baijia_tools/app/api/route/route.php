@@ -6,6 +6,9 @@ use think\facade\Route;
 
 // Login is optional: logged-in members get their own sid for order attribution.
 Route::group('baijia_tools', function () {
+    Route::get('movie/seats', 'addon\baijia_tools\app\api\controller\MovieOrder@seats');
+    Route::get('native/kfc', 'addon\baijia_tools\app\api\controller\NativeCatalog@kfc');
+    Route::get('native/movies', 'addon\baijia_tools\app\api\controller\NativeCatalog@movies');
     Route::get('dining/catalog', 'addon\baijia_tools\app\api\controller\Dining@catalog');
     Route::get('meituan/products', 'addon\baijia_tools\app\api\controller\Meituan@products');
     Route::get('meituan/link', 'addon\baijia_tools\app\api\controller\Meituan@link');
@@ -17,8 +20,17 @@ Route::group('baijia_tools', function () {
 
 // Member's own rebate orders: login required.
 Route::group('baijia_tools', function () {
+    Route::post('movie/checkout', 'addon\baijia_tools\app\api\controller\MovieOrder@checkout');
+    Route::post('movie/pay', 'addon\baijia_tools\app\api\controller\MovieOrder@pay');
+    Route::get('movie/detail', 'addon\baijia_tools\app\api\controller\MovieOrder@detail');
+    Route::get('movie/orders', 'addon\baijia_tools\app\api\controller\MovieOrder@orders');
+    Route::get('mayi/launch', 'addon\baijia_tools\app\api\controller\Mayi@launch');
+    Route::get('mayi/orders', 'addon\baijia_tools\app\api\controller\Mayi@orders');
     Route::get('cps/orders', 'addon\baijia_tools\app\api\controller\CpsOrder@orders');
     Route::get('cps/summary', 'addon\baijia_tools\app\api\controller\CpsOrder@summary');
+    Route::get('distribution/orders', 'addon\baijia_tools\app\api\controller\Distribution@orders');
+    Route::get('distribution/fans', 'addon\baijia_tools\app\api\controller\Distribution@fans');
+    Route::get('distribution/summary', 'addon\baijia_tools\app\api\controller\Distribution@summary');
     Route::get('promotion/fans', 'addon\baijia_tools\app\api\controller\CpsOrder@fans');
 })->middleware(ApiChannel::class)
     ->middleware(ApiCheckToken::class, true)

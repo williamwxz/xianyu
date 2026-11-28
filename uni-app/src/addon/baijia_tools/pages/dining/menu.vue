@@ -14,16 +14,16 @@
         <view class="line">
           <text>¥{{ yuan(item.price_fen) }}</text>
           <text v-if="reviewing">× {{ quantity(item) }}</text>
-          <view v-else-if="item.stock && store.open" class="stepper">
+          <view v-else-if="available(item) && store.open" class="stepper">
             <button :disabled="!quantity(item)" @click="adjust(item, -1)">−</button>
             <text>{{ quantity(item) }}</text>
-            <button :disabled="quantity(item) >= item.stock" @click="adjust(item, 1)">＋</button>
+            <button :disabled="item.stock != null && quantity(item) >= item.stock" @click="adjust(item, 1)">＋</button>
           </view>
           <text v-else class="muted">暂不可选</text>
         </view>
       </view>
       <view v-if="selected.length" class="bar">
-        <view>餐品合计 ¥{{ yuan(total) }}<view v-if="reviewing" class="muted">该门店暂未开放支付</view></view>
+        <view>餐品合计 ¥{{ yuan(total) }}<view v-if="reviewing" class="muted">当前仅供预览，尚未开放支付</view></view>
         <button @click="reviewing = !reviewing">{{ reviewing ? '返回选餐' : '核对餐品' }}</button>
       </view>
     </template>
@@ -43,9 +43,10 @@ const error = ref(false)
 const brandName = ref('')
 let params
 const yuan = fen => (fen / 100).toFixed(2)
+const available = item => item.stock == null ? item.available === true : item.stock > 0
 const quantity = item => counts.value.get(item.id) || 0
 function adjust(item, delta) {
-  counts.value.set(item.id, Math.max(0, Math.min(item.stock, quantity(item) + delta)))
+  counts.value.set(item.id, Math.max(0, Math.min(item.stock ?? Number.MAX_SAFE_INTEGER, quantity(item) + delta)))
 }
 const selected = computed(() => items.value.filter(item => quantity(item) > 0))
 const total = computed(() => selected.value.reduce((sum, item) => sum + quantity(item) * item.price_fen, 0))
@@ -55,7 +56,7 @@ async function load() {
   error.value = false
   try {
     if (!params.store) throw new Error('缺少门店编号')
-    const { data } = await request.get('baijia_tools/dining/catalog', params, { showErrorMessage: false })
+    const { data } = await request.get(params.brand === 'kfc' ? 'baijia_tools/native/kfc' : 'baijia_tools/dining/catalog', params, { showErrorMessage: false })
     if (!data.store || !Array.isArray(data.items)) throw new Error('门店菜单无效')
     store.value = data.store
     items.value = data.items

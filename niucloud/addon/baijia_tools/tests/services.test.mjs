@@ -61,3 +61,19 @@ test('conversational search extracts a product or brand', () => {
   assert.equal(productKeyword('想点KFC蛋挞'), '肯德基蛋挞')
   assert.equal(productKeyword('芝士蛋糕'), '芝士蛋糕')
 })
+
+test('natural-language searches retain explicit brands and match local intents', () => {
+  assert.ok(searchServices('周末想去电影院看大片').some(item => item.id === 'movie'))
+  assert.ok(searchServices('给手机充点话费').some(item => item.id === 'mayi'))
+  assert.ok(searchServices('肯德基早餐蛋挞').some(item => item.id === 'kfc'))
+  assert.deepEqual(searchServices('无关字符xyz'), [])
+})
+
+import { dailyCopy } from '../uni-app/lib/daily-copy.mjs'
+test('home guide rotates across China midnight with two emergency alternatives', () => {
+  const start = Date.parse('2026-11-27T15:59:59Z')
+  assert.notEqual(dailyCopy(start), dailyCopy(start + 1000))
+  const days = Array.from({ length: 7 }, (_, i) => start + i * 86400000)
+  assert.equal(new Set(days.map(day => dailyCopy(day))).size, 7)
+  assert.equal(new Set(days.map(day => dailyCopy(day, []))).size, 2)
+})
