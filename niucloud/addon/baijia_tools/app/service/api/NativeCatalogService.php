@@ -1,6 +1,7 @@
 <?php
 namespace addon\baijia_tools\app\service\api;
 
+use addon\baijia_tools\app\service\core\KfcCity;
 use core\base\BaseApiService;
 use core\exception\ApiException;
 use GuzzleHttp\Client;
@@ -49,19 +50,33 @@ class NativeCatalogService extends BaseApiService
             'address' => $row['address'] ?? '', 'open' => in_array($row['officialStatus'] ?? false, [true, 1, '1'], true)];
     }
 
+    private function kfcStores(KfcCity $directory, string $city, int $id): array
+    {
+        $key = 'baijia_kfc_stores_v2_' . $this->site_id . '_' . $id . '_' . $city;
+        return Cache::remember($key, function () use ($directory, $city, $id) {
+            $rows = $this->read('diancan/kfcstorenear', ['cityId' => $id, 'keywords' => '']);
+            $stores = [];
+            foreach ($rows as $row) {
+                if (empty($row['storeCode']) || empty($row['name']) || !$directory->matches($row, $city, $id)) continue;
+                $stores[] = $this->store($row);
+            }
+            usort($stores, static fn($a, $b) => $b['open'] <=> $a['open']);
+            return $stores;
+        }, 60);
+    }
+
     public function kfc(string $city, string $store): array
     {
-        if ($store === '') {
-            $id = $this->cityId($city, false);
-            $rows = $id ? $this->read('diancan/kfcstorenear', ['cityId' => $id, 'keywords' => '']) : [];
-            $stores = [];
-            foreach ($rows as $row) if (!empty($row['storeCode']) && !empty($row['name'])) $stores[] = $this->store($row);
-            usort($stores, static fn($a, $b) => $b['open'] <=> $a['open']);
-            return ['stores' => $stores];
-        }
+        $directory = new KfcCity();
+        $city = $directory->name($city);
+        $id = $city === '' ? null : $this->cityId($city, false);
+        $stores = $id ? $this->kfcStores($directory, $city, $id) : [];
+        if ($store === '') return ['stores' => $stores];
         if (!preg_match('/^[A-Za-z0-9_-]{1,40}$/D', $store)) throw new ApiException('门店编号有误');
+        if ($city !== '' && !in_array($store, array_column($stores, 'id'), true)) throw new ApiException('该门店不在当前城市，请重新选择门店');
         $row = $this->read('diancan/kfcgoods', ['storeCode' => $store]);
         if ((string)($row['storeCode'] ?? '') !== $store || empty($row['name'])) throw new ApiException('该门店菜单暂不可用');
+        if ($id && !$directory->matches($row, $city, $id)) throw new ApiException('该门店地址与当前城市不符，请重新选择门店');
         $items = [];
         $groups = $row['menu'] ?? [];
         while ($groups) {
