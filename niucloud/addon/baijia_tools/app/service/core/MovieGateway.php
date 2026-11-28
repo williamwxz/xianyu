@@ -34,7 +34,7 @@ class MovieGateway
         } catch (\Throwable $e) {
             throw new ApiException('影票供应商响应中断，请稍后查看订单');
         }
-        if ((string)($body['status_code'] ?? '') !== '200') throw new ApiException('影票供应商未确认请求，请刷新场次或联系商户');
+        if ((string)($body['status_code'] ?? '') !== '200') throw new ApiException('影票供应商未确认请求，请刷新场次或联系商户', (int)($body['status_code'] ?? 0));
         return is_array($body['data'] ?? null) ? $body['data'] : [];
     }
 

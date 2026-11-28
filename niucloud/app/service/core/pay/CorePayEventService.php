@@ -67,7 +67,13 @@ class CorePayEventService extends BaseCoreService
     public function app(string $action = 'query')
     {
         $notify_url = (string) url("/api/pay/notify/$this->site_id/$this->channel/$this->type/$action", [], '', true);//异步回调通知地址
-        $this->config[ 'notify_url' ] = $notify_url;
+        // WeChat refunds can be reconciled by refund number without a callback.
+        if ($action === 'refund' && $this->type === PayDict::WECHATPAY
+            && (!parse_url($notify_url, PHP_URL_HOST) || parse_url($notify_url, PHP_URL_SCHEME) !== 'https')) {
+            unset($this->config['notify_url']);
+        } else {
+            $this->config['notify_url'] = $notify_url;
+        }
         $this->config[ 'site_id' ] = $this->site_id;
         return new PayLoader($this->type, $this->config);
     }

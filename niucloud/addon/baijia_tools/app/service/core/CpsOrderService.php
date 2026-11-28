@@ -2,6 +2,7 @@
 namespace addon\baijia_tools\app\service\core;
 
 use app\service\core\member\CoreMemberAccountService;
+use core\exception\CommonException;
 use GuzzleHttp\Client;
 use RuntimeException;
 use think\facade\Cache;
@@ -41,7 +42,7 @@ class CpsOrderService
                     $to = min($end, $from + 3600);
                     foreach ($source === 'jtk' ? $this->fetchJtk($from, $to) : $this->fetchMeituan($from, $to) as $order) {
                         $row = $source === 'jtk' ? CpsOrderNormalizer::jtk($order, $this->rate()) : CpsOrderNormalizer::meituan($order, $this->rate());
-                        if ($row) { $this->save($row); $count++; }
+                        if ($row && $this->save($row)) $count++;
                     }
                 }
                 Cache::set($key, $end);
@@ -55,7 +56,7 @@ class CpsOrderService
         return $result;
     }
 
-    public function save(array $row): void
+    public function save(array $row): bool
     {
         $now = time();
         Db::startTrans();
@@ -65,7 +66,7 @@ class CpsOrderService
                 // Ignore out-of-order upstream events and freeze the attributed buyer.
                 if ($row['upstream_update_time'] > 0 && $row['upstream_update_time'] < (int)$existing['upstream_update_time']) {
                     Db::commit();
-                    return;
+                    return true;
                 }
                 if ((int)$existing['member_id'] > 0) {
                     foreach (['site_id', 'member_id', 'sid'] as $key) $row[$key] = $existing[$key];
@@ -95,8 +96,13 @@ class CpsOrderService
             if ($action === 'reverse') $this->reverse($id, $row);
             $this->settlePromotion($id, $row, $existing ?: []);
             Db::commit();
+            return true;
         } catch (\Throwable $e) {
             Db::rollback();
+            if ($e instanceof CommonException && $e->getMessage() === 'ACCOUNT_INSUFFICIENT') {
+                Log::warning('CPS reversal needs manual reconciliation: ' . $row['source'] . '/' . $row['order_sn']);
+                return false;
+            }
             Log::write('baijia cps order ' . $row['source'] . ':' . $row['order_sn'] . ' not saved: ' . $e->getMessage());
             // Keep the sync cursor unchanged so failed credits/refunds are retried.
             throw $e;

@@ -81,6 +81,7 @@ class MovieOrderService extends MayiService
         $p = json_decode($row['payload'],true);
         $state = $row['state'];
         if ($state === 'quoted' && $row['expires_at'] <= time()) $state = 'expired';
+        if ($state === 'paying' && $row['expires_at'] <= time()) $state = 'payment_check';
         return ['id'=>$row['sn'],'title'=>$p['show']['film'],'cinema'=>$p['show']['cinema'],'time'=>$p['show']['time'],
             'seat'=>$p['params']['seat'],'state'=>$state,'status'=>MovieFulfillment::LABELS[$state],
             'amount'=>number_format($row['amount_fen']/100,2,'.',''), 'expires_at'=>$row['expires_at'],
