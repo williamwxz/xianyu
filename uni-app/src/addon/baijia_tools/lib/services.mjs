@@ -1,3 +1,4 @@
+import { inferService } from './search-intent.mjs'
 // Service entries. `jtk` = key in the server-side 聚推客 mapping (JtkActDict.php);
 // such entries open the partner activity directly. Entries without `jtk` and
 // without `launch` show the "即将上线" page.
@@ -5,7 +6,7 @@
 // `img` = designed icon under static/design/ (惠省团 design, Moonvy).
 export const SERVICES = [
   { id: 'bawangcan', jtk: 'bawangcan', name: '霸王餐', slogan: '下单返现 · 吃好不花钱', icon: '餐', color: '#ff5a2c', colorTo: '#ff9a3c', channel: '聚推客 · 美团霸王餐' },
-  { id: 'movie', channel: '自营电影票', name: '电影票', slogan: '热映影片 · 特惠选座', icon: '影', color: '#ff3d6e', colorTo: '#ff7a9c' },
+  { id: 'movie', launch: { type: 'page', url: '/addon/baijia_tools/pages/movie/index' }, channel: '自营电影票', name: '电影票', slogan: '热映影片 · 特惠选座', icon: '影', color: '#ff3d6e', colorTo: '#ff7a9c' },
   { id: 'daodian', launch: { type: 'page', url: '/addon/baijia_tools/pages/catalog/index' }, name: '到店团购', slogan: '吃喝玩乐 · 团购1折起', icon: '团', color: '#13b87a', colorTo: '#46d39c', channel: '美团到店' },
   { id: 'waimai', jtk: 'waimai', name: '外卖红包', slogan: '美团外卖 · 每天领', icon: '红', color: '#ff7b1c', colorTo: '#ffb03a', channel: '聚推客 · 美团外卖' },
   { id: 'express', jtk: 'express', name: '寄快递', slogan: '特价寄件 · 上门取件', icon: '寄', color: '#7b5cf0', colorTo: '#a58bff', channel: '聚推客 · 特价快递' },
@@ -75,7 +76,10 @@ export function productKeyword(query) {
 export function searchServices(keyword) {
   const words = String(keyword || '').trim().toLowerCase()
   if (!words) return []
-  return SERVICES.filter((item) => `${item.name}${item.slogan || ''}`.toLowerCase().includes(words))
+  const matches = SERVICES.filter(item => `${item.name}${item.slogan || ''}`.toLowerCase().includes(words) || words.includes(item.name))
+  const inferred = getService(inferService(words))
+  if (inferred && !matches.includes(inferred)) matches.push(inferred)
+  return matches
 }
 
 export function servicePageUrl(id) {

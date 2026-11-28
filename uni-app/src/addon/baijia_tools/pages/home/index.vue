@@ -2,7 +2,7 @@
   <view class="home">
     <image class="hero" src="/addon/baijia_tools/static/design/hero.png" mode="widthFix" />
     <view class="header" :style="{ paddingTop: `${navTop}px` }">
-      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">的确省</text></view>
+      <view class="title-row" :style="{ height: `${navHeight}px` }"><text class="app-name">的确省</text><text class="daily-copy">{{ guide }}</text></view>
       <view class="search-row">
         <picker mode="multiSelector" :range="[provinces, pickerNames]" :value="pickerValue" @cancel="resetPicker" @columnchange="changeColumn" @change="changeCity">
           <view class="city">
@@ -63,7 +63,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
-import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
+import { onLoad, onShow, onShareAppMessage } from '@dcloudio/uni-app'
 import ProductFeed from '../../components/product-feed.vue'
 import { getAddressByLatlng } from '@/app/api/system'
 import { saveInviteReferrer } from '@/utils/interceptor'
@@ -71,8 +71,11 @@ import useSystemStore from '@/stores/system'
 import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
 import { HOME_GRID, MORE_GRID, getService } from '../../lib/services.mjs'
+import { dailyCopy } from '../../lib/daily-copy.mjs'
 import { openService } from '../../lib/launch.js'
 
+const guide = ref(dailyCopy())
+onShow(() => { guide.value = dailyCopy() })
 const grid = HOME_GRID.map(getService)
 const more = MORE_GRID.map(getService)
 const showMore = ref(false)
@@ -146,7 +149,9 @@ onShareAppMessage(() => ({ title: '的确省 · 吃喝玩乐先省一笔', path:
 .hero { position: absolute; top: 0; left: 0; width: 750rpx; }
 .header { position: absolute; top: 0; left: 0; right: 0; z-index: 2; padding-left: 32rpx; padding-right: 32rpx; }
 .title-row { display: flex; align-items: center; }
-.app-name { font-size: 34rpx; font-weight: 800; }
+.daily-copy { margin-left: 16rpx; font-size: 21rpx; color: #53584c; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.title-row { max-width: calc(100% - 190rpx); }
+.app-name { flex-shrink: 0; font-size: 34rpx; font-weight: 800; }
 .search-row { display: flex; align-items: center; gap: 20rpx; margin-top: 12rpx; }
 .city { display: flex; align-items: center; }
 .city-icon { width: 32rpx; height: 32rpx; }

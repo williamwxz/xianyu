@@ -4,6 +4,7 @@
       <view class="title-row" :style="{ height: `${navHeight}px` }">
         <image class="pin" src="/addon/baijia_tools/static/design/icon-location.png" />
         <text class="city">{{ cityName }}</text>
+        <text v-if="member.token && member.info && progress" class="growth" @click="seeLevel">成长值 {{ progress.growth }} · {{ currentLevel || '查看权益' }} ›</text>
       </view>
       <view class="search" @click="goSearch">
         <image class="search-icon" src="/addon/baijia_tools/static/design/icon-search.png" />
@@ -42,8 +43,16 @@ import BjTabbar from '../../components/bj-tabbar.vue'
 import cityData from '../../lib/meituan-cities.json'
 import { openService } from '../../lib/launch.js'
 
+import request from '@/utils/request'
+import useMemberStore from '@/stores/member'
+import { levelProgress } from '../../lib/level.mjs'
 import ProductFeed from '../../components/product-feed.vue'
 import { getService } from '../../lib/services.mjs'
+const member = useMemberStore()
+const levels = ref([])
+const progress = computed(() => member.info ? levelProgress(levels.value, member.info.growth, member.info.member_level) : null)
+const currentLevel = computed(() => progress.value?.nodes.find(node => node.current)?.name)
+const seeLevel = () => uni.reLaunch({ url: '/addon/baijia_tools/pages/mine/index' })
 const selected = ref(null)
 const cityId = ref('')
 const categories = { coffee: '瑞幸咖啡', tea: '奈雪的茶', food: '美食', bawangcan: '餐饮' }
@@ -70,6 +79,10 @@ if (capsule && capsule.height) { navHeight = capsule.height + (capsule.top - nav
 // Same city the home feed uses.
 const cityName = ref('')
 onShow(() => {
+  if (member.token) {
+    member.getMemberInfo()
+    request.get('member/level', {}, { showErrorMessage: false }).then(({ data }) => { levels.value = data || [] }).catch(() => { levels.value = [] })
+  }
   const id = uni.getStorageSync('baijia_meituan_city') || 'WKV2HMXUEK634WP64CUCUQGM64'
   cityId.value = id
   const city = cityData.find((c) => c.id === id)
@@ -84,6 +97,7 @@ onShareAppMessage(() => ({ title: '的确省 · 逛逛生活街区', path: '/add
 <style scoped>
 .street { position: relative; min-height: 100vh; background: #fff9f2; padding-bottom: calc(150rpx + env(safe-area-inset-bottom)); }
 .header { position: fixed; top: 0; left: 0; right: 0; z-index: 2; padding: 0 32rpx 24rpx; background: linear-gradient(180deg, rgba(255, 249, 242, .95) 70%, rgba(255, 249, 242, 0)); }
+.growth { margin-left: 18rpx; padding: 4rpx 14rpx; font-size: 22rpx; background: #eff9ba; border-radius: 20rpx; }
 .title-row { display: flex; align-items: center; }
 .pin { width: 32rpx; height: 32rpx; }
 .city { font-size: 28rpx; font-weight: 700; color: #202120; margin-left: 6rpx; }

@@ -62,22 +62,78 @@ class CpsOrderService
         try {
             $existing = Db::name(self::TABLE)->where(['source' => $row['source'], 'order_sn' => $row['order_sn']])->lock(true)->find();
             if ($existing) {
+                // Ignore out-of-order upstream events and freeze the attributed buyer.
+                if ($row['upstream_update_time'] > 0 && $row['upstream_update_time'] < (int)$existing['upstream_update_time']) {
+                    Db::commit();
+                    return;
+                }
+                if ((int)$existing['member_id'] > 0) {
+                    foreach (['site_id', 'member_id', 'sid'] as $key) $row[$key] = $existing[$key];
+                }
+                if ((int)$existing['status'] === CpsOrderNormalizer::INVALID) $row['status'] = CpsOrderNormalizer::INVALID;
+                elseif ((int)$existing['status'] === CpsOrderNormalizer::SETTLED && in_array($row['status'], [0, 1, 2], true)) $row['status'] = CpsOrderNormalizer::SETTLED;
+                $row['promoter_id'] = (int)$existing['member_id'] <= 0 && (int)$row['member_id'] > 0
+                    ? $this->promoter($row) : (int)$existing['promoter_id'];
                 // a rebate that was already paid out is never recalculated
                 if ((int)$existing['credited'] !== 0) $row['member_commission'] = $existing['member_commission'];
+                $row['promoter_commission'] = $this->promotionAmount($row);
                 Db::name(self::TABLE)->where('id', $existing['id'])->update(array_merge($row, ['update_time' => $now]));
                 $id = (int)$existing['id'];
                 $credited = (int)$existing['credited'];
             } else {
+                $row['promoter_id'] = $this->promoter($row);
+                $row['promoter_commission'] = $this->promotionAmount($row);
                 $id = (int)Db::name(self::TABLE)->insertGetId(array_merge($row, ['credited' => 0, 'create_time' => $now, 'update_time' => $now]));
                 $credited = 0;
             }
+            // Lock recipient accounts in a stable order before either balance changes.
+            Db::name('member')->where('site_id', $row['site_id'])
+                ->whereIn('member_id', array_filter([(int)$row['member_id'], (int)$row['promoter_id']]))
+                ->order('member_id')->lock(true)->select();
             $action = CpsOrderNormalizer::creditAction($row, $credited);
             if ($action === 'credit') $this->credit($id, $row);
             if ($action === 'reverse') $this->reverse($id, $row);
+            $this->settlePromotion($id, $row, $existing ?: []);
             Db::commit();
         } catch (\Throwable $e) {
             Db::rollback();
             Log::write('baijia cps order ' . $row['source'] . ':' . $row['order_sn'] . ' not saved: ' . $e->getMessage());
+            // Keep the sync cursor unchanged so failed credits/refunds are retried.
+            throw $e;
+        }
+    }
+
+    private function promoter(array $row): int
+    {
+        if ((int)$row['site_id'] !== ReferralCommission::SITE_ID || (int)$row['member_id'] <= 0) return 0;
+        $buyer = Db::name('member')->where(['site_id' => $row['site_id'], 'member_id' => $row['member_id'], 'is_del' => 0, 'delete_time' => 0])->find();
+        $pid = (int)($buyer['pid'] ?? 0);
+        if ($pid <= 0 || $pid === (int)$row['member_id']) return 0;
+        return Db::name('member')->where(['site_id' => $row['site_id'], 'member_id' => $pid, 'is_del' => 0, 'delete_time' => 0, 'status' => 1])->count() ? $pid : 0;
+    }
+
+    private function promotionAmount(array $row): float
+    {
+        return $row['promoter_id'] > 0 && $row['status'] !== CpsOrderNormalizer::INVALID
+            ? ReferralCommission::amount($row['commission']) : 0.0;
+    }
+
+    private function settlePromotion(int $id, array $row, array $existing): void
+    {
+        if ($row['promoter_id'] <= 0) return;
+        $credited = (int)($existing['promoter_credited'] ?? 0);
+        $paid = (float)($existing['promoter_credited_amount'] ?? 0);
+        $delta = ReferralCommission::delta((int)$row['status'], $credited, $paid, $row['promoter_commission']);
+        if ($delta != 0.0) {
+            (new CoreMemberAccountService())->addLog($row['site_id'], $row['promoter_id'], 'commission', $delta,
+                $delta > 0 ? 'cps_promotion' : 'cps_promotion_refund',
+                ($delta > 0 ? '推广奖励（平台佣金5%）：' : '推广奖励扣回：') . mb_substr($row['title'] ?: $row['act_name'], 0, 40), $id);
+        }
+        if ($row['status'] === CpsOrderNormalizer::INVALID) {
+            // Mark even zero-value invalid orders terminal to prevent later resurrection.
+            Db::name(self::TABLE)->where('id', $id)->update(['promoter_credited' => 2, 'promoter_credited_amount' => 0]);
+        } elseif ($row['status'] === CpsOrderNormalizer::SETTLED && $credited !== 2) {
+            Db::name(self::TABLE)->where('id', $id)->update(['promoter_credited' => 1, 'promoter_credited_amount' => $row['promoter_commission']]);
         }
     }
 

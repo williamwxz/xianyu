@@ -17,6 +17,11 @@ CREATE TABLE IF NOT EXISTS `{{prefix}}baijia_cps_order` (
   `upstream_update_time` int(11) NOT NULL DEFAULT 0,
   `create_time` int(11) NOT NULL DEFAULT 0,
   `update_time` int(11) NOT NULL DEFAULT 0,
+  `promoter_id` int NOT NULL DEFAULT 0,
+  `promoter_commission` decimal(10,2) NOT NULL DEFAULT 0,
+  `promoter_credited` tinyint NOT NULL DEFAULT 0,
+  `promoter_credited_amount` decimal(10,2) NOT NULL DEFAULT 0,
+  KEY `idx_promoter` (`site_id`, `promoter_id`, `status`),
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_source_order` (`source`, `order_sn`),
   KEY `idx_member` (`site_id`, `member_id`, `status`)

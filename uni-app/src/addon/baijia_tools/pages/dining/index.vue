@@ -28,7 +28,7 @@
       <view v-else-if="!filtered.length" class="white-card feedback">
         {{ keyword.trim() ? '没有匹配的门店' : '当前城市暂无可点餐门店' }}
       </view>
-      <view v-else v-for="store in filtered" :key="store.id" class="white-card store-card" @click="select(store)">
+      <view v-else v-for="store in filtered.slice(0, limit)" :key="store.id" class="white-card store-card" @click="select(store)">
         <view class="identity">
           <image v-if="brand.img" class="logo" :src="`/addon/baijia_tools/static/design/${brand.img}`" mode="aspectFit" />
           <text v-else class="logo brand-initial" :style="{ color: brand.color }">{{ brand.icon }}</text>
@@ -42,6 +42,7 @@
           <text v-else class="closed">休息中</text>
         </view>
       </view>
+      <button v-if="filtered.length > limit" class="retry" @click="limit += 30">更多门店</button>
     </template>
   </view>
 </template>
@@ -54,6 +55,7 @@ import { getService } from '../../lib/services.mjs'
 const brand = ref(null)
 const cityIndex = ref(0)
 const keyword = ref('')
+const limit = ref(30)
 const stores = ref([])
 const loading = ref(true)
 const error = ref(false)
@@ -63,9 +65,13 @@ async function load() {
   const current = ++version
   loading.value = true
   error.value = false
+  limit.value = 30
   stores.value = []
   try {
-    const res = await request.get('baijia_tools/dining/catalog', { brand: brand.value.id, city: cities[cityIndex.value].id }, { showErrorMessage: false })
+    const kfc = brand.value.id === 'kfc'
+    const city = cities[cityIndex.value]
+    const res = await request.get(kfc ? 'baijia_tools/native/kfc' : 'baijia_tools/dining/catalog',
+      { brand: brand.value.id, city: kfc ? city.name : city.id }, { showErrorMessage: false })
     if (version === current) stores.value = res.data.stores
   } catch { if (version === current) error.value = true }
   finally { if (version === current) loading.value = false }

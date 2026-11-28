@@ -36,6 +36,10 @@ return ['pages' => <<<'PAGES'
             "style": { "navigationBarTitleText": "推广中心" }
         },
         {
+            "path": "pages/movie/index",
+            "style": { "navigationBarTitleText": "热门电影" }
+        },
+        {
             "path": "pages/dining/index",
             "style": { "navigationBarTitleText": "选门店" }
         },
@@ -54,7 +58,7 @@ return ['pages' => <<<'PAGES'
         {
             "path": "pages/orders/index",
             "style": {
-                "navigationBarTitleText": "返利订单"
+                "navigationBarTitleText": "我的订单"
             }
         }
     ]
