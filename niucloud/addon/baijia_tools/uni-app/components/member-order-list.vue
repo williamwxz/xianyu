@@ -1,7 +1,7 @@
 <template>
   <view class="group">
     <view class="label">{{ title }}</view>
-    <view v-for="order in rows" :key="order.id" class="entry">
+    <view v-for="order in rows" :key="order.id" class="entry" @click="openTicket(order)">
       <view class="line"><text class="name">{{ order.title || order.act_name || title }}</text><text>{{ order.status_name || order.status }}</text></view>
       <view v-if="promotion" class="detail">
         {{ order.pay_time }} · 实付 ¥{{ order.pay_amount }}
@@ -11,7 +11,8 @@
       </view>
       <view v-else class="detail">
         <view>订单号 {{ order.id }}</view>
-        <view v-if="order.amount != null">实付 ¥{{ order.amount }}</view>
+        <view v-if="order.amount != null">{{ kind === 'native-movie' ? '订单金额' : '实付' }} ¥{{ order.amount }}</view>
+        <view v-if="kind === 'native-movie'">查看影票详情 ›</view>
         <view v-if="order.pickup" class="pickup">取餐码 {{ order.pickup }}</view>
       </view>
     </view>
@@ -31,12 +32,15 @@ const failed = ref(false)
 const loading = ref(false)
 let page = 1
 let active = true
+function openTicket(order) {
+  if (props.kind === 'native-movie') uni.navigateTo({url:'/addon/baijia_tools/pages/movie/ticket?sn='+encodeURIComponent(order.id)})
+}
 async function load() {
   if (loading.value) return
   loading.value = true
   failed.value = false
   try {
-    const url = props.promotion ? 'baijia_tools/distribution/orders' : 'baijia_tools/mayi/orders'
+    const url = props.promotion ? 'baijia_tools/distribution/orders' : props.kind === 'native-movie' ? 'baijia_tools/movie/orders' : 'baijia_tools/mayi/orders'
     const params = props.promotion ? { page } : { page, kind: props.kind }
     const { data } = await request.get(url, params, { showErrorMessage: false })
     if (!active) return

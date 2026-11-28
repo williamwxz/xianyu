@@ -9,7 +9,7 @@ class MayiClient
     private const METHODS = ['recharge' => 'rerechargeorder', 'dining' => 'dcorder', 'movie' => 'movieorder'];
     private const STATUS = [
         'dining' => [0=>'待付款', 1=>'已付款待出餐', 2=>'出餐中', 3=>'出餐成功', 4=>'已完成', 5=>'出餐失败退款', 10=>'订单关闭'],
-        'movie' => [1=>'已付款', 2=>'受理中', 3=>'待出票', 5=>'已结算', 6=>'待付款', 10=>'订单关闭'],
+        'movie' => [1=>'已付款', 2=>'受理中', 3=>'待出票', 4=>'已出票', 5=>'已结算', 6=>'待付款', 10=>'订单关闭'],
         'recharge' => [0=>'待付款', 1=>'已付款', 2=>'充值中', 3=>'充值完成', 5=>'已结算', 10=>'订单关闭'],
     ];
 
@@ -48,6 +48,7 @@ class MayiClient
     {
         $orders = [];
         foreach ($data['list'] as $row) {
+            if ($kind === 'movie' && preg_match('/^BQ[0-9a-f]{24}$/D',(string)($row['third_orderid'] ?? ''))) continue;
             if ((string)($row['uid'] ?? '') !== $uid || empty($row['orderid'])) continue;
             $amount = $row['payprice'] ?? null;
             $orders[] = [

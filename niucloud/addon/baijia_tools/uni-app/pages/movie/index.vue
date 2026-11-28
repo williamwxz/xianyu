@@ -11,13 +11,12 @@
         <view class="detail">{{ cinema ? [row.name,row.version].filter(Boolean).join(' · ') : row.address || row.genre }}</view>
         <view v-if="row.duration" class="detail">{{ row.duration }} 分钟</view>
       </view>
-      <text v-if="!cinema" class="action">{{ film ? '看场次' : '选影院' }}</text>
+      <text class="action">{{ cinema ? '选座' : film ? '看场次' : '选影院' }}</text>
     </view>
     <view v-if="loading" class="hint">正在加载…</view>
     <button v-else-if="error" @click="load">加载失败，点击重试</button>
     <view v-else-if="!visible.length" class="hint">{{ cinema ? '暂无放映场次' : film ? '暂无可选影院' : '暂无匹配影片' }}</view>
     <button v-if="more && !loading && !error" @click="load">更多影院</button>
-    <view v-if="cinema && visible.length" class="hint">当前可查场次，购票暂未开放</view>
   </view>
 </template>
 <script setup>
@@ -64,7 +63,7 @@ function changeCity({ detail }) {
   load()
 }
 function next(row) {
-  if (cinema.value) return
+  if (cinema.value) return uni.navigateTo({url:'./seats?cinema='+encodeURIComponent(cinema.value)+'&film='+encodeURIComponent(film.value)+'&show='+encodeURIComponent(row.id)})
   const args = { city: city.value.id, film: film.value || row.id, filmName: film.value ? filmName.value : row.name }
   if (film.value) Object.assign(args, { cinema: row.id, cinemaName: row.name })
   uni.navigateTo({ url: './index?' + Object.entries(args).map(([key, value]) => key + '=' + encodeURIComponent(value)).join('&') })

@@ -17,7 +17,7 @@ class MayiService extends BaseApiService
         return [$key, $secret];
     }
 
-    private function uid(): string
+    protected function uid(): string
     {
         $uidKey = (string)env('HAOJINGKE.UID_KEY', '');
         if (strlen($uidKey) < 32) throw new ApiException('蚂蚁星球会员关联暂未配置');

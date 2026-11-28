@@ -26,3 +26,23 @@ CREATE TABLE IF NOT EXISTS `{{prefix}}baijia_cps_order` (
   UNIQUE KEY `uk_source_order` (`source`, `order_sn`),
   KEY `idx_member` (`site_id`, `member_id`, `status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='的确省 CPS 订单';
+
+CREATE TABLE IF NOT EXISTS `{{prefix}}baijia_movie_order` (
+  id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  site_id int unsigned NOT NULL,
+  member_id int unsigned NOT NULL,
+  sn varchar(40) NOT NULL,
+  request_key varchar(48) NOT NULL,
+  state varchar(20) NOT NULL DEFAULT 'quoted',
+  amount_fen int unsigned NOT NULL,
+  expires_at int unsigned NOT NULL,
+  payload text NOT NULL,
+  tickets text NULL,
+  out_trade_no varchar(64) NOT NULL DEFAULT '',
+  refund_no varchar(64) NOT NULL DEFAULT '',
+  next_check int unsigned NOT NULL DEFAULT 0,
+  UNIQUE KEY movie_sn (sn),
+  UNIQUE KEY movie_request (site_id,member_id,request_key),
+  KEY movie_work (state,next_check),
+  KEY movie_member (site_id,member_id,id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

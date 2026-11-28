@@ -10,6 +10,7 @@
     <view class="tabs sources">
       <button v-for="item in sources" :key="item.id" class="tab" :class="{ active: source === item.id }" @click="source = item.id">{{ item.name }}</button>
     </view>
+    <MemberOrderList v-if="source === 'all' || source === 'movie'" :key="refresh+'native'" title="自选座影票" kind="native-movie" />
     <MemberOrderList v-for="item in visibleMayi" :key="refresh + item.id" :title="item.name + '订单'" :kind="item.id" />
     <template v-if="source === 'all' || source === 'cps'">
     <view class="subtitle">美团及合作活动返利订单</view>

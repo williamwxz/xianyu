@@ -35,6 +35,8 @@ return ['pages' => <<<'PAGES'
             "path": "pages/promotion/index",
             "style": { "navigationBarTitleText": "推广中心" }
         },
+        {"path": "pages/movie/seats", "style": {"navigationBarTitleText": "选择座位"}},
+        {"path": "pages/movie/ticket", "style": {"navigationBarTitleText": "我的影票"}},
         {
             "path": "pages/movie/index",
             "style": { "navigationBarTitleText": "热门电影" }
